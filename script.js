@@ -2340,6 +2340,7 @@ AtlasApp.prototype.clearCourseForm = function() {
     const levelField = document.getElementById('course-level');
     const priceField = document.getElementById('course-price');
     const imageField = document.getElementById('course-image');
+    const durationField = document.getElementById('course-duration');
     
     if (titleField) titleField.value = '';
     if (descField) descField.value = '';
@@ -2347,17 +2348,78 @@ AtlasApp.prototype.clearCourseForm = function() {
     if (levelField) levelField.value = '';
     if (priceField) priceField.value = '';
     if (imageField) imageField.value = '';
+    if (durationField) durationField.value = '';
     
     // Limpiar container de clases y agregar dos clases por defecto
     const classesContainer = document.getElementById('course-classes-container');
     if (classesContainer) {
+        // Antes de limpiar, resetear estilos de archivos de clases existentes
+        const classVideoLabels = classesContainer.querySelectorAll('.class-video + label');
+        const classFilesLabels = classesContainer.querySelectorAll('.class-files + label');
+        
+        classVideoLabels.forEach(label => {
+            label.innerHTML = `
+                <i class="fas fa-video"></i>
+                <span>Subir video de la clase</span>
+            `;
+            label.style.borderColor = '';
+            label.style.backgroundColor = '';
+            label.style.color = '';
+        });
+        
+        classFilesLabels.forEach(label => {
+            label.innerHTML = `
+                <i class="fas fa-paperclip"></i>
+                <span>Subir archivos de apoyo</span>
+            `;
+            label.style.borderColor = '';
+            label.style.backgroundColor = '';
+            label.style.color = '';
+        });
+        
+        // Ahora limpiar y agregar clases vacías por defecto
         classesContainer.innerHTML = '';
-        // Agregar dos clases vacías por defecto
         this.addCourseClass();
         this.addCourseClass();
     }
     
-    console.log('✅ Formulario de curso limpiado');
+    // Limpiar contenedores de datos dinámicos
+    const previousCoursesGrid = document.getElementById('previous-courses-grid');
+    if (previousCoursesGrid) {
+        // Recargar los cursos anteriores para mostrar el estado actualizado
+        setTimeout(() => {
+            this.loadPreviousCourses();
+        }, 500);
+    }
+    
+    // Restaurar labels originales de archivos y resetear estilos visuales
+    const imageLabel = document.querySelector('label[for="course-image"]');
+    if (imageLabel) {
+        // Restaurar contenido HTML original
+        imageLabel.innerHTML = `
+            <i class="fas fa-cloud-upload-alt"></i>
+            <span>Subir imagen del curso</span>
+        `;
+        // Resetear estilos CSS a estado original
+        imageLabel.style.borderColor = '';
+        imageLabel.style.backgroundColor = '';
+        imageLabel.style.color = '';
+    }
+    
+    // Limpiar mensajes de error o validación si existen
+    const errorMessages = document.querySelectorAll('#course-creator-screen .error-message, #course-creator-screen .validation-message');
+    errorMessages.forEach(msg => {
+        msg.textContent = '';
+        msg.style.display = 'none';
+    });
+    
+    // Limpiar notificaciones temporales
+    const notifications = document.querySelectorAll('#course-creator-screen .notification, #course-creator-screen .temp-message');
+    notifications.forEach(notif => {
+        notif.remove();
+    });
+    
+    console.log('✅ Formulario de curso limpiado completamente');
 };
 
 AtlasApp.prototype.validateBasicCourseInfo = function() {
@@ -2605,16 +2667,70 @@ AtlasApp.prototype.clearClassForm = function() {
     if (filesField) filesField.value = '';
     if (imageField) imageField.value = '';
     
-    // Restaurar labels originales de archivos
-    const videoLabel = document.querySelector('label[for="single-class-video"] span');
-    const filesLabel = document.querySelector('label[for="single-class-files"] span');
-    const imageLabel = document.querySelector('label[for="single-class-image"] span');
+    // Limpiar contenedores de datos dinámicos
+    const previousClassesGrid = document.getElementById('previous-classes-grid');
+    if (previousClassesGrid) {
+        // Recargar las clases anteriores para mostrar el estado actualizado
+        setTimeout(() => {
+            this.loadPreviousClasses();
+        }, 500);
+    }
     
-    if (videoLabel) videoLabel.textContent = 'Subir video de la clase';
-    if (filesLabel) filesLabel.textContent = 'Subir archivos de apoyo';
-    if (imageLabel) imageLabel.textContent = 'Subir imagen representativa';
+    // Restaurar labels originales de archivos y resetear estilos visuales
+    const videoLabel = document.querySelector('label[for="single-class-video"]');
+    const filesLabel = document.querySelector('label[for="single-class-files"]');
+    const imageLabel = document.querySelector('label[for="single-class-image"]');
     
-    console.log('✅ Formulario de clase limpiado');
+    if (videoLabel) {
+        // Restaurar contenido HTML original
+        videoLabel.innerHTML = `
+            <i class="fas fa-video"></i>
+            <span>Subir video de la clase</span>
+        `;
+        // Resetear estilos CSS a estado original
+        videoLabel.style.borderColor = '';
+        videoLabel.style.backgroundColor = '';
+        videoLabel.style.color = '';
+    }
+    
+    if (filesLabel) {
+        // Restaurar contenido HTML original
+        filesLabel.innerHTML = `
+            <i class="fas fa-paperclip"></i>
+            <span>Subir archivos de apoyo</span>
+        `;
+        // Resetear estilos CSS a estado original
+        filesLabel.style.borderColor = '';
+        filesLabel.style.backgroundColor = '';
+        filesLabel.style.color = '';
+    }
+    
+    if (imageLabel) {
+        // Restaurar contenido HTML original
+        imageLabel.innerHTML = `
+            <i class="fas fa-image"></i>
+            <span>Subir imagen representativa</span>
+        `;
+        // Resetear estilos CSS a estado original
+        imageLabel.style.borderColor = '';
+        imageLabel.style.backgroundColor = '';
+        imageLabel.style.color = '';
+    }
+    
+    // Limpiar mensajes de error o validación si existen
+    const errorMessages = document.querySelectorAll('#class-creator-screen .error-message, #class-creator-screen .validation-message');
+    errorMessages.forEach(msg => {
+        msg.textContent = '';
+        msg.style.display = 'none';
+    });
+    
+    // Limpiar notificaciones temporales
+    const notifications = document.querySelectorAll('#class-creator-screen .notification, #class-creator-screen .temp-message');
+    notifications.forEach(notif => {
+        notif.remove();
+    });
+    
+    console.log('✅ Formulario de clase limpiado completamente');
 };
 
 AtlasApp.prototype.validateSingleClassInfo = function() {
