@@ -685,7 +685,8 @@ AtlasApp.prototype.loadCourseData = function(courseId) {
                 { number: 3, title: 'Ecuaciones Lineales', topic: 'Resolución de ecuaciones de primer grado' },
                 { number: 4, title: 'Sistemas de Ecuaciones', topic: 'Métodos de resolución: sustitución y eliminación' },
                 { number: 5, title: 'Inecuaciones', topic: 'Resolución de desigualdades lineales' },
-                { number: 6, title: 'Aplicaciones Prácticas', topic: 'Problemas del mundo real usando álgebra' }
+                { number: 6, title: 'Aplicaciones Prácticas', topic: 'Problemas del mundo real usando álgebra' },
+                { number: 7, title: 'Evaluación', topic: 'Evaluación final del curso de Álgebra Básica' }
             ]
         },
         'calculo-diferencial': {
@@ -708,7 +709,8 @@ AtlasApp.prototype.loadCourseData = function(courseId) {
                 { number: 5, title: 'Aplicaciones de Derivadas', topic: 'Máximos, mínimos y optimización' },
                 { number: 6, title: 'Gráficas y Análisis', topic: 'Análisis de funciones usando derivadas' },
                 { number: 7, title: 'Problemas de Optimización', topic: 'Aplicaciones prácticas en física y economía' },
-                { number: 8, title: 'Derivadas de Orden Superior', topic: 'Segundas y terceras derivadas' }
+                { number: 8, title: 'Derivadas de Orden Superior', topic: 'Segundas y terceras derivadas' },
+                { number: 9, title: 'Evaluación', topic: 'Evaluación final del curso de Cálculo Diferencial' }
             ]
         },
         'fisica-basica': {
@@ -731,7 +733,8 @@ AtlasApp.prototype.loadCourseData = function(courseId) {
                 { number: 5, title: 'Momentum y Colisiones', topic: 'Conservación del momentum lineal' },
                 { number: 6, title: 'Gravitación', topic: 'Ley de gravitación universal' },
                 { number: 7, title: 'Ondas', topic: 'Propiedades de las ondas mecánicas' },
-                { number: 8, title: 'Termodinámica Básica', topic: 'Calor, temperatura y leyes de la termodinámica' }
+                { number: 8, title: 'Termodinámica Básica', topic: 'Calor, temperatura y leyes de la termodinámica' },
+                { number: 9, title: 'Evaluación', topic: 'Evaluación final del curso de Física Básica' }
             ]
         },
         'matematicas-avanzadas': {
@@ -754,7 +757,8 @@ AtlasApp.prototype.loadCourseData = function(courseId) {
                 { number: 5, title: 'Integración Avanzada', topic: 'Integrales impropias y teoremas de convergencia' },
                 { number: 6, title: 'Álgebra Lineal', topic: 'Espacios vectoriales y transformaciones lineales' },
                 { number: 7, title: 'Teoría de Números', topic: 'Números primos y aritmética modular' },
-                { number: 8, title: 'Topología Básica', topic: 'Espacios métricos y continuidad' }
+                { number: 8, title: 'Topología Básica', topic: 'Espacios métricos y continuidad' },
+                { number: 9, title: 'Evaluación', topic: 'Evaluación final del curso de Matemáticas Avanzadas' }
             ]
         },
         'historia-universal': {
@@ -777,7 +781,8 @@ AtlasApp.prototype.loadCourseData = function(courseId) {
                 { number: 5, title: 'Renacimiento', topic: 'Humanismo y arte renacentista' },
                 { number: 6, title: 'Revolución Industrial', topic: 'Cambios sociales y económicos' },
                 { number: 7, title: 'Guerras Mundiales', topic: 'Conflictos del siglo XX' },
-                { number: 8, title: 'Era Contemporánea', topic: 'Globalización y desafíos actuales' }
+                { number: 8, title: 'Era Contemporánea', topic: 'Globalización y desafíos actuales' },
+                { number: 9, title: 'Evaluación', topic: 'Evaluación final del curso de Historia Universal' }
             ]
         },
         'historia-america-latina': {
@@ -798,9 +803,33 @@ AtlasApp.prototype.loadCourseData = function(courseId) {
                 { number: 3, title: 'Período Colonial', topic: 'Sociedad colonial y economía extractiva' },
                 { number: 4, title: 'Independencias', topic: 'Procesos de emancipación en el siglo XIX' },
                 { number: 5, title: 'Siglo XIX', topic: 'Formación de estados nacionales' },
-                { number: 6, title: 'Revolución Mexicana', topic: 'Transformaciones sociales y políticas' },
-                { number: 7, title: 'Siglo XX', topic: 'Dictaduras, democracias y desarrollo' },
-                { number: 8, title: 'América Latina Actual', topic: 'Desafíos y oportunidades del siglo XXI' }
+                { number: 6, title: 'Revoluciones del Siglo XX', topic: 'Cambios políticos y sociales' },
+                { number: 7, title: 'América Latina Contemporánea', topic: 'Desafíos y oportunidades del siglo XXI' },
+                { number: 8, title: 'Evaluación', topic: 'Evaluación final del curso de Historia de América Latina' }
+            ]
+        },
+        'quimica-general': {
+            title: 'Química General',
+            description: 'Un curso completo de química que cubre desde los fundamentos atómicos hasta las reacciones químicas complejas. Ideal para estudiantes que quieren entender la química desde cero.',
+            learning: 'Comprenderás la estructura de la materia, serás capaz de balancear ecuaciones químicas, calcular concentraciones y entender los principios de la química moderna.',
+            instructor: {
+                name: 'Dra. Ana García',
+                bio: 'Doctora en Química con especialización en química orgánica. Investigadora en síntesis de compuestos orgánicos y más de 12 años de experiencia docente.',
+                avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face'
+            },
+            duration: '14 semanas (56 horas)',
+            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
+            type: 'premium',
+            classes: [
+                { number: 1, title: 'Introducción a la Química', topic: 'Método científico y mediciones' },
+                { number: 2, title: 'Estructura Atómica', topic: 'Átomos, electrones y configuración electrónica' },
+                { number: 3, title: 'Enlaces Químicos', topic: 'Enlaces iónicos, covalentes y metálicos' },
+                { number: 4, title: 'Nomenclatura', topic: 'Nombres y fórmulas de compuestos' },
+                { number: 5, title: 'Estequiometría', topic: 'Cálculos con ecuaciones químicas' },
+                { number: 6, title: 'Soluciones', topic: 'Concentraciones y diluciones' },
+                { number: 7, title: 'Ácidos y Bases', topic: 'pH y neutralización' },
+                { number: 8, title: 'Reacciones Redox', topic: 'Oxidación y reducción' },
+                { number: 9, title: 'Evaluación', topic: 'Evaluación final del curso de Química General' }
             ]
         }
     };
@@ -846,15 +875,53 @@ AtlasApp.prototype.displayCourseDetail = function(course) {
     // Badge del curso
     const badgeElement = document.getElementById('course-detail-badge');
     if (badgeElement) {
-        badgeElement.className = `course-detail-badge ${course.type}`;
-        badgeElement.textContent = course.type === 'premium' ? 'Premium' : 'Gratuito';
+        badgeElement.innerHTML = '';
+        if (course.type === 'premium') {
+            badgeElement.innerHTML = '<i class="fas fa-crown"></i><span>Premium</span>';
+            badgeElement.className = 'course-detail-badge premium-badge';
+        } else if (course.type === 'atlas') {
+            badgeElement.innerHTML = '<i class="fas fa-graduation-cap"></i><span>Atlas</span>';
+            badgeElement.className = 'course-detail-badge atlas-badge';
+        } else {
+            badgeElement.innerHTML = '<i class="fas fa-check-circle"></i><span>Gratuito</span>';
+            badgeElement.className = 'course-detail-badge free-badge';
+        }
     }
+    
+    // Badges de nivel y tipo
+    const levelBadgeElement = document.getElementById('course-detail-level');
+    const typeBadgeElement = document.getElementById('course-detail-type');
+    
+    if (levelBadgeElement) {
+        const levelText = this.getLevelText(course.level);
+        levelBadgeElement.innerHTML = `<i class="fas fa-signal"></i><span>${levelText}</span>`;
+    }
+    
+    if (typeBadgeElement) {
+        const typeText = this.getTypeText(course.type);
+        typeBadgeElement.innerHTML = `<i class="fas fa-tag"></i><span>${typeText}</span>`;
+    }
+    
+    // Estadísticas del curso
+    const studentsElement = document.getElementById('course-detail-students');
+    const ratingElement = document.getElementById('course-detail-rating');
+    const classesCountElement = document.getElementById('course-detail-classes-count');
+    
+    if (studentsElement) studentsElement.textContent = this.formatNumber(course.students || Math.floor(Math.random() * 5000) + 500);
+    if (ratingElement) ratingElement.textContent = (course.rating || (Math.random() * 1 + 4)).toFixed(1);
+    if (classesCountElement) classesCountElement.textContent = course.classes.length;
     
     // Botón de comenzar
     const startBtnElement = document.getElementById('course-start-btn');
     if (startBtnElement) {
         startBtnElement.className = `course-start-btn ${course.type}`;
         startBtnElement.onclick = () => this.handleCourseStart(course.type);
+    }
+    
+    // Botón de donación
+    const donateBtnElement = document.getElementById('course-donate-btn');
+    if (donateBtnElement) {
+        donateBtnElement.onclick = () => this.handleCourseDonation(course);
     }
     
     // Lista de clases
@@ -867,12 +934,83 @@ AtlasApp.prototype.displayCourseDetail = function(course) {
             classElement.innerHTML = `
                 <div class="class-number">${classItem.number}</div>
                 <div class="class-info">
-                    <h4>${classItem.title}</h4>
-                    <p>${classItem.topic}</p>
+                    <div class="class-title">${classItem.title}</div>
+                    <div class="class-topic">${classItem.topic}</div>
                 </div>
             `;
             classesElement.appendChild(classElement);
         });
+    }
+    
+    // Actualizar información de monedas virtuales
+    this.updateVirtualCoinsDisplay();
+};
+
+// Obtener texto del nivel
+AtlasApp.prototype.getLevelText = function(level) {
+    const levelMap = {
+        'basic': 'Básico',
+        'intermediate': 'Intermedio',
+        'advanced': 'Avanzado'
+    };
+    return levelMap[level] || level;
+};
+
+// Obtener texto del tipo
+AtlasApp.prototype.getTypeText = function(type) {
+    const typeMap = {
+        'free': 'Gratuito',
+        'premium': 'Premium',
+        'atlas': 'Atlas'
+    };
+    return typeMap[type] || type;
+};
+
+// Formatear números
+AtlasApp.prototype.formatNumber = function(num) {
+    if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'k';
+    }
+    return num.toString();
+};
+
+// Manejar donación del curso
+AtlasApp.prototype.handleCourseDonation = function(course) {
+    // Simular donación de Lunas
+    const currentLunas = parseInt(document.querySelector('.coins-amount').textContent) || 150;
+    const donationAmount = 5;
+    const newLunas = currentLunas + donationAmount;
+    
+    // Actualizar display de Lunas
+    document.querySelector('.coins-amount').textContent = newLunas;
+    
+    // Obtener traducción para la notificación
+    const donationMessage = this.getTranslation('virtual_coins.donation_success')
+        .replace('{amount}', donationAmount)
+        .replace('{course}', course.title);
+    
+    // Mostrar notificación de éxito
+    this.showNotification(donationMessage, 'success');
+    
+    // Efecto visual en el botón
+    const donateBtn = document.getElementById('course-donate-btn');
+    if (donateBtn) {
+        donateBtn.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+            donateBtn.style.transform = '';
+        }, 200);
+    }
+    
+    // Guardar en localStorage
+    localStorage.setItem('atlas_lunas', newLunas.toString());
+};
+
+// Actualizar display de Lunas
+AtlasApp.prototype.updateVirtualCoinsDisplay = function() {
+    const lunasAmount = localStorage.getItem('atlas_lunas') || '150';
+    const lunasElement = document.querySelector('.coins-amount');
+    if (lunasElement) {
+        lunasElement.textContent = lunasAmount;
     }
 };
 
@@ -4536,6 +4674,17 @@ AtlasApp.prototype.setupPremiumButton = function() {
     
     // Configurar modal premium
     this.setupPremiumModal();
+    
+    // Configurar botón de lunas
+    const lunasBtn = document.getElementById('lunas-btn');
+    if (lunasBtn) {
+        lunasBtn.addEventListener('click', () => {
+            this.showLunasModal();
+        });
+    }
+    
+    // Configurar modal de lunas
+    this.setupLunasModal();
 };
 
 // Configuración del modal premium
@@ -4678,6 +4827,124 @@ AtlasApp.prototype.setupPaymentSection = function() {
             e.target.value = e.target.value.replace(/\D/g, '');
         });
     }
+};
+
+// Funciones para el modal de Lunas
+AtlasApp.prototype.showLunasModal = function() {
+    const modal = document.getElementById('lunas-modal');
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+AtlasApp.prototype.closeLunasModal = function() {
+    const modal = document.getElementById('lunas-modal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+};
+
+AtlasApp.prototype.setupLunasModal = function() {
+    const closeBtn = document.getElementById('close-lunas-modal');
+    const backBtn = document.getElementById('back-to-lunas');
+    const buyButtons = document.querySelectorAll('.btn-lunas[data-package]');
+    const completePaymentBtn = document.getElementById('complete-lunas-payment');
+    
+    // Botón de cerrar
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            this.closeLunasModal();
+        });
+    }
+    
+    // Botón de volver
+    if (backBtn) {
+        backBtn.addEventListener('click', () => {
+            this.hideLunasPaymentSection();
+        });
+    }
+    
+    // Botones de compra de paquetes
+    buyButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const package = e.target.closest('.btn-lunas').dataset.package;
+            const lunas = parseInt(e.target.closest('.btn-lunas').dataset.lunas);
+            const price = parseInt(e.target.closest('.btn-lunas').dataset.price);
+            this.selectLunasPackage(package, lunas, price);
+        });
+    });
+    
+    // Botón de completar pago
+    if (completePaymentBtn) {
+        completePaymentBtn.addEventListener('click', () => {
+            this.processLunasPayment();
+        });
+    }
+};
+
+AtlasApp.prototype.selectLunasPackage = function(package, lunas, price) {
+    // Ocultar paquetes y mostrar sección de pago
+    const packagesSection = document.querySelector('.lunas-packages');
+    const paymentSection = document.getElementById('lunas-payment-section');
+    
+    if (packagesSection && paymentSection) {
+        packagesSection.style.display = 'none';
+        paymentSection.style.display = 'block';
+        
+        // Actualizar información del paquete seleccionado
+        const packageNames = {
+            'small': 'Paquete Pequeño',
+            'medium': 'Paquete Mediano',
+            'large': 'Paquete Grande'
+        };
+        
+        document.getElementById('selected-package-name').textContent = packageNames[package];
+        document.getElementById('selected-package-lunas').textContent = `${lunas} Lunas`;
+        document.getElementById('package-price-amount').textContent = `$${price}.00`;
+        
+        // Calcular precios con IVA
+        const basePrice = price / 1.16; // Precio sin IVA
+        const taxAmount = price - basePrice;
+        
+        document.getElementById('lunas-base-price').textContent = `$${basePrice.toFixed(2)}`;
+        document.getElementById('lunas-tax-amount').textContent = `$${taxAmount.toFixed(2)}`;
+        document.getElementById('lunas-total-amount').textContent = `$${price}.00`;
+    }
+};
+
+AtlasApp.prototype.hideLunasPaymentSection = function() {
+    const packagesSection = document.querySelector('.lunas-packages');
+    const paymentSection = document.getElementById('lunas-payment-section');
+    
+    if (packagesSection && paymentSection) {
+        packagesSection.style.display = 'block';
+        paymentSection.style.display = 'none';
+    }
+};
+
+AtlasApp.prototype.processLunasPayment = function() {
+    const completeBtn = document.getElementById('complete-lunas-payment');
+    const originalText = completeBtn.innerHTML;
+    
+    completeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Procesando...</span>';
+    completeBtn.disabled = true;
+    
+    setTimeout(() => {
+        // Simular procesamiento de pago
+        this.showNotification('¡Pago exitoso! Has comprado Lunas para donar a creadores de cursos.', 'success');
+        this.closeLunasModal();
+        
+        // Restaurar botón
+        completeBtn.innerHTML = originalText;
+        completeBtn.disabled = false;
+        
+        // Aquí podrías actualizar el balance de lunas del usuario
+        // this.currentUser.lunas += lunasAmount;
+        // this.updateUserInterface();
+        
+    }, 2000);
 };
 
 AtlasApp.prototype.showPaymentSection = function() {

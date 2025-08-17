@@ -279,11 +279,37 @@
       "start_path": "Start path"
     },
     "categories": {
-      "physics_math": "Physics and Mathematics",
-      "social_sciences": "Social Sciences",
+      "practical_skills": "Practical Skills",
+      "recommended": "Recommended",
       "soft_skills": "Soft Skills",
-      "biological_sciences": "Biological Sciences",
-      "emotional_intelligence": "Emotional Intelligence"
+      "post_prep": "Post High School"
     }
+  },
+  "virtual_coins": {
+    "donate_coins": "Donate Lunas",
+    "donate_amount": "+5 lunas",
+    "virtual_coins": "lunas",
+    "coins_description": "Lunas help keep the platform free for everyone",
+    "donation_success": "Thank you for donating {amount} Lunas! 🌙\n\nYou have helped keep {course} free for all students."
+  },
+  "lunas": {
+    "title": "Buy Lunas",
+    "buy_lunas": "Buy Lunas",
+    "info_title": "What are Lunas?",
+    "info_description": "Lunas are our virtual currency that allows you to donate to course creators and support free education on Atlas.",
+    "feature_support": "Support creators",
+    "feature_education": "Keep courses free",
+    "feature_community": "Build community",
+    "packages_title": "Available Packages",
+    "package_small": "Small Package",
+    "package_medium": "Medium Package",
+    "package_large": "Large Package",
+    "lunas": "Lunas",
+    "buy_package": "Buy",
+    "back_to_packages": "Back to packages",
+    "payment_title": "Complete Purchase",
+    "payment_summary": "Payment Summary",
+    "package_price": "Package price",
+    "complete_payment": "Complete Payment"
   }
 }

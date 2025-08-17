@@ -482,6 +482,36 @@ body {
     color: #fef3c7;
 }
 
+/* Botón de Lunas */
+.lunas-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #1e293b;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    margin-left: 1rem;
+}
+
+.lunas-btn:hover {
+    background: linear-gradient(135deg, #334155, #475569);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.lunas-btn i {
+    font-size: 1rem;
+    color: #fbbf24;
+}
+
 .dashboard-main {
     padding: 2rem;
 }
@@ -618,6 +648,10 @@ body {
     }
     
     .premium-btn span {
+        display: none;
+    }
+    
+    .lunas-btn span {
         display: none;
     }
     
@@ -2017,6 +2051,20 @@ body {
 /* Modal Premium */
 .premium-modal {
     z-index: 1100;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.premium-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .premium-modal-content {
@@ -6946,5 +6994,937 @@ input:checked + .toggle-slider:before {
     
     .simple-chart .chart-label {
         font-size: 0.6rem;
+    }
+}
+
+/* Estilos para la vista detallada del curso */
+.course-detail-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.course-detail-header {
+    margin-bottom: 30px;
+}
+
+.course-detail-header .back-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.course-detail-header .back-btn:hover {
+    background: var(--primary-dark);
+    transform: translateX(-2px);
+}
+
+.course-detail-content {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.course-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    padding: 40px;
+}
+
+.course-detail-info h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.course-detail-info h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 32px 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.course-detail-info h3 i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.course-summary p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.course-learning p,
+.course-instructor-detail p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.instructor-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.instructor-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+.instructor-details h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.instructor-details p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.course-duration-detail p {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.course-duration-detail i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+/* Estadísticas del curso */
+.course-stats-detail {
+    margin: 32px 0;
+}
+
+.course-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 16px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.stat-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 8px 0;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Lista de clases */
+.course-classes-detail {
+    margin-top: 32px;
+}
+
+.classes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.class-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.class-item:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+.class-number {
+    background: var(--primary-color);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.class-info {
+    flex: 1;
+}
+
+.class-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.class-topic {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Sidebar derecha */
+.course-detail-sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+.course-detail-image {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.course-detail-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.course-detail-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.course-detail-meta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.course-detail-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.course-start-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.course-start-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.course-start-btn.premium {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.course-start-btn.premium:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
+}
+
+.course-start-btn.free {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.course-start-btn.free:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+/* Botón de donación de Lunas */
+.course-donate-btn {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-donate-btn:hover {
+    background: linear-gradient(135deg, #334155, #475569);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 41, 59, 0.3);
+}
+
+.course-donate-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.course-donate-btn:hover::before {
+    left: 100%;
+}
+
+.donate-amount {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* Información de Lunas */
+.virtual-coins-info {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.coins-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.coins-display i {
+    font-size: 1.5rem;
+    color: #1e293b;
+}
+
+.coins-amount {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.coins-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.coins-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .course-detail-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .course-detail-sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .course-detail-container {
+        padding: 15px;
+    }
+    
+    .course-detail-layout {
+        padding: 25px;
+        gap: 25px;
+    }
+    
+    .course-detail-info h1 {
+        font-size: 2rem;
+    }
+    
+    .course-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .course-detail-actions {
+        gap: 12px;
+    }
+    
+    .course-start-btn,
+    .course-donate-btn {
+        padding: 14px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Badges de nivel y tipo del curso */
+.course-level-badge,
+.course-type-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.course-level-badge {
+    background: var(--success-light);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.course-level-badge:hover {
+    background: var(--success-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.course-type-badge {
+    background: var(--warning-light);
+    color: var(--warning-color);
+    border: 1px solid var(--warning-color);
+}
+
+.course-type-badge:hover {
+    background: var(--warning-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.course-level-badge i,
+.course-type-badge i {
+    font-size: 0.8rem;
+}
+
+/* Badges de cursos en vista detallada */
+.course-detail-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.course-detail-badge.premium-badge {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border: 1px solid #d97706;
+}
+
+.course-detail-badge.atlas-badge {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    border: 1px solid #4f46e5;
+}
+
+.course-detail-badge.free-badge {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: 1px solid #059669;
+}
+
+.course-detail-badge i {
+    font-size: 0.9rem;
+}
+
+/* Estilos para el modal de Lunas */
+.lunas-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.lunas-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lunas-modal-content {
+    max-width: 1000px;
+    max-height: 95vh;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-radius: var(--radius-lg);
+    position: relative;
+    width: 95vw;
+    margin: 2.5vh auto;
+}
+
+.lunas-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lunas-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+}
+
+.lunas-logo i {
+    font-size: 2rem;
+    color: #fbbf24;
+}
+
+.lunas-logo h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+}
+
+.lunas-modal-header .close-modal {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.lunas-modal-header .close-modal:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.lunas-modal-body {
+    padding: 2rem;
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+/* Información sobre Lunas */
+.lunas-info {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.lunas-info h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.lunas-info p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.lunas-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.luna-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--background);
+    transition: all 0.3s ease-in-out;
+    min-width: 150px;
+}
+
+.luna-feature:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.luna-feature i {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.luna-feature span {
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+/* Paquetes de Lunas */
+.lunas-packages {
+    margin-bottom: 3rem;
+}
+
+.lunas-packages h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.package-card {
+    padding: 2rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--background);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.package-card.popular {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.package-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.popular-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.package-header {
+    margin-bottom: 1.5rem;
+}
+
+.package-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+}
+
+.package-icon i {
+    font-size: 2rem;
+    color: #fbbf24;
+}
+
+.package-header h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.package-lunas {
+    margin-bottom: 1.5rem;
+}
+
+.lunas-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+}
+
+.lunas-label {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.package-price {
+    margin-bottom: 2rem;
+}
+
+.package-price .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: block;
+}
+
+/* Botón de Lunas */
+.btn-lunas {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn-lunas:hover {
+    background: linear-gradient(135deg, #334155, #475569);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-lunas.btn-large {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+/* Sección de Pago de Lunas */
+.lunas-payment-section {
+    margin-top: 2rem;
+}
+
+.payment-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    background: var(--background-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.back-btn:hover {
+    background: var(--border-color);
+}
+
+.payment-header h3 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.selected-package-info {
+    margin-bottom: 2rem;
+}
+
+.package-summary {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--background-secondary);
+}
+
+.package-summary .package-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.package-summary .package-icon i {
+    font-size: 1.5rem;
+    color: #fbbf24;
+}
+
+.package-details h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.package-details p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Botón de Lunas en el Header */
+.lunas-btn {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.lunas-btn:hover {
+    background: linear-gradient(135deg, #334155, #475569);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.lunas-btn i {
+    font-size: 1rem;
+}
+
+/* Responsive para el modal de Lunas */
+@media (max-width: 768px) {
+    .lunas-modal-content {
+        width: 95vw;
+        margin: 2.5vh auto;
+    }
+    
+    .lunas-modal-header {
+        padding: 1.5rem;
+    }
+    
+    .lunas-modal-body {
+        padding: 1.5rem;
+    }
+    
+    .lunas-features {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .luna-feature {
+        min-width: 200px;
+    }
+    
+    .packages-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .package-card {
+        padding: 1.5rem;
+    }
+    
+    .lunas-amount {
+        font-size: 2.5rem;
+    }
+    
+    .package-price .price {
+        font-size: 1.75rem;
     }
 }

@@ -180,6 +180,11 @@
                             <span data-translate="premium.get_premium">Obtener premium</span>
                         </button>
                         
+                        <button class="lunas-btn" id="lunas-btn">
+                            <i class="fas fa-moon"></i>
+                            <span data-translate="lunas.buy_lunas">Comprar Lunas</span>
+                        </button>
+                        
                         <div class="hamburger-menu-container" id="hamburger-menu-container">
                             <button class="hamburger-btn" id="hamburger-btn">
                                 <div class="hamburger-lines">
@@ -626,17 +631,17 @@
                             <!-- Categorías de Cursos -->
                             <div class="courses-categories">
                                 
-                                <!-- Física y Matemáticas -->
+                                <!-- Habilidades Prácticas -->
                                 <div class="category-section">
                                     <div class="category-header">
                                         <div class="category-icon">
-                                            <i class="fas fa-calculator"></i>
+                                            <i class="fas fa-tools"></i>
                                         </div>
-                                        <h2 data-translate="courses.categories.physics_math">Física y Matemáticas</h2>
+                                        <h2 data-translate="courses.categories.practical_skills">Habilidades Prácticas</h2>
                                         <span class="course-count">6 cursos</span>
                                     </div>
                                     <div class="courses-grid">
-                                        <!-- Curso 1 - Premium -->
+                                        <!-- Curso 1 - Álgebra Básica (Premium) -->
                                         <div class="course-card premium-course" data-level="basic" data-type="premium" data-course-id="algebra-basica">
                                             <div class="course-image">
                                                 <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=300&h=200&fit=crop" alt="Álgebra Básica">
@@ -661,7 +666,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Curso 2 - Gratuito -->
+                                        <!-- Curso 2 - Cálculo Diferencial (Gratuito) -->
                                         <div class="course-card" data-level="intermediate" data-type="free" data-course-id="calculo-diferencial">
                                             <div class="course-image">
                                                 <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=300&h=200&fit=crop" alt="Cálculo Diferencial">
@@ -670,9 +675,9 @@
                                             <div class="course-content">
                                                 <h3 class="course-title">Cálculo Diferencial</h3>
                                                 <div class="course-instructor">
-                                                                                                    <div class="instructor-avatar">
-                                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
-                                                </div>
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
+                                                    </div>
                                                     <span class="instructor-name">Dra. Ana García</span>
                                                 </div>
                                                 <div class="course-meta">
@@ -682,7 +687,78 @@
                                             </div>
                                         </div>
 
-                                        <!-- Curso 4 - Premium del Dr. Carlos Mendoza -->
+                                        <!-- Curso 3 - Física Básica (Gratuito) -->
+                                        <div class="course-card" data-level="basic" data-type="free" data-course-id="fisica-basica">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=300&h=200&fit=crop" alt="Física Básica">
+                                                <div class="course-level basic">Básico</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Física Básica</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Prof. Luis Rodríguez">
+                                                    </div>
+                                                    <span class="instructor-name">Prof. Luis Rodríguez</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 10 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 2,145 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 4 - Química General (Premium) -->
+                                        <div class="course-card premium-course" data-level="intermediate" data-type="premium" data-course-id="quimica-general">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop" alt="Química General">
+                                                <div class="course-level intermediate">Intermedio</div>
+                                                <div class="premium-badge">
+                                                    <i class="fas fa-crown"></i>
+                                                    <span>Premium</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Química General</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
+                                                    </div>
+                                                    <span class="instructor-name">Dra. Ana García</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 14 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 987 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 5 - Programación Python (Premium) -->
+                                        <div class="course-card premium-course" data-level="intermediate" data-type="premium" data-course-id="python-programming">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=300&h=200&fit=crop" alt="Programación Python">
+                                                <div class="course-level intermediate">Intermedio</div>
+                                                <div class="premium-badge">
+                                                    <i class="fas fa-crown"></i>
+                                                    <span>Premium</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Programación Python</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Dr. Carlos Mendoza">
+                                                    </div>
+                                                    <span class="instructor-name">Dr. Carlos Mendoza</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 16 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 1,567 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 6 - Matemáticas Avanzadas (Premium) -->
                                         <div class="course-card premium-course" data-level="advanced" data-type="premium" data-course-id="matematicas-avanzadas">
                                             <div class="course-image">
                                                 <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=300&h=200&fit=crop" alt="Matemáticas Avanzadas">
@@ -706,15 +782,81 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <!-- Curso 3 - Atlas (Gratuito) -->
-                                        <div class="course-card atlas-course" data-level="basic" data-type="free" data-course-id="fisica-basica">
+                                <!-- Recomendadas (Cursos Atlas) -->
+                                <div class="category-section">
+                                    <div class="category-header">
+                                        <div class="category-icon">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <h2 data-translate="courses.categories.recommended">Recomendadas</h2>
+                                        <span class="course-count">4 cursos</span>
+                                    </div>
+                                    <div class="courses-grid">
+                                        <!-- Curso 1 - Introducción a la Programación (Atlas) -->
+                                        <div class="course-card atlas-course" data-level="basic" data-type="free" data-course-id="intro-programacion">
                                             <div class="course-image">
-                                                <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=300&h=200&fit=crop" alt="Física Básica">
+                                                <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=300&h=200&fit=crop" alt="Introducción a la Programación">
                                                 <div class="course-level basic">Básico</div>
+                                                <div class="atlas-badge">
+                                                    <i class="fas fa-graduation-cap"></i>
+                                                    <span>Atlas</span>
+                                                </div>
                                             </div>
                                             <div class="course-content">
-                                                <h3 class="course-title">Física Básica</h3>
+                                                <h3 class="course-title">Introducción a la Programación</h3>
+                                                <div class="course-instructor atlas-instructor">
+                                                    <div class="instructor-avatar atlas-avatar">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                    </div>
+                                                    <span class="instructor-name">Atlas</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 8 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 3,456 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 2 - Fundamentos de Matemáticas (Atlas) -->
+                                        <div class="course-card atlas-course" data-level="basic" data-type="free" data-course-id="fundamentos-matematicas">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=300&h=200&fit=crop" alt="Fundamentos de Matemáticas">
+                                                <div class="course-level basic">Básico</div>
+                                                <div class="atlas-badge">
+                                                    <i class="fas fa-graduation-cap"></i>
+                                                    <span>Atlas</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Fundamentos de Matemáticas</h3>
+                                                <div class="course-instructor atlas-instructor">
+                                                    <div class="instructor-avatar atlas-avatar">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                    </div>
+                                                    <span class="instructor-name">Atlas</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 12 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 4,123 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 3 - Ciencias Naturales Básicas (Atlas) -->
+                                        <div class="course-card atlas-course" data-level="basic" data-type="free" data-course-id="ciencias-naturales">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=300&h=200&fit=crop" alt="Ciencias Naturales Básicas">
+                                                <div class="course-level basic">Básico</div>
+                                                <div class="atlas-badge">
+                                                    <i class="fas fa-graduation-cap"></i>
+                                                    <span>Atlas</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Ciencias Naturales Básicas</h3>
                                                 <div class="course-instructor atlas-instructor">
                                                     <div class="instructor-avatar atlas-avatar">
                                                         <i class="fas fa-graduation-cap"></i>
@@ -723,77 +865,23 @@
                                                 </div>
                                                 <div class="course-meta">
                                                     <span class="course-duration"><i class="fas fa-clock"></i> 10 semanas</span>
-                                                    <span class="course-students"><i class="fas fa-users"></i> 2,145 estudiantes</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Ciencias Sociales -->
-                                <div class="category-section">
-                                    <div class="category-header">
-                                        <div class="category-icon">
-                                            <i class="fas fa-globe-americas"></i>
-                                        </div>
-                                        <h2 data-translate="courses.categories.social_sciences">Ciencias Sociales</h2>
-                                        <span class="course-count">4 cursos</span>
-                                    </div>
-                                    <div class="courses-grid">
-                                        <!-- Curso 1 - Gratuito -->
-                                        <div class="course-card" data-level="basic" data-type="free" data-course-id="historia-universal">
-                                            <div class="course-image">
-                                                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=300&h=200&fit=crop" alt="Historia Universal">
-                                                <div class="course-level basic">Básico</div>
-                                            </div>
-                                            <div class="course-content">
-                                                <h3 class="course-title">Historia Universal</h3>
-                                                <div class="course-instructor">
-                                                    <div class="instructor-avatar">
-                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Prof. Miguel Herrera">
-                                                    </div>
-                                                    <span class="instructor-name">Prof. Miguel Herrera</span>
-                                                </div>
-                                                <div class="course-meta">
-                                                    <span class="course-duration"><i class="fas fa-clock"></i> 16 semanas</span>
-                                                    <span class="course-students"><i class="fas fa-users"></i> 1,567 estudiantes</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 2,987 estudiantes</span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- Curso 3 - Premium del Prof. Miguel Herrera -->
-                                        <div class="course-card premium-course" data-level="advanced" data-type="premium" data-course-id="historia-america-latina">
+                                        <!-- Curso 4 - Desarrollo Web Básico (Atlas) -->
+                                        <div class="course-card atlas-course" data-level="intermediate" data-type="free" data-course-id="desarrollo-web">
                                             <div class="course-image">
-                                                <img src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=300&h=200&fit=crop" alt="Historia de América Latina">
-                                                <div class="course-level advanced">Avanzado</div>
-                                                <div class="premium-badge">
-                                                    <i class="fas fa-crown"></i>
-                                                    <span>Premium</span>
-                                                </div>
-                                            </div>
-                                            <div class="course-content">
-                                                <h3 class="course-title">Historia de América Latina</h3>
-                                                <div class="course-instructor">
-                                                    <div class="instructor-avatar">
-                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Prof. Miguel Herrera">
-                                                    </div>
-                                                    <span class="instructor-name">Prof. Miguel Herrera</span>
-                                                </div>
-                                                <div class="course-meta">
-                                                    <span class="course-duration"><i class="fas fa-clock"></i> 20 semanas</span>
-                                                    <span class="course-students"><i class="fas fa-users"></i> 678 estudiantes</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Curso 2 - Atlas (Gratuito) -->
-                                        <div class="course-card atlas-course" data-level="intermediate" data-type="free">
-                                            <div class="course-image">
-                                                <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=300&h=200&fit=crop" alt="Geografía Económica">
+                                                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=200&fit=crop" alt="Desarrollo Web Básico">
                                                 <div class="course-level intermediate">Intermedio</div>
+                                                <div class="atlas-badge">
+                                                    <i class="fas fa-graduation-cap"></i>
+                                                    <span>Atlas</span>
+                                                </div>
                                             </div>
                                             <div class="course-content">
-                                                <h3 class="course-title">Geografía Económica</h3>
+                                                <h3 class="course-title">Desarrollo Web Básico</h3>
                                                 <div class="course-instructor atlas-instructor">
                                                     <div class="instructor-avatar atlas-avatar">
                                                         <i class="fas fa-graduation-cap"></i>
@@ -802,7 +890,7 @@
                                                 </div>
                                                 <div class="course-meta">
                                                     <span class="course-duration"><i class="fas fa-clock"></i> 14 semanas</span>
-                                                    <span class="course-students"><i class="fas fa-users"></i> 1,023 estudiantes</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 1,789 estudiantes</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -813,133 +901,209 @@
                                 <div class="category-section">
                                     <div class="category-header">
                                         <div class="category-icon">
-                                            <i class="fas fa-lightbulb"></i>
+                                            <i class="fas fa-users"></i>
                                         </div>
                                         <h2 data-translate="courses.categories.soft_skills">Habilidades Blandas</h2>
                                         <span class="course-count">5 cursos</span>
                                     </div>
                                     <div class="courses-grid">
-                                        <!-- Curso 1 - Atlas (Gratuito) -->
-                                        <div class="course-card atlas-course" data-level="basic" data-type="free">
+                                        <!-- Curso 1 - Liderazgo Estudiantil -->
+                                        <div class="course-card" data-level="intermediate" data-type="free" data-course-id="liderazgo-estudiantil">
                                             <div class="course-image">
-                                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop" alt="Liderazgo Juvenil">
-                                                <div class="course-level basic">Básico</div>
+                                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=300&h=200&fit=crop" alt="Liderazgo Estudiantil">
+                                                <div class="course-level intermediate">Intermedio</div>
                                             </div>
                                             <div class="course-content">
-                                                <h3 class="course-title">Liderazgo Juvenil</h3>
-                                                <div class="course-instructor atlas-instructor">
-                                                    <div class="instructor-avatar atlas-avatar">
-                                                        <i class="fas fa-graduation-cap"></i>
+                                                <h3 class="course-title">Liderazgo Estudiantil</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
                                                     </div>
-                                                    <span class="instructor-name">Atlas</span>
+                                                    <span class="instructor-name">Dra. Ana García</span>
                                                 </div>
                                                 <div class="course-meta">
                                                     <span class="course-duration"><i class="fas fa-clock"></i> 6 semanas</span>
-                                                    <span class="course-students"><i class="fas fa-users"></i> 3,421 estudiantes</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 2,345 estudiantes</span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- Curso 2 - Premium -->
-                                        <div class="course-card premium-course" data-level="intermediate" data-type="premium">
+                                        <!-- Curso 2 - Hablar en Público -->
+                                        <div class="course-card" data-level="basic" data-type="free" data-course-id="hablar-publico">
                                             <div class="course-image">
-                                                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=300&h=200&fit=crop" alt="Comunicación Efectiva">
-                                                <div class="course-level intermediate">Intermedio</div>
-                                                <div class="premium-badge">
-                                                    <i class="fas fa-crown"></i>
-                                                    <span>Premium</span>
+                                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop" alt="Hablar en Público">
+                                                <div class="course-level basic">Básico</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Hablar en Público</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Prof. Luis Rodríguez">
+                                                    </div>
+                                                    <span class="instructor-name">Prof. Luis Rodríguez</span>
                                                 </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 8 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 3,123 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 3 - Trabajo en Equipo -->
+                                        <div class="course-card" data-level="basic" data-type="free" data-course-id="trabajo-equipo">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=200&fit=crop" alt="Trabajo en Equipo">
+                                                <div class="course-level basic">Básico</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Trabajo en Equipo</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
+                                                    </div>
+                                                    <span class="instructor-name">Dra. Ana García</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 6 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 2,876 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 4 - Comunicación Efectiva -->
+                                        <div class="course-card" data-level="intermediate" data-type="free" data-course-id="comunicacion-efectiva">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=300&h=200&fit=crop" alt="Comunicación Efectiva">
+                                                <div class="course-level intermediate">Intermedio</div>
                                             </div>
                                             <div class="course-content">
                                                 <h3 class="course-title">Comunicación Efectiva</h3>
                                                 <div class="course-instructor">
                                                     <div class="instructor-avatar">
-                                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Lic. Patricia López">
+                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Prof. Luis Rodríguez">
                                                     </div>
-                                                    <span class="instructor-name">Lic. Patricia López</span>
+                                                    <span class="instructor-name">Prof. Luis Rodríguez</span>
                                                 </div>
                                                 <div class="course-meta">
                                                     <span class="course-duration"><i class="fas fa-clock"></i> 8 semanas</span>
-                                                    <span class="course-students"><i class="fas fa-users"></i> 2,789 estudiantes</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 2,234 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 5 - Resolución de Conflictos -->
+                                        <div class="course-card" data-level="intermediate" data-type="free" data-course-id="resolucion-conflictos">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=200&fit=crop" alt="Resolución de Conflictos">
+                                                <div class="course-level intermediate">Intermedio</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Resolución de Conflictos</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
+                                                    </div>
+                                                    <span class="instructor-name">Dra. Ana García</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 7 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 1,987 estudiantes</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Ciencias Biológicas -->
+                                <!-- Post Preparatoria -->
                                 <div class="category-section">
                                     <div class="category-header">
                                         <div class="category-icon">
-                                            <i class="fas fa-dna"></i>
+                                            <i class="fas fa-university"></i>
                                         </div>
-                                        <h2 data-translate="courses.categories.biological_sciences">Ciencias Biológicas</h2>
+                                        <h2 data-translate="courses.categories.post_prep">Post Preparatoria</h2>
                                         <span class="course-count">4 cursos</span>
                                     </div>
                                     <div class="courses-grid">
-                                        <!-- Curso 1 - Gratuito -->
-                                        <div class="course-card" data-level="basic" data-type="free">
+                                        <!-- Curso 1 - ¿Qué son las Ingenierías? -->
+                                        <div class="course-card" data-level="basic" data-type="free" data-course-id="que-son-ingenierias">
                                             <div class="course-image">
-                                                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=200&fit=crop" alt="Biología Celular">
+                                                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=300&h=200&fit=crop" alt="¿Qué son las Ingenierías?">
                                                 <div class="course-level basic">Básico</div>
                                             </div>
                                             <div class="course-content">
-                                                <h3 class="course-title">Biología Celular</h3>
+                                                <h3 class="course-title">¿Qué son las Ingenierías?</h3>
                                                 <div class="course-instructor">
                                                     <div class="instructor-avatar">
-                                                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=40&h=40&fit=crop&crop=face" alt="Dr. Roberto Silva">
+                                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Dr. Carlos Mendoza">
                                                     </div>
-                                                    <span class="instructor-name">Dr. Roberto Silva</span>
+                                                    <span class="instructor-name">Dr. Carlos Mendoza</span>
                                                 </div>
                                                 <div class="course-meta">
-                                                    <span class="course-duration"><i class="fas fa-clock"></i> 12 semanas</span>
-                                                    <span class="course-students"><i class="fas fa-users"></i> 1,456 estudiantes</span>
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 4 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 4,567 estudiantes</span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- Curso 2 - Atlas (Gratuito) -->
-                                        <div class="course-card atlas-course" data-level="advanced" data-type="free">
+                                        <!-- Curso 2 - Prepárate para la Universidad -->
+                                        <div class="course-card" data-level="basic" data-type="free" data-course-id="preparate-universidad">
                                             <div class="course-image">
-                                                <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=300&h=200&fit=crop" alt="Genética Avanzada">
-                                                <div class="course-level advanced">Avanzado</div>
+                                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9d1?w=300&h=200&fit=crop" alt="Prepárate para la Universidad">
+                                                <div class="course-level basic">Básico</div>
                                             </div>
                                             <div class="course-content">
-                                                <h3 class="course-title">Genética Avanzada</h3>
-                                                <div class="course-instructor atlas-instructor">
-                                                    <div class="instructor-avatar atlas-avatar">
-                                                        <i class="fas fa-graduation-cap"></i>
+                                                <h3 class="course-title">Prepárate para la Universidad</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
                                                     </div>
-                                                    <span class="instructor-name">Atlas</span>
+                                                    <span class="instructor-name">Dra. Ana García</span>
                                                 </div>
                                                 <div class="course-meta">
-                                                    <span class="course-duration"><i class="fas fa-clock"></i> 16 semanas</span>
-                                                    <span class="course-students"><i class="fas fa-users"></i> 743 estudiantes</span>
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 6 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 3,789 estudiantes</span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- Curso 3 - Premium del Dr. Roberto Silva -->
-                                        <div class="course-card premium-course" data-level="advanced" data-type="premium">
+                                        <!-- Curso 3 - Aptitudes y Conocimientos -->
+                                        <div class="course-card" data-level="intermediate" data-type="free" data-course-id="aptitudes-conocimientos">
                                             <div class="course-image">
-                                                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=300&h=200&fit=crop" alt="Biotecnología Moderna">
-                                                <div class="course-level advanced">Avanzado</div>
-                                                <div class="premium-badge">
-                                                    <i class="fas fa-crown"></i>
-                                                    <span>Premium</span>
-                                                </div>
+                                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop" alt="Aptitudes y Conocimientos">
+                                                <div class="course-level intermediate">Intermedio</div>
                                             </div>
                                             <div class="course-content">
-                                                <h3 class="course-title">Biotecnología Moderna</h3>
+                                                <h3 class="course-title">Aptitudes y Conocimientos</h3>
                                                 <div class="course-instructor">
                                                     <div class="instructor-avatar">
-                                                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=40&h=40&fit=crop&crop=face" alt="Dr. Roberto Silva">
+                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Prof. Luis Rodríguez">
                                                     </div>
-                                                    <span class="instructor-name">Dr. Roberto Silva</span>
+                                                    <span class="instructor-name">Prof. Luis Rodríguez</span>
                                                 </div>
                                                 <div class="course-meta">
-                                                    <span class="course-duration"><i class="fas fa-clock"></i> 18 semanas</span>
-                                                    <span class="course-students"><i class="fas fa-users"></i> 289 estudiantes</span>
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 8 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 2,456 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 4 - Orientación Vocacional -->
+                                        <div class="course-card" data-level="basic" data-type="free" data-course-id="orientacion-vocacional">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=300&h=200&fit=crop" alt="Orientación Vocacional">
+                                                <div class="course-level basic">Básico</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Orientación Vocacional</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
+                                                    </div>
+                                                    <span class="instructor-name">Dra. Ana García</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 5 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 3,234 estudiantes</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1124,13 +1288,13 @@
                                     
                                     <!-- Aprendizaje esperado -->
                                     <div class="course-learning">
-                                        <h3>¿Qué aprenderás?</h3>
+                                        <h3><i class="fas fa-graduation-cap"></i> ¿Qué aprenderás?</h3>
                                         <p id="course-detail-learning">Aprendizajes esperados...</p>
                                     </div>
                                     
                                     <!-- Información del instructor -->
                                     <div class="course-instructor-detail">
-                                        <h3>Instructor</h3>
+                                        <h3><i class="fas fa-chalkboard-teacher"></i> Instructor</h3>
                                         <div class="instructor-info">
                                             <div class="instructor-avatar">
                                                 <img id="course-detail-instructor-avatar" src="" alt="Instructor">
@@ -1144,16 +1308,38 @@
                                     
                                     <!-- Duración del curso -->
                                     <div class="course-duration-detail">
-                                        <h3>Duración</h3>
+                                        <h3><i class="fas fa-clock"></i> Duración</h3>
                                         <p id="course-detail-duration">
-                                            <i class="fas fa-clock"></i>
+                                            <i class="fas fa-calendar-alt"></i>
                                             <span>Duración del curso...</span>
                                         </p>
                                     </div>
                                     
+                                    <!-- Estadísticas del curso -->
+                                    <div class="course-stats-detail">
+                                        <h3><i class="fas fa-chart-bar"></i> Estadísticas</h3>
+                                        <div class="course-stats-grid">
+                                            <div class="stat-item">
+                                                <i class="fas fa-users"></i>
+                                                <span class="stat-value" id="course-detail-students">0</span>
+                                                <span class="stat-label">Estudiantes</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <i class="fas fa-star"></i>
+                                                <span class="stat-value" id="course-detail-rating">4.8</span>
+                                                <span class="stat-label">Calificación</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <i class="fas fa-book-open"></i>
+                                                <span class="stat-value" id="course-detail-classes-count">0</span>
+                                                <span class="stat-label">Clases</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <!-- Lista de clases -->
                                     <div class="course-classes-detail">
-                                        <h3>Contenido del curso</h3>
+                                        <h3><i class="fas fa-list-ul"></i> Contenido del curso</h3>
                                         <div class="classes-list" id="course-detail-classes">
                                             <!-- Las clases se cargarán dinámicamente -->
                                         </div>
@@ -1170,12 +1356,43 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- Información del curso -->
+                                    <div class="course-detail-meta">
+                                        <div class="course-level-badge" id="course-detail-level">
+                                            <i class="fas fa-signal"></i>
+                                            <span>Nivel</span>
+                                        </div>
+                                        <div class="course-type-badge" id="course-detail-type">
+                                            <i class="fas fa-tag"></i>
+                                            <span>Tipo</span>
+                                        </div>
+                                    </div>
+                                    
                                     <!-- Botón de comenzar -->
                                     <div class="course-detail-actions">
                                         <button class="course-start-btn" id="course-start-btn">
                                             <i class="fas fa-play"></i>
                                             <span>Comenzar</span>
                                         </button>
+                                        
+                                        <!-- Botón de donación de Lunas -->
+                                        <button class="course-donate-btn" id="course-donate-btn">
+                                            <i class="fas fa-moon"></i>
+                                            <span data-translate="virtual_coins.donate_coins">Donar Lunas</span>
+                                            <small class="donate-amount" data-translate="virtual_coins.donate_amount">+5 lunas</small>
+                                        </button>
+                                        
+                                        <!-- Información de Lunas -->
+                                        <div class="virtual-coins-info">
+                                            <div class="coins-display">
+                                                <i class="fas fa-moon"></i>
+                                                <span class="coins-amount">150</span>
+                                                <span class="coins-label" data-translate="virtual_coins.virtual_coins">lunas</span>
+                                            </div>
+                                            <p class="coins-description" data-translate="virtual_coins.coins_description">
+                                                Las Lunas ayudan a mantener la plataforma gratuita
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1944,10 +2161,10 @@
                             <label for="single-class-category" data-translate="creator.category">Categoría</label>
                             <select id="single-class-category" class="form-select" required>
                                 <option value="" data-translate="select_option">Seleccione una categoría</option>
-                                <option value="physics-math" data-translate="courses.categories.physics_math">Física y Matemáticas</option>
-                                <option value="social-sciences" data-translate="courses.categories.social_sciences">Ciencias Sociales</option>
+                                <option value="practical-skills" data-translate="courses.categories.practical_skills">Habilidades Prácticas</option>
+                                <option value="recommended" data-translate="courses.categories.recommended">Recomendadas</option>
                                 <option value="soft-skills" data-translate="courses.categories.soft_skills">Habilidades Blandas</option>
-                                <option value="biological-sciences" data-translate="courses.categories.biological_sciences">Ciencias Biológicas</option>
+                                <option value="post-prep" data-translate="courses.categories.post_prep">Post Preparatoria</option>
                             </select>
                         </div>
                     </div>
@@ -2057,10 +2274,10 @@
                             <label for="course-category" data-translate="creator.category">Categoría</label>
                             <select id="course-category" class="form-select" required>
                                 <option value="" data-translate="select_option">Seleccione una categoría</option>
-                                <option value="physics-math" data-translate="courses.categories.physics_math">Física y Matemáticas</option>
-                                <option value="social-sciences" data-translate="courses.categories.social_sciences">Ciencias Sociales</option>
+                                <option value="practical-skills" data-translate="courses.categories.practical_skills">Habilidades Prácticas</option>
+                                <option value="recommended" data-translate="courses.categories.recommended">Recomendadas</option>
                                 <option value="soft-skills" data-translate="courses.categories.soft_skills">Habilidades Blandas</option>
-                                <option value="biological-sciences" data-translate="courses.categories.biological_sciences">Ciencias Biológicas</option>
+                                <option value="post-prep" data-translate="courses.categories.post_prep">Post Preparatoria</option>
                             </select>
                         </div>
                     </div>
@@ -2502,6 +2719,178 @@
                                     <button class="btn btn-premium btn-large" id="complete-payment">
                                         <i class="fas fa-lock"></i>
                                         <span data-translate="premium.complete_payment">Completar Pago</span>
+                                    </button>
+                                    <p class="security-note">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span data-translate="premium.secure_payment">Pago 100% seguro y cifrado</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Lunas -->
+    <div id="lunas-modal" class="modal lunas-modal">
+        <div class="modal-content lunas-modal-content">
+            <div class="lunas-modal-header">
+                <div class="lunas-logo">
+                    <i class="fas fa-moon"></i>
+                    <h2 data-translate="lunas.title">Comprar Lunas</h2>
+                </div>
+                <button class="close-modal" id="close-lunas-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="lunas-modal-body">
+                <!-- Información sobre Lunas -->
+                <div class="lunas-info">
+                    <h3 data-translate="lunas.info_title">¿Qué son las Lunas?</h3>
+                    <p data-translate="lunas.info_description">Las Lunas son nuestra moneda virtual que te permite donar a los creadores de cursos y apoyar la educación gratuita en Atlas.</p>
+                    <div class="lunas-features">
+                        <div class="luna-feature">
+                            <i class="fas fa-heart"></i>
+                            <span data-translate="lunas.feature_support">Apoya a creadores</span>
+                        </div>
+                        <div class="luna-feature">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span data-translate="lunas.feature_education">Mantiene cursos gratuitos</span>
+                        </div>
+                        <div class="luna-feature">
+                            <i class="fas fa-users"></i>
+                            <span data-translate="lunas.feature_community">Construye comunidad</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paquetes de Lunas -->
+                <div class="lunas-packages">
+                    <h3 data-translate="lunas.packages_title">Paquetes Disponibles</h3>
+                    <p style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 2rem;">
+                        <i class="fas fa-info-circle"></i> Todos los precios incluyen IVA del 16%
+                    </p>
+                    <div class="packages-grid">
+                        <div class="package-card">
+                            <div class="package-header">
+                                <div class="package-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <h4 data-translate="lunas.package_small">Paquete Pequeño</h4>
+                            </div>
+                            <div class="package-lunas">
+                                <span class="lunas-amount">50</span>
+                                <span class="lunas-label" data-translate="lunas.lunas">Lunas</span>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">$25.00</span>
+                                <small style="color: #666; font-size: 0.8em;">Precio final con IVA</small>
+                            </div>
+                            <button class="btn btn-lunas" data-package="small" data-lunas="50" data-price="25">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span data-translate="lunas.buy_package">Comprar</span>
+                            </button>
+                        </div>
+                        
+                        <div class="package-card popular">
+                            <div class="popular-badge">Más Popular</div>
+                            <div class="package-header">
+                                <div class="package-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <h4 data-translate="lunas.package_medium">Paquete Mediano</h4>
+                            </div>
+                            <div class="package-lunas">
+                                <span class="lunas-amount">150</span>
+                                <span class="lunas-label" data-translate="lunas.lunas">Lunas</span>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">$65.00</span>
+                                <small style="color: #666; font-size: 0.8em;">Precio final con IVA</small>
+                            </div>
+                            <button class="btn btn-lunas" data-package="medium" data-lunas="150" data-price="65">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span data-translate="lunas.buy_package">Comprar</span>
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-header">
+                                <div class="package-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <h4 data-translate="lunas.package_large">Paquete Grande</h4>
+                            </div>
+                            <div class="package-lunas">
+                                <span class="lunas-amount">300</span>
+                                <span class="lunas-label" data-translate="lunas.lunas">Lunas</span>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">$120.00</span>
+                                <small style="color: #666; font-size: 0.8em;">Precio final con IVA</small>
+                            </div>
+                            <button class="btn btn-lunas" data-package="large" data-lunas="300" data-price="120">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span data-translate="lunas.buy_package">Comprar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección de Pago de Lunas -->
+                <div class="lunas-payment-section" id="lunas-payment-section" style="display: none;">
+                    <div class="payment-header">
+                        <button class="back-btn" id="back-to-lunas">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-translate="lunas.back_to_packages">Volver a paquetes</span>
+                        </button>
+                        <h3 data-translate="lunas.payment_title">Finalizar Compra</h3>
+                    </div>
+                    
+                    <div class="payment-content">
+                        <div class="selected-package-info">
+                            <div class="package-summary">
+                                <div class="package-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="package-details">
+                                    <h4 id="selected-package-name">Paquete Seleccionado</h4>
+                                    <p id="selected-package-lunas">0 Lunas</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-summary">
+                            <h4 data-translate="lunas.payment_summary">Resumen de Pago</h4>
+                            <div class="summary-details">
+                                <div class="summary-line">
+                                    <span data-translate="lunas.package_price">Precio del paquete</span>
+                                    <span class="amount" id="package-price-amount">$0.00</span>
+                                </div>
+                                
+                                <div class="summary-line">
+                                    <span>Precio base (sin IVA)</span>
+                                    <span class="amount" id="lunas-base-price">$0.00</span>
+                                </div>
+                                
+                                <div class="summary-line">
+                                    <span data-translate="premium.tax">Impuestos</span>
+                                    <span class="amount" id="lunas-tax-amount">$0.00</span>
+                                    <small style="color: #666; font-size: 0.8em;">(16% IVA)</small>
+                                </div>
+                                
+                                <div class="summary-line total">
+                                    <span data-translate="premium.total">Total</span>
+                                    <span class="amount" id="lunas-total-amount">$0.00</span>
+                                </div>
+                                
+                                <div class="payment-buttons">
+                                    <button class="btn btn-lunas btn-large" id="complete-lunas-payment">
+                                        <i class="fas fa-lock"></i>
+                                        <span data-translate="lunas.complete_payment">Completar Pago</span>
                                     </button>
                                     <p class="security-note">
                                         <i class="fas fa-shield-alt"></i>

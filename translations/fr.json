@@ -286,11 +286,37 @@
       "start_path": "Commencer le parcours"
     },
     "categories": {
-      "physics_math": "Physique et Mathématiques",
-      "social_sciences": "Sciences Sociales",
+      "practical_skills": "Compétences Pratiques",
+      "recommended": "Recommandé",
       "soft_skills": "Compétences Douces",
-      "biological_sciences": "Sciences Biologiques",
-      "emotional_intelligence": "Intelligence Émotionnelle"
+      "post_prep": "Post Lycée"
     }
+  },
+  "virtual_coins": {
+    "donate_coins": "Donner des Lunas",
+    "donate_amount": "+5 lunas",
+    "virtual_coins": "lunas",
+    "coins_description": "Les Lunas aident à maintenir la plateforme gratuite",
+    "donation_success": "Merci d'avoir donné {amount} Lunas ! 🌙\n\nVous avez aidé à garder {course} gratuit pour tous les étudiants."
+  },
+  "lunas": {
+    "title": "Acheter des Lunas",
+    "buy_lunas": "Acheter des Lunas",
+    "info_title": "Que sont les Lunas ?",
+    "info_description": "Les Lunas sont notre monnaie virtuelle qui vous permet de faire des dons aux créateurs de cours et de soutenir l'éducation gratuite sur Atlas.",
+    "feature_support": "Soutenir les créateurs",
+    "feature_education": "Maintenir les cours gratuits",
+    "feature_community": "Construire la communauté",
+    "packages_title": "Forfaits Disponibles",
+    "package_small": "Petit Forfait",
+    "package_medium": "Forfait Moyen",
+    "package_large": "Grand Forfait",
+    "lunas": "Lunas",
+    "buy_package": "Acheter",
+    "back_to_packages": "Retour aux forfaits",
+    "payment_title": "Finaliser l'Achat",
+    "payment_summary": "Résumé du Paiement",
+    "package_price": "Prix du forfait",
+    "complete_payment": "Finaliser le Paiement"
   }
 }

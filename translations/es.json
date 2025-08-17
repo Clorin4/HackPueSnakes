@@ -286,11 +286,10 @@
       "start_path": "Comenzar ruta"
     },
     "categories": {
-      "physics_math": "Física y Matemáticas",
-      "social_sciences": "Ciencias Sociales",
+      "practical_skills": "Habilidades Prácticas",
+      "recommended": "Recomendadas",
       "soft_skills": "Habilidades Blandas",
-      "biological_sciences": "Ciencias Biológicas",
-      "emotional_intelligence": "Inteligencia Emocional"
+      "post_prep": "Post Preparatoria"
     }
   },
   "create": {
@@ -409,5 +408,30 @@
   "select_option": "Seleccione una opción",
   "back": "Volver",
   "previous": "Anterior",
-  "next": "Siguiente"
+  "next": "Siguiente",
+  "donate_coins": "Donar Lunas",
+  "donate_amount": "+5 lunas",
+  "virtual_coins": "lunas",
+  "coins_description": "Las Lunas ayudan a mantener la plataforma gratuita",
+  "donation_success": "¡Gracias por donar {amount} Lunas! 🌙\n\nHas ayudado a mantener {course} gratuito para todos los estudiantes.",
+  "lunas": {
+    "title": "Comprar Lunas",
+    "buy_lunas": "Comprar Lunas",
+    "info_title": "¿Qué son las Lunas?",
+    "info_description": "Las Lunas son nuestra moneda virtual que te permite donar a los creadores de cursos y apoyar la educación gratuita en Atlas.",
+    "feature_support": "Apoya a creadores",
+    "feature_education": "Mantiene cursos gratuitos",
+    "feature_community": "Construye comunidad",
+    "packages_title": "Paquetes Disponibles",
+    "package_small": "Paquete Pequeño",
+    "package_medium": "Paquete Mediano",
+    "package_large": "Paquete Grande",
+    "lunas": "Lunas",
+    "buy_package": "Comprar",
+    "back_to_packages": "Volver a paquetes",
+    "payment_title": "Finalizar Compra",
+    "payment_summary": "Resumen de Pago",
+    "package_price": "Precio del paquete",
+    "complete_payment": "Completar Pago"
+  }
 }
