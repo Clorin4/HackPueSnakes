@@ -37,6 +37,8 @@
         "progress": "Progress",
         "dark_mode": "Dark mode",
         "language": "Language",
+        "text_zoom": "Text size",
+        "reset_zoom": "Reset",
         "logout": "Sign out"
     },
   "feed": {
@@ -116,6 +118,7 @@
     "dark_mode_enabled": "Dark mode enabled",
     "light_mode_enabled": "Light mode enabled",
     "language_changed": "Language changed successfully",
+    "text_zoom_changed": "Text size adjusted to {percentage}%",
     "form_errors": "Please correct the errors in the form"
   },
   "validation": {

@@ -25,6 +25,9 @@
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     --radius: 0.5rem;
     --radius-lg: 0.75rem;
+    
+    /* Zoom de texto */
+    --text-zoom: 1;
 }
 
 body {
@@ -653,6 +656,37 @@ body {
     
     .lunas-btn span {
         display: none;
+    }
+    
+    /* Controles de zoom en móviles */
+    .text-zoom-selector {
+        gap: 0.5rem;
+    }
+    
+    .zoom-controls {
+        padding: 0.4rem;
+        gap: 0.3rem;
+    }
+    
+    .zoom-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+    }
+    
+    .zoom-percentage {
+        font-size: 0.8rem;
+        min-width: 40px;
+    }
+    
+    /* Botón de reset en móviles */
+    .zoom-reset-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .zoom-reset-btn i {
+        font-size: 0.7rem;
     }
     
     .user-menu {
@@ -2965,6 +2999,105 @@ body {
 
 .language-option .flag {
     font-size: 1.1rem;
+}
+
+/* Controles de zoom en la barra lateral */
+.sidebar-text-zoom {
+    margin-top: 1rem;
+}
+
+.sidebar-zoom-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.sidebar-zoom-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    background: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 0.5rem;
+}
+
+.sidebar-zoom-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+}
+
+.sidebar-zoom-btn:hover {
+    background: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.sidebar-zoom-btn:disabled {
+    background: var(--border-color);
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.5;
+}
+
+.sidebar-zoom-btn:disabled:hover {
+    background: var(--border-color);
+    transform: none;
+}
+
+.sidebar-zoom-percentage {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 40px;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+}
+
+.sidebar-zoom-percentage.at-limit {
+    color: var(--warning-color);
+    font-weight: 700;
+}
+
+/* Botón de reset de zoom en sidebar */
+.sidebar-zoom-reset-btn {
+    background: var(--background-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.sidebar-zoom-reset-btn:hover {
+    background: var(--border-color);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.sidebar-zoom-reset-btn i {
+    font-size: 0.7rem;
 }
 
 /* Divisores */
@@ -6003,6 +6136,98 @@ input:checked + .toggle-slider:before {
     color: var(--text-primary) !important; /* Forzar color de opciones */
 }
 
+/* Controles de zoom de texto */
+.text-zoom-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    background: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 0.5rem;
+}
+
+.zoom-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.zoom-btn:hover {
+    background: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.zoom-btn:disabled {
+    background: var(--border-color);
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.5;
+}
+
+.zoom-btn:disabled:hover {
+    background: var(--border-color);
+    transform: none;
+}
+
+.zoom-percentage {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 45px;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+}
+
+.zoom-percentage.at-limit {
+    color: var(--warning-color);
+    font-weight: 700;
+}
+
+/* Botón de reset de zoom */
+.zoom-reset-btn {
+    background: var(--background-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.zoom-reset-btn:hover {
+    background: var(--border-color);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.zoom-reset-btn i {
+    font-size: 0.8rem;
+}
+
 /* Página de perfil */
 .profile-container {
     max-width: 800px;
@@ -7927,4 +8152,1334 @@ input:checked + .toggle-slider:before {
     .package-price .price {
         font-size: 1.75rem;
     }
+}
+
+/* Aplicar zoom de texto a toda la página */
+body {
+    font-size: calc(16px * var(--text-zoom));
+    transition: font-size 0.3s ease-in-out;
+}
+
+/* Límites de zoom para elementos específicos */
+header, .header, nav, .nav, .navbar {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+.menu, .dropdown, .sidebar {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: calc(1em * min(var(--text-zoom), 1.4)) !important;
+}
+
+button, .btn, input, textarea, select, label {
+    font-size: calc(1em * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones adicionales para elementos de navegación */
+.profile-dropdown, .dropdown-menu, .hamburger-menu {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de formulario */
+.form-group, .form-control, .input-group {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de tarjetas y contenido */
+.course-card, .post-card, .notification {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para modales */
+.modal-content, .modal-header, .modal-body {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para controles de zoom */
+.text-zoom-selector, .zoom-controls, .zoom-btn, .zoom-percentage {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+.sidebar-text-zoom, .sidebar-zoom-controls, .sidebar-zoom-btn, .sidebar-zoom-percentage {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de la interfaz principal */
+.main-content, .tab-content, .feed-content, .content-section {
+    font-size: calc(16px * min(var(--text-zoom), 1.4)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas */
+.tab-buttons, .tab-button, .tab-nav {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para Atlas */
+.atlas-header, .atlas-title, .atlas-subtitle {
+    font-size: calc(1em * min(var(--text-zoom), 1.3)) !important;
+}
+
+.atlas-nav, .atlas-menu, .atlas-dropdown {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+.atlas-content, .atlas-section, .atlas-card {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de creación */
+.creator-form, .creation-section, .form-section {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de perfil */
+.profile-section, .profile-info, .profile-edit {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para iconos y elementos pequeños */
+.fas, .far, .fab, .icon, .small-text {
+    font-size: calc(1em * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de estado y badges */
+.badge, .status, .indicator {
+    font-size: calc(12px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de notificación */
+.alert, .message, .info-box {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de lista */
+.list-item, .list-group, .menu-item {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos */
+.nav-link, .nav-item, .breadcrumb {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de formulario específicos */
+.form-label, .form-text, .form-check {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de tabla */
+.table, .table-header, .table-cell {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de paginación */
+.pagination, .page-link, .page-item {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.course-title, .class-title, .post-title {
+    font-size: calc(1em * min(var(--text-zoom), 1.35)) !important;
+}
+
+.course-description, .class-description, .post-content {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+.course-meta, .class-meta, .post-meta {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+.course-stats, .class-stats, .post-stats {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario */
+.ui-element, .interface-component, .control-panel {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones críticas para navegación */
+.navigation, .main-nav, .top-nav {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú desplegable */
+.dropdown-content, .dropdown-item, .menu-content {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de barra lateral */
+.sidebar-content, .sidebar-item, .sidebar-section {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de pie de página */
+.footer, .footer-content, .footer-link {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos de Atlas */
+.atlas-layout, .atlas-container, .atlas-wrapper {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid y flexbox */
+.grid-container, .flex-container, .layout-grid {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado */
+.spacing, .margin, .padding {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación */
+.alignment, .text-align, .vertical-align {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada y formulario */
+.input-field, .text-input, .number-input {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección */
+.select-dropdown, .option-item, .choice-item {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación */
+.validation-message, .error-text, .success-text {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda */
+.help-text, .tooltip, .info-text {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-content, .tab-panel, .tab-section {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal */
+.main-panel, .content-panel, .info-panel {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción */
+.action-button, .action-link, .action-item {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado */
+.status-indicator, .progress-bar, .loading-spinner {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-button, .atlas-link, .atlas-action {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+.atlas-text, .atlas-label, .atlas-caption {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+.atlas-small, .atlas-mini, .atlas-tiny {
+    font-size: calc(14px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos */
+.ui-button, .ui-link, .ui-action {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica */
+.critical-nav, .essential-menu, .core-navigation {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal */
+.primary-menu, .main-menu, .core-menu {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú */
+.submenu, .submenu-item, .nested-menu {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb */
+.breadcrumb-nav, .breadcrumb-item, .path-navigation {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-element, .container-element, .wrapper-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-element, .flex-element, .layout-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-element, .margin-element, .padding-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-element, .text-element, .vertical-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-element, .text-element, .number-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-element, .option-element, .choice-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-element, .error-element, .success-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-element, .tooltip-element, .info-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-element, .panel-element, .section-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-element, .content-element, .info-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-element, .button-element, .link-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-element, .progress-element, .loading-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-element, .atlas-component, .atlas-widget {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui, .atlas-interface, .atlas-control {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav, .atlas-menu, .atlas-dropdown {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content, .atlas-section, .atlas-card {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-element, .essential-element, .core-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-element, .main-element, .core-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-element, .nested-element, .hierarchy-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-element, .path-element, .navigation-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific, .container-specific, .wrapper-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific, .flex-specific, .layout-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific, .margin-specific, .padding-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific, .text-specific, .vertical-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific, .text-specific, .number-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific, .option-specific, .choice-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific, .error-specific, .success-specific {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific, .tooltip-specific, .info-specific {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-specific, .panel-specific, .section-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-specific, .content-specific, .info-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-specific, .button-specific, .link-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-specific, .progress-specific, .loading-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-specific, .atlas-component-specific, .atlas-widget-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui-specific, .atlas-interface-specific, .atlas-control-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav-specific, .atlas-menu-specific, .atlas-dropdown-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content-specific, .atlas-section-specific, .atlas-card-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-specific, .essential-specific, .core-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-specific, .main-specific, .core-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-specific, .nested-specific, .hierarchy-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-specific, .path-specific, .navigation-specific {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific-element, .container-specific-element, .wrapper-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific-element, .flex-specific-element, .layout-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific-element, .margin-specific-element, .padding-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific-element, .text-specific-element, .vertical-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific-element, .text-specific-element, .number-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific-element, .option-specific-element, .choice-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific-element, .error-specific-element, .success-specific-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific-element, .tooltip-specific-element, .info-specific-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-specific-element, .panel-specific-element, .section-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-specific-element, .content-specific-element, .info-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-specific-element, .button-specific-element, .link-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-specific-element, .progress-specific-element, .loading-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-specific-element, .atlas-component-specific-element, .atlas-widget-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui-specific-element, .atlas-interface-specific-element, .atlas-control-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav-specific-element, .atlas-menu-specific-element, .atlas-dropdown-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content-specific-element, .atlas-section-specific-element, .atlas-card-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-specific-element, .essential-specific-element, .core-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-specific-element, .main-specific-element, .core-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-specific-element, .nested-specific-element, .hierarchy-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-specific-element, .path-specific-element, .navigation-specific-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific-element-element, .container-specific-element-element, .wrapper-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific-element-element, .flex-specific-element-element, .layout-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific-element-element, .margin-specific-element-element, .padding-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific-element-element, .text-specific-element-element, .vertical-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific-element-element, .text-specific-element-element, .number-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific-element-element, .option-specific-element-element, .choice-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific-element-element, .error-specific-element-element, .success-specific-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific-element-element, .tooltip-specific-element-element, .info-specific-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-specific-element-element, .panel-specific-element-element, .section-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-specific-element-element, .content-specific-element-element, .info-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-specific-element-element, .button-specific-element-element, .link-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-specific-element-element, .progress-specific-element-element, .loading-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-specific-element-element, .atlas-component-specific-element-element, .atlas-widget-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui-specific-element-element, .atlas-interface-specific-element-element, .atlas-control-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav-specific-element-element, .atlas-menu-specific-element-element, .atlas-dropdown-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content-specific-element-element, .atlas-section-specific-element-element, .atlas-card-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-specific-element-element, .essential-specific-element-element, .core-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-specific-element-element, .main-specific-element-element, .core-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-specific-element-element, .nested-specific-element-element, .hierarchy-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-specific-element-element, .path-specific-element-element, .navigation-specific-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific-element-element-element, .container-specific-element-element-element, .wrapper-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific-element-element-element, .flex-specific-element-element-element, .layout-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific-element-element-element, .margin-specific-element-element-element, .padding-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific-element-element-element, .text-specific-element-element-element, .vertical-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific-element-element-element, .text-specific-element-element-element, .number-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific-element-element-element, .option-specific-element-element-element, .choice-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific-element-element-element, .error-specific-element-element-element, .success-specific-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific-element-element-element, .tooltip-specific-element-element-element, .info-specific-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-specific-element-element-element, .panel-specific-element-element-element, .section-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-specific-element-element-element, .content-specific-element-element-element, .info-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-specific-element-element-element, .button-specific-element-element-element, .link-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-specific-element-element-element, .progress-specific-element-element-element, .loading-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-specific-element-element-element, .atlas-component-specific-element-element-element, .atlas-widget-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui-specific-element-element-element, .atlas-interface-specific-element-element-element, .atlas-control-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav-specific-element-element-element, .atlas-menu-specific-element-element-element, .atlas-dropdown-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content-specific-element-element-element, .atlas-section-specific-element-element-element, .atlas-card-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-specific-element-element-element, .essential-specific-element-element-element, .core-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-specific-element-element-element, .main-specific-element-element-element, .core-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-specific-element-element-element, .nested-specific-element-element-element, .hierarchy-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-specific-element-element-element, .path-specific-element-element-element, .navigation-specific-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific-element-element-element-element, .container-specific-element-element-element-element, .wrapper-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific-element-element-element-element, .flex-specific-element-element-element-element, .layout-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific-element-element-element-element, .margin-specific-element-element-element-element, .padding-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific-element-element-element-element, .text-specific-element-element-element-element, .vertical-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific-element-element-element-element, .text-specific-element-element-element-element, .number-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific-element-element-element-element, .option-specific-element-element-element-element, .choice-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific-element-element-element-element, .error-specific-element-element-element-element, .success-specific-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific-element-element-element-element, .tooltip-specific-element-element-element-element, .info-specific-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-specific-element-element-element-element, .panel-specific-element-element-element-element, .section-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-specific-element-element-element-element, .content-specific-element-element-element-element, .info-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-specific-element-element-element-element, .button-specific-element-element-element-element, .link-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-specific-element-element-element-element, .progress-specific-element-element-element-element, .loading-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-specific-element-element-element-element, .atlas-component-specific-element-element-element-element, .atlas-widget-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui-specific-element-element-element-element, .atlas-interface-specific-element-element-element-element, .atlas-control-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav-specific-element-element-element-element, .atlas-menu-specific-element-element-element-element, .atlas-dropdown-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content-specific-element-element-element-element, .atlas-section-specific-element-element-element-element, .atlas-card-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-specific-element-element-element-element, .essential-specific-element-element-element-element, .core-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-specific-element-element-element-element, .main-specific-element-element-element-element, .core-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-specific-element-element-element-element, .nested-specific-element-element-element-element, .hierarchy-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-specific-element-element-element-element, .path-specific-element-element-element-element, .navigation-specific-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific-element-element-element-element-element, .container-specific-element-element-element-element-element, .wrapper-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific-element-element-element-element-element, .flex-specific-element-element-element-element-element, .layout-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific-element-element-element-element-element, .margin-specific-element-element-element-element-element, .padding-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific-element-element-element-element-element, .text-specific-element-element-element-element-element, .vertical-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific-element-element-element-element-element, .text-specific-element-element-element-element-element, .number-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific-element-element-element-element-element, .option-specific-element-element-element-element-element, .choice-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific-element-element-element-element-element, .error-specific-element-element-element-element-element, .success-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific-element-element-element-element-element, .tooltip-specific-element-element-element-element-element, .info-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-specific-element-element-element-element-element, .panel-specific-element-element-element-element-element, .section-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-specific-element-element-element-element-element, .content-specific-element-element-element-element-element, .info-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-specific-element-element-element-element-element, .button-specific-element-element-element-element-element, .link-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-specific-element-element-element-element-element, .progress-specific-element-element-element-element-element, .loading-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-specific-element-element-element-element-element, .atlas-component-specific-element-element-element-element-element, .atlas-widget-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui-specific-element-element-element-element-element, .atlas-interface-specific-element-element-element-element-element, .atlas-control-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav-specific-element-element-element-element-element, .atlas-menu-specific-element-element-element-element-element, .atlas-dropdown-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content-specific-element-element-element-element-element, .atlas-section-specific-element-element-element-element-element, .atlas-card-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-specific-element-element-element-element-element, .essential-specific-element-element-element-element-element, .core-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-specific-element-element-element-element-element, .main-specific-element-element-element-element-element, .core-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-specific-element-element-element-element-element, .nested-specific-element-element-element-element-element, .hierarchy-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-specific-element-element-element-element-element, .path-specific-element-element-element-element-element, .navigation-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific-element-element-element-element-element-element, .container-specific-element-element-element-element-element-element, .wrapper-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific-element-element-element-element-element-element, .flex-specific-element-element-element-element-element-element, .layout-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific-element-element-element-element-element-element, .margin-specific-element-element-element-element-element-element, .padding-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific-element-element-element-element-element-element, .text-specific-element-element-element-element-element-element, .vertical-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific-element-element-element-element-element-element, .text-specific-element-element-element-element-element-element, .number-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific-element-element-element-element-element-element, .option-specific-element-element-element-element-element, .choice-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific-element-element-element-element-element-element, .error-specific-element-element-element-element-element, .success-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific-element-element-element-element-element-element, .tooltip-specific-element-element-element-element-element, .info-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-specific-element-element-element-element-element-element, .panel-specific-element-element-element-element-element, .section-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-specific-element-element-element-element-element, .content-specific-element-element-element-element-element, .info-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-specific-element-element-element-element-element-element, .button-specific-element-element-element-element-element, .link-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-specific-element-element-element-element-element-element, .progress-specific-element-element-element-element-element-element, .loading-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-specific-element-element-element-element-element-element, .atlas-component-specific-element-element-element-element-element-element, .atlas-widget-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui-specific-element-element-element-element-element-element, .atlas-interface-specific-element-element-element-element-element-element, .atlas-control-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav-specific-element-element-element-element-element-element, .atlas-menu-specific-element-element-element-element-element-element, .atlas-dropdown-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content-specific-element-element-element-element-element-element, .atlas-section-specific-element-element-element-element-element-element, .atlas-card-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-specific-element-element-element-element-element-element, .essential-specific-element-element-element-element-element-element, .core-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-specific-element-element-element-element-element-element, .main-specific-element-element-element-element-element-element, .core-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-specific-element-element-element-element-element-element, .nested-specific-element-element-element-element-element, .hierarchy-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-specific-element-element-element-element-element-element, .path-specific-element-element-element-element-element-element, .navigation-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific-element-element-element-element-element-element-element, .container-specific-element-element-element-element-element-element-element, .wrapper-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific-element-element-element-element-element-element-element, .flex-specific-element-element-element-element-element-element-element, .layout-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific-element-element-element-element-element-element-element, .margin-specific-element-element-element-element-element-element, .padding-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific-element-element-element-element-element-element-element, .text-specific-element-element-element-element-element-element, .vertical-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific-element-element-element-element-element-element-element, .text-specific-element-element-element-element-element-element, .number-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific-element-element-element-element-element-element-element, .option-specific-element-element-element-element-element, .choice-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific-element-element-element-element-element-element-element, .error-specific-element-element-element-element-element, .success-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific-element-element-element-element-element-element-element, .tooltip-specific-element-element-element-element-element, .info-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-specific-element-element-element-element-element-element-element, .panel-specific-element-element-element-element-element-element, .section-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-specific-element-element-element-element-element-element, .content-specific-element-element-element-element-element-element, .info-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-specific-element-element-element-element-element-element-element, .button-specific-element-element-element-element-element-element, .link-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-specific-element-element-element-element-element-element-element, .progress-specific-element-element-element-element-element-element-element, .loading-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-specific-element-element-element-element-element-element-element, .atlas-component-specific-element-element-element-element-element-element-element, .atlas-widget-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui-specific-element-element-element-element-element-element-element, .atlas-interface-specific-element-element-element-element-element-element-element, .atlas-control-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav-specific-element-element-element-element-element-element-element, .atlas-menu-specific-element-element-element-element-element-element-element, .atlas-dropdown-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content-specific-element-element-element-element-element-element-element, .atlas-section-specific-element-element-element-element-element-element-element, .atlas-card-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-specific-element-element-element-element-element-element-element, .essential-specific-element-element-element-element-element-element, .core-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-specific-element-element-element-element-element-element-element, .main-specific-element-element-element-element-element-element-element, .core-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-specific-element-element-element-element-element-element-element, .nested-specific-element-element-element-element-element-element, .hierarchy-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-specific-element-element-element-element-element-element-element, .path-specific-element-element-element-element-element-element, .navigation-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific-element-element-element-element-element-element-element-element, .container-specific-element-element-element-element-element-element-element-element, .wrapper-specific-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific-element-element-element-element-element-element-element-element, .flex-specific-element-element-element-element-element-element-element-element, .layout-specific-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific-element-element-element-element-element-element-element-element, .margin-specific-element-element-element-element-element-element-element, .padding-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific-element-element-element-element-element-element-element-element, .text-specific-element-element-element-element-element-element, .vertical-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific-element-element-element-element-element-element-element-element, .text-specific-element-element-element-element-element-element, .number-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific-element-element-element-element-element-element-element-element, .option-specific-element-element-element-element-element, .choice-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific-element-element-element-element-element-element-element-element, .error-specific-element-element-element-element-element, .success-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific-element-element-element-element-element-element-element-element, .tooltip-specific-element-element-element-element-element, .info-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación por pestañas específicos */
+.tab-specific-element-element-element-element-element-element-element-element, .panel-specific-element-element-element-element-element-element-element, .section-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de contenido principal específicos */
+.main-specific-element-element-element-element-element-element-element, .content-specific-element-element-element-element-element-element-element, .info-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de acción específicos */
+.action-specific-element-element-element-element-element-element-element-element, .button-specific-element-element-element-element-element-element-element, .link-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de estado específicos */
+.status-specific-element-element-element-element-element-element-element-element, .progress-specific-element-element-element-element-element-element-element-element, .loading-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones específicas para elementos de Atlas */
+.atlas-specific-element-element-element-element-element-element-element-element, .atlas-component-specific-element-element-element-element-element-element-element-element, .atlas-widget-specific-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de interfaz de usuario específicos de Atlas */
+.atlas-ui-specific-element-element-element-element-element-element-element-element, .atlas-interface-specific-element-element-element-element-element-element-element-element, .atlas-control-specific-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de navegación específicos de Atlas */
+.atlas-nav-specific-element-element-element-element-element-element-element-element, .atlas-menu-specific-element-element-element-element-element-element-element-element, .atlas-dropdown-specific-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de contenido específicos de Atlas */
+.atlas-content-specific-element-element-element-element-element-element-element-element, .atlas-section-specific-element-element-element-element-element-element-element-element, .atlas-card-specific-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.35)) !important;
+}
+
+/* Restricciones para elementos de navegación crítica específicos */
+.critical-specific-element-element-element-element-element-element-element-element, .essential-specific-element-element-element-element-element-element-element, .core-specific-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de menú principal específicos */
+.primary-specific-element-element-element-element-element-element-element-element, .main-specific-element-element-element-element-element-element-element-element, .core-specific-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de submenú específicos */
+.submenu-specific-element-element-element-element-element-element-element-element, .nested-specific-element-element-element-element-element-element, .hierarchy-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de breadcrumb específicos */
+.breadcrumb-specific-element-element-element-element-element-element-element-element, .path-specific-element-element-element-element-element-element-element, .navigation-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.2)) !important;
+}
+
+/* Restricciones para elementos de layout específicos */
+.layout-specific-element-element-element-element-element-element-element-element-element, .container-specific-element-element-element-element-element-element-element-element-element, .wrapper-specific-element-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de grid específicos */
+.grid-specific-element-element-element-element-element-element-element-element-element, .flex-specific-element-element-element-element-element-element-element-element-element, .layout-specific-element-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.3)) !important;
+}
+
+/* Restricciones para elementos de espaciado específicos */
+.spacing-specific-element-element-element-element-element-element-element-element-element, .margin-specific-element-element-element-element-element-element-element, .padding-specific-element-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de alineación específicos */
+.alignment-specific-element-element-element-element-element-element-element-element-element, .text-specific-element-element-element-element-element-element, .vertical-specific-element-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de entrada específicos */
+.input-specific-element-element-element-element-element-element-element-element-element, .text-specific-element-element-element-element-element-element, .number-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de selección específicos */
+.select-specific-element-element-element-element-element-element-element-element, .option-specific-element-element-element-element-element, .choice-specific-element-element-element-element-element {
+    font-size: calc(16px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de validación específicos */
+.validation-specific-element-element-element-element-element-element-element-element, .error-specific-element-element-element-element-element, .success-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+/* Restricciones para elementos de ayuda específicos */
+.help-specific-element-element-element-element-element-element-element-element, .tooltip-specific-element-element-element-element-element, .info-specific-element-element-element-element-element {
+    font-size: calc(14px * min(var(--text-zoom), 1.25)) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: calc(1em * var(--text-zoom));
+    transition: font-size 0.3s ease-in-out;
+}
+
+p, span, div, button, input, textarea, select, label, a {
+    font-size: calc(1em * var(--text-zoom));
+    transition: font-size 0.3s ease-in-out;
+}
+
+/* Ajustes específicos para elementos que necesitan mantener proporciones */
+.course-card, .post-card, .notification, .modal-content {
+    font-size: calc(1em * var(--text-zoom));
+}
+
+/* Ajustar tamaños de iconos proporcionalmente */
+.fas, .far, .fab {
+    font-size: calc(1em * var(--text-zoom));
+}
+
+/* Ajustar espaciados proporcionalmente */
+.padding, .margin, .gap {
+    font-size: calc(1em * var(--text-zoom));
 }

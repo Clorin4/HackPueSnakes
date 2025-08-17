@@ -4,6 +4,7 @@ class AtlasApp {
         this.currentScreen = 'welcome-screen';
         this.users = this.loadUsers();
         this.currentUser = null;
+        this.zoomInitialized = false;
         this.init();
     }
 
@@ -82,6 +83,9 @@ class AtlasApp {
         
         // Menú de perfil
         this.setupProfileMenu();
+        
+        // Configurar controles de zoom de texto
+        this.setupTextZoomControls();
         
         // Configurar botón premium
         this.setupPremiumButton();
@@ -1245,6 +1249,9 @@ AtlasApp.prototype.setupProfileMenu = function() {
         this.handleLogout();
         this.closeProfileMenu();
     });
+    
+    // Configurar atajos de teclado para zoom
+    this.setupZoomKeyboardShortcuts();
 };
 
 AtlasApp.prototype.adjustDropdownPosition = function(dropdownMenu, trigger) {
@@ -1371,6 +1378,210 @@ AtlasApp.prototype.resetDropdownPosition = function(dropdownMenu) {
     dropdownMenu.style.marginTop = '';
     dropdownMenu.style.marginBottom = '';
     dropdownMenu.style.zIndex = ''; // Resetear z-index también
+};
+
+// Configuración de controles de zoom de texto
+AtlasApp.prototype.setupTextZoomControls = function() {
+    console.log('🎯 Configurando controles de zoom de texto...');
+    
+    // Cargar zoom guardado o usar valor por defecto
+    const savedZoom = localStorage.getItem('atlas_text_zoom') || 1;
+    console.log('📏 Zoom guardado:', savedZoom);
+    
+    // Aplicar zoom inicial
+    this.applyTextZoom(savedZoom);
+    
+    // Configurar controles del menú desplegable
+    const zoomOutBtn = document.getElementById('zoom-out-btn');
+    const zoomInBtn = document.getElementById('zoom-in-btn');
+    const zoomPercentage = document.getElementById('zoom-percentage');
+    
+    console.log('🔍 Elementos encontrados:', {
+        zoomOutBtn: !!zoomOutBtn,
+        zoomInBtn: !!zoomInBtn,
+        zoomPercentage: !!zoomPercentage
+    });
+    
+    if (zoomOutBtn && zoomInBtn && zoomPercentage) {
+        zoomOutBtn.addEventListener('click', () => {
+            this.decreaseTextZoom();
+        });
+        
+        zoomInBtn.addEventListener('click', () => {
+            this.increaseTextZoom();
+        });
+        
+        // Actualizar display inicial
+        zoomPercentage.textContent = `${Math.round(savedZoom * 100)}%`;
+    }
+    
+    // Configurar botón de reset
+    const zoomResetBtn = document.getElementById('zoom-reset-btn');
+    if (zoomResetBtn) {
+        zoomResetBtn.addEventListener('click', () => {
+            this.resetTextZoom();
+        });
+    }
+    
+    // Configurar controles de la barra lateral
+    const sidebarZoomOutBtn = document.getElementById('sidebar-zoom-out-btn');
+    const sidebarZoomInBtn = document.getElementById('sidebar-zoom-in-btn');
+    const sidebarZoomPercentage = document.getElementById('sidebar-zoom-percentage');
+    
+    console.log('🔍 Elementos de sidebar encontrados:', {
+        sidebarZoomOutBtn: !!sidebarZoomOutBtn,
+        sidebarZoomInBtn: !!sidebarZoomInBtn,
+        sidebarZoomPercentage: !!sidebarZoomPercentage
+    });
+    
+    if (sidebarZoomOutBtn && sidebarZoomInBtn && sidebarZoomPercentage) {
+        sidebarZoomOutBtn.addEventListener('click', () => {
+            this.decreaseTextZoom();
+        });
+        
+        sidebarZoomInBtn.addEventListener('click', () => {
+            this.increaseTextZoom();
+        });
+        
+        // Actualizar display inicial
+        sidebarZoomPercentage.textContent = `${Math.round(savedZoom * 100)}%`;
+    }
+    
+    // Configurar botón de reset en sidebar
+    const sidebarZoomResetBtn = document.getElementById('sidebar-zoom-reset-btn');
+    if (sidebarZoomResetBtn) {
+        sidebarZoomResetBtn.addEventListener('click', () => {
+            this.resetTextZoom();
+        });
+    }
+    
+    console.log('✅ Controles de zoom configurados correctamente');
+    
+    // Marcar que el zoom está inicializado para mostrar notificaciones
+    this.zoomInitialized = true;
+};
+
+// Aplicar zoom de texto
+AtlasApp.prototype.applyTextZoom = function(zoomLevel) {
+    // Limitar zoom entre 0.7 (70%) y 1.5 (150%) para mejor control
+    const clampedZoom = Math.max(0.7, Math.min(1.5, zoomLevel));
+    
+    // Aplicar zoom usando CSS custom property
+    document.documentElement.style.setProperty('--text-zoom', clampedZoom);
+    
+    // Guardar en localStorage
+    localStorage.setItem('atlas_text_zoom', clampedZoom);
+    
+    // Solo actualizar displays y botones si los elementos existen
+    if (document.getElementById('zoom-percentage') || document.getElementById('sidebar-zoom-percentage')) {
+        // Actualizar displays de porcentaje
+        this.updateZoomDisplays(clampedZoom);
+        
+        // Habilitar/deshabilitar botones según límites
+        this.updateZoomButtons(clampedZoom);
+        
+        // Mostrar notificación de cambio solo si no es la inicialización
+        if (this.zoomInitialized) {
+            const percentage = Math.round(clampedZoom * 100);
+            const translationKey = 'notifications.text_zoom_changed';
+            const translation = this.getTranslation(translationKey);
+            
+            if (translation) {
+                const notificationMessage = translation.replace('{percentage}', percentage);
+                this.showNotification(notificationMessage, 'info');
+            } else {
+                // Fallback si no hay traducción
+                this.showNotification(`Tamaño de texto ajustado al ${percentage}%`, 'info');
+            }
+        }
+    }
+};
+
+// Aumentar zoom de texto
+AtlasApp.prototype.increaseTextZoom = function() {
+    const currentZoom = parseFloat(localStorage.getItem('atlas_text_zoom') || 1);
+    const newZoom = currentZoom + 0.1; // Incremento de 10%
+    this.applyTextZoom(newZoom);
+};
+
+// Reducir zoom de texto
+AtlasApp.prototype.decreaseTextZoom = function() {
+    const currentZoom = parseFloat(localStorage.getItem('atlas_text_zoom') || 1);
+    const newZoom = currentZoom - 0.1; // Decremento de 10%
+    this.applyTextZoom(newZoom);
+};
+
+// Actualizar displays de porcentaje
+AtlasApp.prototype.updateZoomDisplays = function(zoomLevel) {
+    const percentage = Math.round(zoomLevel * 100);
+    
+    // Actualizar en menú desplegable
+    const zoomPercentage = document.getElementById('zoom-percentage');
+    if (zoomPercentage) {
+        zoomPercentage.textContent = `${percentage}%`;
+        // Aplicar clase de límite si es necesario
+        zoomPercentage.classList.toggle('at-limit', zoomLevel <= 0.7 || zoomLevel >= 1.5);
+    }
+    
+    // Actualizar en barra lateral
+    const sidebarZoomPercentage = document.getElementById('sidebar-zoom-percentage');
+    if (sidebarZoomPercentage) {
+        sidebarZoomPercentage.textContent = `${percentage}%`;
+        // Aplicar clase de límite si es necesario
+        sidebarZoomPercentage.classList.toggle('at-limit', zoomLevel <= 0.7 || zoomLevel >= 1.5);
+    }
+};
+
+// Actualizar estado de botones de zoom
+AtlasApp.prototype.updateZoomButtons = function(zoomLevel) {
+    const zoomOutBtn = document.getElementById('zoom-out-btn');
+    const zoomInBtn = document.getElementById('zoom-in-btn');
+    const sidebarZoomOutBtn = document.getElementById('sidebar-zoom-out-btn');
+    const sidebarZoomInBtn = document.getElementById('sidebar-zoom-in-btn');
+    
+    // Deshabilitar botón de reducir si está en el mínimo
+    if (zoomOutBtn) {
+        zoomOutBtn.disabled = zoomLevel <= 0.7;
+    }
+    if (sidebarZoomOutBtn) {
+        sidebarZoomOutBtn.disabled = zoomLevel <= 0.7;
+    }
+    
+    // Deshabilitar botón de aumentar si está en el máximo
+    if (zoomInBtn) {
+        zoomInBtn.disabled = zoomLevel >= 1.5;
+    }
+    if (sidebarZoomInBtn) {
+        sidebarZoomInBtn.disabled = zoomLevel >= 1.5;
+    }
+};
+
+// Configurar atajos de teclado para zoom
+AtlasApp.prototype.setupZoomKeyboardShortcuts = function() {
+    document.addEventListener('keydown', (e) => {
+        // Ctrl + + para aumentar zoom
+        if (e.ctrlKey && e.key === '=') {
+            e.preventDefault();
+            this.increaseTextZoom();
+        }
+        
+        // Ctrl + - para reducir zoom
+        if (e.ctrlKey && e.key === '-') {
+            e.preventDefault();
+            this.decreaseTextZoom();
+        }
+        
+        // Ctrl + 0 para resetear zoom
+        if (e.ctrlKey && e.key === '0') {
+            e.preventDefault();
+            this.resetTextZoom();
+        }
+    });
+};
+
+// Resetear zoom de texto al 100%
+AtlasApp.prototype.resetTextZoom = function() {
+    this.applyTextZoom(1);
 };
 
 AtlasApp.prototype.showProfilePage = function() {
@@ -5137,6 +5348,9 @@ AtlasApp.prototype.setupSidebar = function() {
     
     // Configurar selector de idioma en sidebar
     this.setupSidebarLanguage();
+    
+    // Configurar controles de zoom de texto en sidebar
+    this.setupSidebarTextZoom();
 };
 
 AtlasApp.prototype.updateSidebarUserInfo = function() {
@@ -5203,6 +5417,13 @@ AtlasApp.prototype.setupSidebarLanguage = function() {
             option.classList.remove('active');
         }
     });
+};
+
+// Configuración de controles de zoom de texto en sidebar
+AtlasApp.prototype.setupSidebarTextZoom = function() {
+    // Los controles ya están configurados en setupTextZoomControls
+    // Esta función se mantiene para futuras personalizaciones específicas de sidebar
+    console.log('🎯 Controles de zoom de texto configurados en sidebar');
 };
 
 AtlasApp.prototype.logout = function() {

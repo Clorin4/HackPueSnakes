@@ -37,6 +37,8 @@
         "progress": "Avances",
         "dark_mode": "Modo oscuro",
         "language": "Idioma",
+        "text_zoom": "Tamaño de texto",
+        "reset_zoom": "Restablecer",
         "logout": "Cerrar sesión"
     },
   "feed": {
@@ -123,6 +125,7 @@
     "dark_mode_enabled": "Modo oscuro activado",
     "light_mode_enabled": "Modo claro activado",
     "language_changed": "Idioma cambiado exitosamente",
+    "text_zoom_changed": "Tamaño de texto ajustado al {percentage}%",
     "form_errors": "Por favor, corrige los errores en el formulario"
   },
   "validation": {

@@ -261,6 +261,24 @@
                                             <option value="fr">Français</option>
                                         </select>
                                     </div>
+                                    
+                                    <div class="dropdown-item text-zoom-selector">
+                                        <i class="fas fa-text-height"></i>
+                                        <span data-translate="profile_menu.text_zoom">Tamaño de texto</span>
+                                        <div class="zoom-controls">
+                                            <button class="zoom-btn zoom-out" id="zoom-out-btn" title="Reducir texto">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="zoom-percentage" id="zoom-percentage">100%</span>
+                                            <button class="zoom-btn zoom-in" id="zoom-in-btn" title="Aumentar texto">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <button class="zoom-reset-btn" id="zoom-reset-btn" title="Restablecer tamaño (Ctrl+0)">
+                                            <i class="fas fa-undo"></i>
+                                            <span data-translate="profile_menu.reset_zoom">Restablecer</span>
+                                        </button>
+                                    </div>
                                 </div>
                                 
                                 <div class="dropdown-divider"></div>
@@ -356,6 +374,26 @@
                                             <span>Français</span>
                                         </button>
                                     </div>
+                                </div>
+                                
+                                <div class="sidebar-text-zoom">
+                                    <div class="sidebar-zoom-header">
+                                        <i class="fas fa-text-height"></i>
+                                        <span data-translate="profile_menu.text_zoom">Tamaño de texto</span>
+                                    </div>
+                                    <div class="sidebar-zoom-controls">
+                                        <button class="sidebar-zoom-btn zoom-out" id="sidebar-zoom-out-btn" title="Reducir texto">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span class="sidebar-zoom-percentage" id="sidebar-zoom-percentage">100%</span>
+                                        <button class="sidebar-zoom-btn zoom-in" id="sidebar-zoom-in-btn" title="Aumentar texto">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <button class="sidebar-zoom-reset-btn" id="sidebar-zoom-reset-btn" title="Restablecer tamaño (Ctrl+0)">
+                                        <i class="fas fa-undo"></i>
+                                        <span data-translate="profile_menu.reset_zoom">Restablecer</span>
+                                    </button>
                                 </div>
                                 
                                 <div class="sidebar-divider"></div>
