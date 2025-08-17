@@ -1,0 +1,133 @@
+{
+  "welcome": {
+    "title": "Bienvenue sur Atlas",
+    "subtitle": "Votre plateforme d'éducation de qualité",
+    "login_btn": "Se connecter",
+    "register_btn": "S'inscrire"
+  },
+  "auth": {
+    "login_title": "Se connecter",
+    "register_title": "Créer un compte",
+    "username_label": "Nom d'utilisateur ou email",
+    "password_label": "Mot de passe",
+    "name_label": "Prénom",
+    "lastname_label": "Nom de famille",
+    "username_register_label": "Nom d'utilisateur",
+    "birthdate_label": "Date de naissance",
+    "email_label": "Adresse email",
+    "password_register_label": "Mot de passe",
+    "login_btn": "Se connecter",
+    "register_btn": "Créer un compte",
+    "no_account": "Vous n'avez pas de compte ?",
+    "register_here": "Inscrivez-vous ici",
+    "have_account": "Vous avez déjà un compte ?",
+    "login_here": "Connectez-vous ici",
+    "username_max_chars": "Maximum 20 caractères",
+    "birthdate_format": "Format : JJ/MM/AAAA",
+    "password_min_chars": "Minimum 6 caractères"
+  },
+  "navigation": {
+    "feed": "Fil",
+    "content": "Contenu"
+  },
+  "profile_menu": {
+    "profile": "Profil",
+    "achievements": "Réalisations",
+    "dark_mode": "Mode sombre",
+    "language": "Langue",
+    "logout": "Se déconnecter"
+  },
+  "feed": {
+    "create_post_placeholder": "Que souhaitez-vous partager aujourd'hui ?",
+    "photo_btn": "Photo",
+    "location_btn": "Localisation",
+    "like_btn": "J'aime",
+    "comment_btn": "Commenter",
+    "donate_btn": "Faire un don",
+    "reactions": "réactions",
+    "comments": "commentaires",
+    "donated": "donnés",
+    "comment_placeholder": "Écrivez un commentaire...",
+    "time_now": "Maintenant",
+    "time_hours_ago": "Il y a {hours} heures",
+    "time_minutes_ago": "Il y a {minutes} minutes"
+  },
+  "profile": {
+    "edit_profile": "Modifier le profil",
+    "about": "À propos",
+    "subjects_of_interest": "Matières d'intérêt",
+    "education_level": "Niveau d'éducation",
+    "high_school": "Lycée",
+    "final_year": "Dernière année",
+    "statistics": "Statistiques",
+    "posts": "Publications",
+    "reactions": "Réactions",
+    "donated": "Donné",
+    "bio_placeholder": "Étudiante passionnée par les sciences et la technologie. J'adore participer à des projets d'énergies renouvelables et partager mes connaissances avec ma communauté éducative."
+  },
+  "achievements": {
+    "title": "Réalisations",
+    "coming_soon": "La section des réalisations sera bientôt disponible...",
+    "first_post": "Première publication",
+    "first_post_desc": "Partagez votre première publication sur Atlas",
+    "popular_post": "Publication populaire",
+    "popular_post_desc": "Recevez 50 réactions sur une publication",
+    "knowledge_sharer": "Partageur de connaissances",
+    "knowledge_sharer_desc": "Aidez 10 camarades avec vos publications"
+  },
+  "content": {
+    "title": "Contenu Éducatif",
+    "coming_soon": "Cette section sera bientôt disponible..."
+  },
+  "donation": {
+    "modal_title": "Faire un don",
+    "modal_description": "Soutenez ce formidable projet éducatif",
+    "custom_amount": "Montant personnalisé",
+    "donate_btn": "Faire un don",
+    "processing": "Traitement en cours..."
+  },
+  "notifications": {
+    "welcome": "Bienvenue, {name} !",
+    "login_error": "Nom d'utilisateur ou mot de passe incorrect",
+    "registration_success": "Compte créé avec succès ! Vous pouvez maintenant vous connecter",
+    "logout_success": "Déconnexion réussie",
+    "reaction_added": "Vous aimez cette publication !",
+    "reaction_removed": "Réaction supprimée",
+    "comment_sent": "Commentaire envoyé",
+    "comment_required": "Écrivez un commentaire avant d'envoyer",
+    "donation_success": "Merci d'avoir donné ${amount} ! Votre soutien est très précieux.",
+    "donation_amount_required": "Sélectionnez un montant valide pour faire un don",
+    "dark_mode_enabled": "Mode sombre activé",
+    "light_mode_enabled": "Mode clair activé",
+    "language_changed": "Langue changée avec succès",
+    "form_errors": "Veuillez corriger les erreurs dans le formulaire"
+  },
+  "validation": {
+    "username_required": "Entrez votre nom d'utilisateur ou email",
+    "password_required": "Entrez votre mot de passe",
+    "username_max_length": "Le nom d'utilisateur ne peut pas dépasser 20 caractères",
+    "username_invalid_chars": "Seules les lettres, chiffres et underscores sont autorisés",
+    "username_taken": "Ce nom d'utilisateur est déjà pris",
+    "email_invalid": "Entrez une adresse email valide",
+    "email_taken": "Cette adresse email est déjà enregistrée",
+    "birthdate_invalid_format": "Format de date invalide (JJ/MM/AAAA)",
+    "birthdate_invalid": "Date invalide",
+    "age_too_young": "Vous devez avoir au moins 12 ans pour vous inscrire",
+    "age_too_old": "Veuillez vérifier votre date de naissance",
+    "password_too_short": "Le mot de passe doit contenir au moins 6 caractères",
+    "name_too_short": "Doit contenir au moins 2 caractères",
+    "name_invalid_chars": "Seules les lettres et espaces sont autorisés"
+  },
+  "subjects": {
+    "physics": "Physique",
+    "chemistry": "Chimie",
+    "mathematics": "Mathématiques",
+    "environmental_science": "Sciences Environnementales",
+    "technology": "Technologie",
+    "biology": "Biologie",
+    "history": "Histoire",
+    "literature": "Littérature",
+    "art": "Art",
+    "music": "Musique"
+  }
+}

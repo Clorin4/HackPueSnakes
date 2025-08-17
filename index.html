@@ -17,17 +17,17 @@
                     <i class="fas fa-graduation-cap"></i>
                     <h1>Atlas</h1>
                 </div>
-                <h2 class="welcome-message">Bienvenido a Atlas</h2>
-                <p class="subtitle">Tu plataforma de educación de calidad</p>
+                <h2 class="welcome-message" data-translate="welcome.title">Bienvenido a Atlas</h2>
+                <p class="subtitle" data-translate="welcome.subtitle">Tu plataforma de educación de calidad</p>
                 
                 <div class="button-group">
                     <button id="login-btn" class="btn btn-primary">
                         <i class="fas fa-sign-in-alt"></i>
-                        Iniciar Sesión
+                        <span data-translate="welcome.login_btn">Iniciar Sesión</span>
                     </button>
                     <button id="register-btn" class="btn btn-secondary">
                         <i class="fas fa-user-plus"></i>
-                        Registrarse
+                        <span data-translate="welcome.register_btn">Registrarse</span>
                     </button>
                 </div>
             </div>
@@ -42,18 +42,18 @@
                     <button id="back-to-welcome-login" class="back-btn">
                         <i class="fas fa-arrow-left"></i>
                     </button>
-                    <h2>Iniciar Sesión</h2>
+                    <h2 data-translate="auth.login_title">Iniciar Sesión</h2>
                 </div>
                 
                 <form id="login-form" class="form">
                     <div class="form-group">
-                        <label for="login-username">Nombre de usuario o correo</label>
+                        <label for="login-username" data-translate="auth.username_label">Nombre de usuario o correo</label>
                         <input type="text" id="login-username" name="username" required>
                         <span class="error-message" id="login-username-error"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label for="login-password">Contraseña</label>
+                        <label for="login-password" data-translate="auth.password_label">Contraseña</label>
                         <div class="password-input">
                             <input type="password" id="login-password" name="password" required>
                             <button type="button" class="toggle-password" data-target="login-password">
@@ -65,12 +65,12 @@
                     
                     <button type="submit" class="btn btn-primary btn-full">
                         <i class="fas fa-sign-in-alt"></i>
-                        Iniciar Sesión
+                        <span data-translate="auth.login_btn">Iniciar Sesión</span>
                     </button>
                 </form>
                 
                 <div class="form-footer">
-                    <p>¿No tienes cuenta? <a href="#" id="switch-to-register">Regístrate aquí</a></p>
+                    <p><span data-translate="auth.no_account">¿No tienes cuenta?</span> <a href="#" id="switch-to-register" data-translate="auth.register_here">Regístrate aquí</a></p>
                 </div>
             </div>
         </div>
@@ -84,64 +84,64 @@
                     <button id="back-to-welcome-register" class="back-btn">
                         <i class="fas fa-arrow-left"></i>
                     </button>
-                    <h2>Crear Cuenta</h2>
+                    <h2 data-translate="auth.register_title">Crear Cuenta</h2>
                 </div>
                 
                 <form id="register-form" class="form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="register-name">Nombre</label>
+                            <label for="register-name" data-translate="auth.name_label">Nombre</label>
                             <input type="text" id="register-name" name="name" required>
                             <span class="error-message" id="register-name-error"></span>
                         </div>
                         
                         <div class="form-group">
-                            <label for="register-lastname">Apellido</label>
+                            <label for="register-lastname" data-translate="auth.lastname_label">Apellido</label>
                             <input type="text" id="register-lastname" name="lastname" required>
                             <span class="error-message" id="register-lastname-error"></span>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="register-username">Nombre de usuario</label>
+                        <label for="register-username" data-translate="auth.username_register_label">Nombre de usuario</label>
                         <input type="text" id="register-username" name="username" maxlength="20" required>
-                        <span class="help-text">Máximo 20 caracteres</span>
+                        <span class="help-text" data-translate="auth.username_max_chars">Máximo 20 caracteres</span>
                         <span class="error-message" id="register-username-error"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label for="register-birthdate">Fecha de nacimiento</label>
+                        <label for="register-birthdate" data-translate="auth.birthdate_label">Fecha de nacimiento</label>
                         <input type="text" id="register-birthdate" name="birthdate" placeholder="DD/MM/AAAA" required>
-                        <span class="help-text">Formato: DD/MM/AAAA</span>
+                        <span class="help-text" data-translate="auth.birthdate_format">Formato: DD/MM/AAAA</span>
                         <span class="error-message" id="register-birthdate-error"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label for="register-email">Correo electrónico</label>
+                        <label for="register-email" data-translate="auth.email_label">Correo electrónico</label>
                         <input type="email" id="register-email" name="email" required>
                         <span class="error-message" id="register-email-error"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label for="register-password">Contraseña</label>
+                        <label for="register-password" data-translate="auth.password_register_label">Contraseña</label>
                         <div class="password-input">
                             <input type="password" id="register-password" name="password" required>
                             <button type="button" class="toggle-password" data-target="register-password">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
-                        <span class="help-text">Mínimo 6 caracteres</span>
+                        <span class="help-text" data-translate="auth.password_min_chars">Mínimo 6 caracteres</span>
                         <span class="error-message" id="register-password-error"></span>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-full">
                         <i class="fas fa-user-plus"></i>
-                        Crear Cuenta
+                        <span data-translate="auth.register_btn">Crear Cuenta</span>
                     </button>
                 </form>
                 
                 <div class="form-footer">
-                    <p>¿Ya tienes cuenta? <a href="#" id="switch-to-login">Inicia sesión aquí</a></p>
+                    <p><span data-translate="auth.have_account">¿Ya tienes cuenta?</span> <a href="#" id="switch-to-login" data-translate="auth.login_here">Inicia sesión aquí</a></p>
                 </div>
             </div>
         </div>
@@ -157,57 +157,476 @@
                         <span>Atlas</span>
                     </div>
                     <div class="user-menu">
-                        <span id="user-welcome">Bienvenido, <span id="user-name"></span></span>
-                        <button id="logout-btn" class="btn btn-outline">
-                            <i class="fas fa-sign-out-alt"></i>
-                            Cerrar Sesión
-                        </button>
+                        <div class="profile-dropdown" id="profile-dropdown">
+                            <button class="profile-trigger" id="profile-trigger">
+                                <div class="profile-avatar">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Perfil" id="user-profile-image">
+                                </div>
+                                <div class="profile-info">
+                                    <span class="profile-name" id="profile-name">Usuario</span>
+                                    <span class="profile-email" id="profile-email">usuario@atlas.com</span>
+                                </div>
+                                <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </button>
+                            
+                            <div class="dropdown-menu" id="dropdown-menu">
+                                <div class="dropdown-header">
+                                    <div class="dropdown-avatar">
+                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face" alt="Perfil">
+                                    </div>
+                                    <div class="dropdown-user-info">
+                                        <strong id="dropdown-name">Usuario</strong>
+                                        <span id="dropdown-email">usuario@atlas.com</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="dropdown-divider"></div>
+                                
+                                <div class="dropdown-options">
+                                    <button class="dropdown-item" id="profile-option">
+                                        <i class="fas fa-user"></i>
+                                        <span data-translate="profile_menu.profile">Perfil</span>
+                                    </button>
+                                    
+                                    <button class="dropdown-item" id="achievements-option">
+                                        <i class="fas fa-trophy"></i>
+                                        <span data-translate="profile_menu.achievements">Logros</span>
+                                    </button>
+                                    
+                                    <button class="dropdown-item" id="dark-mode-toggle">
+                                        <i class="fas fa-moon"></i>
+                                        <span data-translate="profile_menu.dark_mode">Modo oscuro</span>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="dark-mode-checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </div>
+                                    </button>
+                                    
+                                    <div class="dropdown-item language-selector">
+                                        <i class="fas fa-globe"></i>
+                                        <span data-translate="profile_menu.language">Idioma</span>
+                                        <select id="language-select" class="language-dropdown">
+                                            <option value="es">Español</option>
+                                            <option value="en">English</option>
+                                            <option value="fr">Français</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="dropdown-divider"></div>
+                                
+                                <button class="dropdown-item logout-item" id="logout-option">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span data-translate="profile_menu.logout">Cerrar sesión</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Navegación por pestañas -->
+                <nav class="tab-navigation">
+                    <button class="tab-btn active" data-tab="feed">
+                        <i class="fas fa-home"></i>
+                        <span data-translate="navigation.feed">Feed</span>
+                    </button>
+                    <button class="tab-btn" data-tab="content">
+                        <i class="fas fa-book"></i>
+                        <span data-translate="navigation.content">Contenido</span>
+                    </button>
+                </nav>
             </header>
             
             <main class="dashboard-main">
-                <div class="dashboard-content">
-                    <h1>Panel Principal</h1>
-                    <div class="dashboard-grid">
-                        <div class="dashboard-card">
-                            <div class="card-icon">
-                                <i class="fas fa-book"></i>
+                <!-- Tab Feed -->
+                <div id="feed-tab" class="tab-content active">
+                    <div class="feed-container">
+                        <!-- Crear nueva publicación -->
+                        <div class="create-post-card">
+                            <div class="create-post-header">
+                                <div class="user-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <button class="create-post-btn" id="open-create-post" data-translate="feed.create_post_placeholder">
+                                    ¿Qué quieres compartir hoy?
+                                </button>
                             </div>
-                            <h3>Mis Cursos</h3>
-                            <p>Accede a todos tus cursos y materiales de estudio</p>
-                            <button class="btn btn-primary">Ver Cursos</button>
+                            <div class="create-post-actions">
+                                <button class="action-btn" id="add-photo-btn">
+                                    <i class="fas fa-image"></i>
+                                    <span data-translate="feed.photo_btn">Foto</span>
+                                </button>
+                                <button class="action-btn" id="add-location-btn">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span data-translate="feed.location_btn">Ubicación</span>
+                                </button>
+                            </div>
                         </div>
                         
-                        <div class="dashboard-card">
-                            <div class="card-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h3>Mi Progreso</h3>
-                            <p>Revisa tu avance académico y calificaciones</p>
-                            <button class="btn btn-primary">Ver Progreso</button>
+                        <!-- Feed de publicaciones -->
+                        <div class="feed-posts" id="feed-posts">
+                            <!-- Publicación de ejemplo 1 -->
+                            <article class="post-card">
+                                <div class="post-header">
+                                    <div class="post-user">
+                                        <div class="user-avatar">
+                                            <i class="fas fa-user-graduate"></i>
+                                        </div>
+                                        <div class="user-info">
+                                            <h4>María González</h4>
+                                            <span class="post-time">Hace 2 horas</span>
+                                        </div>
+                                    </div>
+                                    <button class="post-menu">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="post-content">
+                                    <p>¡Acabo de terminar mi proyecto de ciencias! 🧪 Investigué sobre energías renovables y sus aplicaciones en mi comunidad. ¡Espero que les guste!</p>
+                                    <div class="post-image">
+                                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop" alt="Proyecto de energías renovables">
+                                    </div>
+                                </div>
+                                
+                                <div class="post-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-heart"></i>
+                                        24 reacciones
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-comment"></i>
+                                        8 comentarios
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                        $15 donados
+                                    </span>
+                                </div>
+                                
+                                <div class="post-actions">
+                                    <button class="action-btn reaction-btn" data-reaction="like">
+                                        <i class="fas fa-heart"></i>
+                                        <span>Me gusta</span>
+                                    </button>
+                                    <button class="action-btn comment-btn">
+                                        <i class="fas fa-comment"></i>
+                                        <span>Comentar</span>
+                                    </button>
+                                    <button class="action-btn donate-btn">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                        <span>Donar</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="comments-section" style="display: none;">
+                                    <div class="comment">
+                                        <div class="comment-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="comment-content">
+                                            <strong>Carlos Ruiz</strong>
+                                            <p>¡Excelente trabajo, María! Me encanta ver proyectos tan innovadores.</p>
+                                            <span class="comment-time">Hace 1 hora</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-comment">
+                                        <div class="comment-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <input type="text" placeholder="Escribe un comentario..." class="comment-input">
+                                        <button class="send-comment-btn">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            <!-- Publicación de ejemplo 2 -->
+                            <article class="post-card">
+                                <div class="post-header">
+                                    <div class="post-user">
+                                        <div class="user-avatar">
+                                            <i class="fas fa-user-tie"></i>
+                                        </div>
+                                        <div class="user-info">
+                                            <h4>Prof. Ana Martín</h4>
+                                            <span class="post-time">Hace 4 horas</span>
+                                        </div>
+                                    </div>
+                                    <button class="post-menu">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="post-content">
+                                    <p>Compartiendo algunos recursos gratuitos de matemáticas para mis estudiantes. ¡La educación debe ser accesible para todos! 📚✨</p>
+                                    <div class="post-image">
+                                        <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&h=400&fit=crop" alt="Recursos de matemáticas">
+                                    </div>
+                                </div>
+                                
+                                <div class="post-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-heart"></i>
+                                        42 reacciones
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-comment"></i>
+                                        15 comentarios
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                        $35 donados
+                                    </span>
+                                </div>
+                                
+                                <div class="post-actions">
+                                    <button class="action-btn reaction-btn" data-reaction="like">
+                                        <i class="fas fa-heart"></i>
+                                        <span>Me gusta</span>
+                                    </button>
+                                    <button class="action-btn comment-btn">
+                                        <i class="fas fa-comment"></i>
+                                        <span>Comentar</span>
+                                    </button>
+                                    <button class="action-btn donate-btn">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                        <span>Donar</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="comments-section" style="display: none;">
+                                    <div class="add-comment">
+                                        <div class="comment-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <input type="text" placeholder="Escribe un comentario..." class="comment-input">
+                                        <button class="send-comment-btn">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            <!-- Publicación de ejemplo 3 -->
+                            <article class="post-card">
+                                <div class="post-header">
+                                    <div class="post-user">
+                                        <div class="user-avatar">
+                                            <i class="fas fa-user-graduate"></i>
+                                        </div>
+                                        <div class="user-info">
+                                            <h4>Diego Herrera</h4>
+                                            <span class="post-time">Hace 6 horas</span>
+                                        </div>
+                                    </div>
+                                    <button class="post-menu">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="post-content">
+                                    <p>Mi equipo y yo ganamos el concurso de robótica de la escuela! 🤖 Creamos un robot que ayuda a clasificar residuos. ¡Tecnología para un mundo mejor!</p>
+                                    <div class="post-image">
+                                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop" alt="Proyecto de robótica">
+                                    </div>
+                                </div>
+                                
+                                <div class="post-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-heart"></i>
+                                        67 reacciones
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-comment"></i>
+                                        22 comentarios
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                        $50 donados
+                                    </span>
+                                </div>
+                                
+                                <div class="post-actions">
+                                    <button class="action-btn reaction-btn active" data-reaction="like">
+                                        <i class="fas fa-heart"></i>
+                                        <span>Me gusta</span>
+                                    </button>
+                                    <button class="action-btn comment-btn">
+                                        <i class="fas fa-comment"></i>
+                                        <span>Comentar</span>
+                                    </button>
+                                    <button class="action-btn donate-btn">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                        <span>Donar</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="comments-section" style="display: none;">
+                                    <div class="add-comment">
+                                        <div class="comment-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <input type="text" placeholder="Escribe un comentario..." class="comment-input">
+                                        <button class="send-comment-btn">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Contenido -->
+                <div id="content-tab" class="tab-content">
+                    <div class="content-container">
+                        <h2 data-translate="educational_content">Contenido Educativo</h2>
+                        <p data-translate="coming_soon">Esta sección estará disponible próximamente...</p>
+                    </div>
+                </div>
+                
+                <!-- Página de Perfil -->
+                <div id="profile-page" class="tab-content">
+                    <div class="profile-container">
+                        <!-- Portada del perfil -->
+                        <div class="profile-cover">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=200&fit=crop" alt="Portada" id="cover-image">
+                            <button class="edit-cover-btn" id="edit-cover-btn">
+                                <i class="fas fa-camera"></i>
+                            </button>
                         </div>
                         
-                        <div class="dashboard-card">
-                            <div class="card-icon">
-                                <i class="fas fa-users"></i>
+                        <!-- Información principal del perfil -->
+                        <div class="profile-main">
+                            <div class="profile-avatar-section">
+                                <div class="profile-avatar-large">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=120&h=120&fit=crop&crop=face" alt="Perfil" id="profile-avatar-large">
+                                    <button class="edit-avatar-btn" id="edit-avatar-btn">
+                                        <i class="fas fa-camera"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="profile-basic-info">
+                                    <h2 id="profile-display-name">María González</h2>
+                                    <p class="profile-email-display" id="profile-email-display">maria.gonzalez@atlas.com</p>
+                                    <p class="profile-institution" id="profile-institution">Instituto Tecnológico Nacional</p>
+                                </div>
+                                
+                                <button class="btn btn-primary edit-profile-btn" id="edit-profile-btn">
+                                    <i class="fas fa-edit"></i>
+                                    <span data-translate="edit_profile">Editar perfil</span>
+                                </button>
                             </div>
-                            <h3>Comunidad</h3>
-                            <p>Conecta con otros estudiantes y profesores</p>
-                            <button class="btn btn-primary">Ir a Comunidad</button>
+                            
+                            <!-- Información del perfil -->
+                            <div class="profile-info-grid">
+                                <div class="profile-card">
+                                    <h3 data-translate="about">Acerca de</h3>
+                                    <div class="profile-bio" id="profile-bio">
+                                        <p>Estudiante apasionada por las ciencias y la tecnología. Me encanta participar en proyectos de energías renovables y compartir conocimiento con mi comunidad educativa.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="profile-card">
+                                    <h3 data-translate="subjects_of_interest">Materias de interés</h3>
+                                    <div class="subjects-tags" id="subjects-tags">
+                                        <span class="subject-tag">Física</span>
+                                        <span class="subject-tag">Química</span>
+                                        <span class="subject-tag">Matemáticas</span>
+                                        <span class="subject-tag">Ciencias Ambientales</span>
+                                        <span class="subject-tag">Tecnología</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="profile-card">
+                                    <h3 data-translate="education_level">Nivel educativo</h3>
+                                    <div class="education-info">
+                                        <p><strong data-translate="high_school">Bachillerato</strong></p>
+                                        <p data-translate="final_year">Último año</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="profile-card">
+                                    <h3 data-translate="statistics">Estadísticas</h3>
+                                    <div class="profile-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-number">15</span>
+                                            <span class="stat-label" data-translate="posts">Publicaciones</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number">248</span>
+                                            <span class="stat-label" data-translate="reactions">Reacciones</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number">$125</span>
+                                            <span class="stat-label" data-translate="donated">Donado</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Página de Logros -->
+                <div id="achievements-page" class="tab-content">
+                    <div class="achievements-container">
+                        <h2 data-translate="achievements">Logros</h2>
+                        <p data-translate="achievements_coming_soon">La sección de logros estará disponible próximamente...</p>
                         
-                        <div class="dashboard-card">
-                            <div class="card-icon">
-                                <i class="fas fa-calendar"></i>
+                        <!-- Preview de logros -->
+                        <div class="achievements-preview">
+                            <div class="achievement-card locked">
+                                <i class="fas fa-trophy"></i>
+                                <h3 data-translate="first_post">Primera publicación</h3>
+                                <p data-translate="first_post_desc">Comparte tu primera publicación en Atlas</p>
                             </div>
-                            <h3>Calendario</h3>
-                            <p>Organiza tus tareas y fechas importantes</p>
-                            <button class="btn btn-primary">Ver Calendario</button>
+                            
+                            <div class="achievement-card locked">
+                                <i class="fas fa-heart"></i>
+                                <h3 data-translate="popular_post">Publicación popular</h3>
+                                <p data-translate="popular_post_desc">Recibe 50 reacciones en una publicación</p>
+                            </div>
+                            
+                            <div class="achievement-card locked">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h3 data-translate="knowledge_sharer">Compartidor de conocimiento</h3>
+                                <p data-translate="knowledge_sharer_desc">Ayuda a 10 compañeros con tus publicaciones</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </main>
+        </div>
+        
+        <!-- Modal para donaciones -->
+        <div id="donation-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Hacer una donación</h3>
+                    <button class="close-modal" id="close-donation-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apoya este increíble proyecto educativo</p>
+                    <div class="donation-amounts">
+                        <button class="amount-btn" data-amount="5">$5</button>
+                        <button class="amount-btn" data-amount="10">$10</button>
+                        <button class="amount-btn" data-amount="25">$25</button>
+                        <button class="amount-btn" data-amount="50">$50</button>
+                    </div>
+                    <div class="custom-amount">
+                        <input type="number" id="custom-amount" placeholder="Cantidad personalizada" min="1">
+                    </div>
+                    <button class="btn btn-primary btn-full" id="confirm-donation">
+                        <i class="fas fa-heart"></i>
+                        Donar
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -14,6 +14,7 @@ class AtlasApp {
         this.setupPasswordToggles();
         this.setupFormValidations();
         this.setupDateMask();
+        this.createTestUserIfNeeded();
     }
 
     // Gestión de pantallas
@@ -71,10 +72,19 @@ class AtlasApp {
             this.handleRegister(e);
         });
 
-        // Botón de cerrar sesión
-        document.getElementById('logout-btn').addEventListener('click', () => {
-            this.handleLogout();
-        });
+        // Nota: El botón de cerrar sesión ahora está en el menú desplegable
+
+        // Navegación por pestañas
+        this.setupTabs();
+        
+        // Funcionalidades del Feed
+        this.setupFeedFunctionality();
+        
+        // Menú de perfil
+        this.setupProfileMenu();
+        
+        // Inicializar datos del usuario
+        this.initializeUserData();
     }
 
     // Configuración de toggles de contraseña
@@ -164,18 +174,18 @@ class AtlasApp {
         }
         
         if (username.length > 20) {
-            this.showError(errorElement, formGroup, 'El nombre de usuario no puede tener más de 20 caracteres');
+            this.showError(errorElement, formGroup, this.getTranslation('validation.username_max_length') || 'El nombre de usuario no puede tener más de 20 caracteres');
             return false;
         }
         
         if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-            this.showError(errorElement, formGroup, 'Solo se permiten letras, números y guiones bajos');
+            this.showError(errorElement, formGroup, this.getTranslation('validation.username_invalid_chars') || 'Solo se permiten letras, números y guiones bajos');
             return false;
         }
         
         // Verificar si el usuario ya existe (solo en registro)
         if (errorElementId.includes('register') && this.users.some(user => user.username === username)) {
-            this.showError(errorElement, formGroup, 'Este nombre de usuario ya está en uso');
+            this.showError(errorElement, formGroup, this.getTranslation('validation.username_taken') || 'Este nombre de usuario ya está en uso');
             return false;
         }
         
@@ -358,11 +368,18 @@ class AtlasApp {
         
         // Login exitoso
         this.currentUser = user;
-        this.showNotification(`¡Bienvenido, ${user.name}!`, 'success');
-        document.getElementById('user-name').textContent = user.name;
+        const welcomeMsg = this.getTranslation('notifications.welcome');
+        const message = welcomeMsg ? welcomeMsg.replace('{name}', user.name) : `¡Bienvenido, ${user.name}!`;
+        this.showNotification(message, 'success');
+        
+        // Actualizar información del usuario en la interfaz
+        this.updateUserInterface();
         
         setTimeout(() => {
             this.showScreen('dashboard-screen');
+            // Inicializar funcionalidades que requieren el dashboard
+            this.setupDarkMode();
+            this.setupLanguages();
         }, 1500);
     }
 
@@ -438,6 +455,29 @@ class AtlasApp {
 
     saveUsers() {
         localStorage.setItem('atlas_users', JSON.stringify(this.users));
+    }
+
+    // Crear usuario de prueba si no existe
+    createTestUserIfNeeded() {
+        if (this.users.length === 0) {
+            const testUser = {
+                id: Date.now(),
+                name: 'María',
+                lastname: 'González',
+                username: 'test',
+                birthdate: '15/03/2005',
+                email: 'test@atlas.com',
+                password: '123456',
+                registeredAt: new Date().toISOString()
+            };
+            
+            this.users.push(testUser);
+            this.saveUsers();
+            
+            console.log('Usuario de prueba creado:');
+            console.log('Usuario: test');
+            console.log('Contraseña: 123456');
+        }
     }
 
     // Sistema de notificaciones
@@ -526,3 +566,549 @@ if (window.location.hostname === 'localhost' || window.location.hostname === '12
     
     console.log('Atlas Debug disponible. Usa atlasDebug.clearUsers(), atlasDebug.getUsers(), o atlasDebug.addTestUser()');
 }
+
+// Añadir métodos para las nuevas funcionalidades al prototipo de AtlasApp
+AtlasApp.prototype.setupTabs = function() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.getAttribute('data-tab');
+            
+            // Remover clase active de todos los botones y contenidos
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Activar el botón y contenido seleccionado
+            button.classList.add('active');
+            document.getElementById(`${targetTab}-tab`).classList.add('active');
+        });
+    });
+};
+
+AtlasApp.prototype.setupFeedFunctionality = function() {
+    // Configurar botones de reacción
+    document.querySelectorAll('.reaction-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.handleReaction(btn);
+        });
+    });
+
+    // Configurar botones de comentarios
+    document.querySelectorAll('.comment-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.toggleComments(btn);
+        });
+    });
+
+    // Configurar botones de donación
+    document.querySelectorAll('.donate-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.openDonationModal(btn);
+        });
+    });
+
+    // Configurar envío de comentarios
+    document.querySelectorAll('.send-comment-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.sendComment(btn);
+        });
+    });
+
+    // Configurar inputs de comentarios (Enter para enviar)
+    document.querySelectorAll('.comment-input').forEach(input => {
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const sendBtn = input.parentElement.querySelector('.send-comment-btn');
+                this.sendComment(sendBtn);
+            }
+        });
+    });
+
+    // Configurar modal de donaciones
+    this.setupDonationModal();
+};
+
+AtlasApp.prototype.handleReaction = function(button) {
+    const isActive = button.classList.contains('active');
+    
+    if (isActive) {
+        button.classList.remove('active');
+        this.showNotification('Reacción eliminada', 'success');
+    } else {
+        button.classList.add('active');
+        this.showNotification('¡Te gusta esta publicación!', 'success');
+    }
+
+    // Aquí podrías enviar la reacción al servidor
+    // this.sendReactionToServer(postId, reactionType, isActive);
+};
+
+AtlasApp.prototype.toggleComments = function(button) {
+    const postCard = button.closest('.post-card');
+    const commentsSection = postCard.querySelector('.comments-section');
+    
+    if (commentsSection.style.display === 'none' || !commentsSection.style.display) {
+        commentsSection.style.display = 'block';
+        commentsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // Enfocar el input de comentario
+        const commentInput = commentsSection.querySelector('.comment-input');
+        setTimeout(() => commentInput.focus(), 300);
+    } else {
+        commentsSection.style.display = 'none';
+    }
+};
+
+AtlasApp.prototype.sendComment = function(button) {
+    const commentsSection = button.closest('.comments-section');
+    const input = commentsSection.querySelector('.comment-input');
+    const commentText = input.value.trim();
+    
+    if (!commentText) {
+        this.showNotification('Escribe un comentario antes de enviar', 'warning');
+        return;
+    }
+
+    // Crear el nuevo comentario
+    const newComment = document.createElement('div');
+    newComment.className = 'comment';
+    newComment.innerHTML = `
+        <div class="comment-avatar">
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="comment-content">
+            <strong>${this.currentUser ? this.currentUser.name : 'Usuario'}</strong>
+            <p>${commentText}</p>
+            <span class="comment-time">Ahora</span>
+        </div>
+    `;
+
+    // Insertar antes del input de agregar comentario
+    const addCommentDiv = commentsSection.querySelector('.add-comment');
+    commentsSection.insertBefore(newComment, addCommentDiv);
+
+    // Limpiar el input
+    input.value = '';
+    
+    // Mostrar animación de entrada
+    newComment.style.opacity = '0';
+    newComment.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+        newComment.style.transition = 'all 0.3s ease-in-out';
+        newComment.style.opacity = '1';
+        newComment.style.transform = 'translateY(0)';
+    }, 10);
+
+    this.showNotification('Comentario enviado', 'success');
+    
+    // Aquí podrías enviar el comentario al servidor
+    // this.sendCommentToServer(postId, commentText);
+};
+
+AtlasApp.prototype.openDonationModal = function(button) {
+    const modal = document.getElementById('donation-modal');
+    modal.classList.add('show');
+    
+    // Configurar el contexto de la donación (qué publicación)
+    this.currentDonationContext = button.closest('.post-card');
+};
+
+AtlasApp.prototype.setupDonationModal = function() {
+    const modal = document.getElementById('donation-modal');
+    const closeBtn = document.getElementById('close-donation-modal');
+    const confirmBtn = document.getElementById('confirm-donation');
+    const amountBtns = document.querySelectorAll('.amount-btn');
+    const customAmountInput = document.getElementById('custom-amount');
+
+    // Cerrar modal
+    closeBtn.addEventListener('click', () => {
+        this.closeDonationModal();
+    });
+
+    // Cerrar modal al hacer clic fuera
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            this.closeDonationModal();
+        }
+    });
+
+    // Selección de cantidad predefinida
+    amountBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            amountBtns.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            customAmountInput.value = '';
+        });
+    });
+
+    // Input personalizado
+    customAmountInput.addEventListener('input', () => {
+        amountBtns.forEach(btn => btn.classList.remove('selected'));
+    });
+
+    // Confirmar donación
+    confirmBtn.addEventListener('click', () => {
+        this.processDonation();
+    });
+
+    // Cerrar modal con Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            this.closeDonationModal();
+        }
+    });
+};
+
+AtlasApp.prototype.closeDonationModal = function() {
+    const modal = document.getElementById('donation-modal');
+    modal.classList.remove('show');
+    
+    // Limpiar selecciones
+    document.querySelectorAll('.amount-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    document.getElementById('custom-amount').value = '';
+    
+    this.currentDonationContext = null;
+};
+
+AtlasApp.prototype.processDonation = function() {
+    const selectedAmount = document.querySelector('.amount-btn.selected');
+    const customAmount = document.getElementById('custom-amount').value;
+    
+    let donationAmount = 0;
+    
+    if (selectedAmount) {
+        donationAmount = parseInt(selectedAmount.getAttribute('data-amount'));
+    } else if (customAmount) {
+        donationAmount = parseInt(customAmount);
+    }
+    
+    if (donationAmount <= 0) {
+        this.showNotification('Selecciona una cantidad válida para donar', 'warning');
+        return;
+    }
+
+    // Simular procesamiento de donación
+    const confirmBtn = document.getElementById('confirm-donation');
+    confirmBtn.classList.add('loading');
+    confirmBtn.textContent = 'Procesando...';
+    
+    setTimeout(() => {
+        this.showNotification(`¡Gracias por donar $${donationAmount}! Tu apoyo es muy valioso.`, 'success');
+        this.closeDonationModal();
+        
+        // Restaurar botón
+        confirmBtn.classList.remove('loading');
+        confirmBtn.innerHTML = '<i class="fas fa-heart"></i> Donar';
+        
+        // Aquí podrías enviar la donación al servidor
+        // this.sendDonationToServer(postId, donationAmount);
+    }, 2000);
+};
+
+// Configuración del menú de perfil
+AtlasApp.prototype.setupProfileMenu = function() {
+    const profileTrigger = document.getElementById('profile-trigger');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const profileDropdown = document.getElementById('profile-dropdown');
+
+    // Toggle del menú
+    profileTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleProfileMenu();
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (!profileDropdown.contains(e.target)) {
+            this.closeProfileMenu();
+        }
+    });
+
+    // Opciones del menú
+    document.getElementById('profile-option').addEventListener('click', () => {
+        this.showProfilePage();
+        this.closeProfileMenu();
+    });
+
+    document.getElementById('achievements-option').addEventListener('click', () => {
+        this.showAchievementsPage();
+        this.closeProfileMenu();
+    });
+
+    document.getElementById('logout-option').addEventListener('click', () => {
+        this.handleLogout();
+        this.closeProfileMenu();
+    });
+};
+
+AtlasApp.prototype.toggleProfileMenu = function() {
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    
+    if (dropdownMenu.classList.contains('show')) {
+        this.closeProfileMenu();
+    } else {
+        this.openProfileMenu();
+    }
+};
+
+AtlasApp.prototype.openProfileMenu = function() {
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    
+    dropdownMenu.classList.add('show');
+    profileDropdown.classList.add('open');
+};
+
+AtlasApp.prototype.closeProfileMenu = function() {
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    
+    dropdownMenu.classList.remove('show');
+    profileDropdown.classList.remove('open');
+};
+
+AtlasApp.prototype.showProfilePage = function() {
+    // Ocultar todas las pestañas
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Mostrar página de perfil
+    document.getElementById('profile-page').classList.add('active');
+    
+    // Desactivar pestañas de navegación
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+};
+
+AtlasApp.prototype.showAchievementsPage = function() {
+    // Ocultar todas las pestañas
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Mostrar página de logros
+    document.getElementById('achievements-page').classList.add('active');
+    
+    // Desactivar pestañas de navegación
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+};
+
+// Configuración del modo oscuro
+AtlasApp.prototype.setupDarkMode = function() {
+    // Verificar si estamos en el dashboard
+    if (this.currentScreen !== 'dashboard-screen') {
+        console.log('No estamos en el dashboard, saltando configuración del modo oscuro');
+        return;
+    }
+    
+    const darkModeToggle = document.getElementById('dark-mode-checkbox');
+    const darkModeIcon = document.querySelector('#dark-mode-toggle i');
+    
+    console.log('Setup Dark Mode - Toggle:', darkModeToggle);
+    console.log('Setup Dark Mode - Icon:', darkModeIcon);
+    
+    if (!darkModeToggle) {
+        console.error('No se encontró el toggle del modo oscuro');
+        // Intentar de nuevo en 1 segundo
+        setTimeout(() => {
+            this.setupDarkMode();
+        }, 1000);
+        return;
+    }
+    
+    // Cargar preferencia guardada
+    const savedTheme = localStorage.getItem('atlas_theme') || 'light';
+    console.log('Tema guardado:', savedTheme);
+    this.setTheme(savedTheme);
+    darkModeToggle.checked = savedTheme === 'dark';
+    
+    // Toggle del modo oscuro
+    darkModeToggle.addEventListener('change', () => {
+        const newTheme = darkModeToggle.checked ? 'dark' : 'light';
+        console.log('Cambiando tema a:', newTheme);
+        this.setTheme(newTheme);
+        this.showNotification(
+            newTheme === 'dark' ? 'Modo oscuro activado' : 'Modo claro activado',
+            'success'
+        );
+    });
+};
+
+AtlasApp.prototype.setTheme = function(theme) {
+    console.log('SetTheme llamado con:', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('atlas_theme', theme);
+    console.log('Atributo data-theme establecido:', document.documentElement.getAttribute('data-theme'));
+    
+    // Actualizar icono
+    const darkModeIcon = document.querySelector('#dark-mode-toggle i');
+    if (darkModeIcon) {
+        if (theme === 'dark') {
+            darkModeIcon.classList.remove('fa-moon');
+            darkModeIcon.classList.add('fa-sun');
+        } else {
+            darkModeIcon.classList.remove('fa-sun');
+            darkModeIcon.classList.add('fa-moon');
+        }
+        console.log('Icono actualizado:', darkModeIcon.className);
+    } else {
+        console.error('No se encontró el icono del modo oscuro');
+    }
+};
+
+// Configuración de idiomas
+AtlasApp.prototype.setupLanguages = function() {
+    const languageSelect = document.getElementById('language-select');
+    
+    if (!languageSelect) {
+        console.error('Language select not found');
+        return;
+    }
+    
+    // Cargar idioma guardado
+    const savedLanguage = localStorage.getItem('atlas_language') || 'es';
+    languageSelect.value = savedLanguage;
+    this.currentLanguage = savedLanguage;
+    
+    // Cargar traducciones del idioma actual
+    this.loadTranslations(savedLanguage);
+    
+    // Cambio de idioma
+    languageSelect.addEventListener('change', () => {
+        const newLanguage = languageSelect.value;
+        this.setLanguage(newLanguage);
+    });
+};
+
+AtlasApp.prototype.setLanguage = function(language) {
+    localStorage.setItem('atlas_language', language);
+    this.currentLanguage = language;
+    this.loadTranslations(language);
+};
+
+AtlasApp.prototype.loadTranslations = async function(language) {
+    try {
+        const response = await fetch(`translations/${language}.json`);
+        if (!response.ok) {
+            throw new Error(`Failed to load ${language} translations`);
+        }
+        
+        this.translations = await response.json();
+        this.updateTexts();
+        
+        // Mostrar notificación de cambio de idioma
+        if (this.translations.notifications && this.translations.notifications.language_changed) {
+            this.showNotification(this.translations.notifications.language_changed, 'success');
+        }
+        
+        console.log(`Traducciones cargadas para: ${language}`);
+    } catch (error) {
+        console.error('Error loading translations:', error);
+        // Fallback a español si hay error
+        if (language !== 'es') {
+            this.loadTranslations('es');
+        }
+    }
+};
+
+AtlasApp.prototype.updateTexts = function() {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        const translation = this.getTranslation(key);
+        if (translation) {
+            element.textContent = translation;
+        }
+    });
+    
+    // Actualizar placeholders
+    this.updatePlaceholders();
+};
+
+AtlasApp.prototype.getTranslation = function(key) {
+    if (!this.translations) return null;
+    
+    const keys = key.split('.');
+    let value = this.translations;
+    
+    for (const k of keys) {
+        if (value && typeof value === 'object' && k in value) {
+            value = value[k];
+        } else {
+            return null;
+        }
+    }
+    
+    return typeof value === 'string' ? value : null;
+};
+
+AtlasApp.prototype.updatePlaceholders = function() {
+    // Actualizar placeholder del input de fecha de nacimiento
+    const birthdateInput = document.getElementById('register-birthdate');
+    if (birthdateInput && this.translations.auth) {
+        const format = this.getTranslation('auth.birthdate_format');
+        if (format) {
+            birthdateInput.placeholder = format.replace('Formato: ', '').replace('Format: ', '').replace('Format : ', '');
+        }
+    }
+    
+    // Actualizar placeholder del input de comentario
+    const commentInputs = document.querySelectorAll('.comment-input');
+    commentInputs.forEach(input => {
+        const placeholder = this.getTranslation('feed.comment_placeholder');
+        if (placeholder) {
+            input.placeholder = placeholder;
+        }
+    });
+    
+    // Actualizar placeholder del botón de crear publicación
+    const createPostBtn = document.getElementById('open-create-post');
+    if (createPostBtn) {
+        const placeholder = this.getTranslation('feed.create_post_placeholder');
+        if (placeholder) {
+            createPostBtn.textContent = placeholder;
+        }
+    }
+};
+
+// Las traducciones ahora se cargan desde archivos JSON
+
+// Inicializar datos del usuario
+AtlasApp.prototype.initializeUserData = function() {
+    if (this.currentUser) {
+        this.updateUserInterface();
+        // Si ya hay un usuario logueado, inicializar funcionalidades del dashboard
+        this.setupDarkMode();
+        this.setupLanguages();
+    }
+};
+
+AtlasApp.prototype.updateUserInterface = function() {
+    const user = this.currentUser;
+    
+    // Actualizar información en el menú desplegable
+    document.getElementById('profile-name').textContent = user.name;
+    document.getElementById('profile-email').textContent = user.email;
+    document.getElementById('dropdown-name').textContent = user.name;
+    document.getElementById('dropdown-email').textContent = user.email;
+    
+    // Actualizar información en la página de perfil
+    document.getElementById('profile-display-name').textContent = `${user.name} ${user.lastname}`;
+    document.getElementById('profile-email-display').textContent = user.email;
+};
+
+// El método handleLogin ya incluye la actualización de la interfaz

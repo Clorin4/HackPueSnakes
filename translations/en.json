@@ -1,0 +1,133 @@
+{
+  "welcome": {
+    "title": "Welcome to Atlas",
+    "subtitle": "Your quality education platform",
+    "login_btn": "Sign In",
+    "register_btn": "Sign Up"
+  },
+  "auth": {
+    "login_title": "Sign In",
+    "register_title": "Create Account",
+    "username_label": "Username or email",
+    "password_label": "Password",
+    "name_label": "First Name",
+    "lastname_label": "Last Name",
+    "username_register_label": "Username",
+    "birthdate_label": "Date of birth",
+    "email_label": "Email address",
+    "password_register_label": "Password",
+    "login_btn": "Sign In",
+    "register_btn": "Create Account",
+    "no_account": "Don't have an account?",
+    "register_here": "Sign up here",
+    "have_account": "Already have an account?",
+    "login_here": "Sign in here",
+    "username_max_chars": "Maximum 20 characters",
+    "birthdate_format": "Format: DD/MM/YYYY",
+    "password_min_chars": "Minimum 6 characters"
+  },
+  "navigation": {
+    "feed": "Feed",
+    "content": "Content"
+  },
+  "profile_menu": {
+    "profile": "Profile",
+    "achievements": "Achievements",
+    "dark_mode": "Dark mode",
+    "language": "Language",
+    "logout": "Sign out"
+  },
+  "feed": {
+    "create_post_placeholder": "What would you like to share today?",
+    "photo_btn": "Photo",
+    "location_btn": "Location",
+    "like_btn": "Like",
+    "comment_btn": "Comment",
+    "donate_btn": "Donate",
+    "reactions": "reactions",
+    "comments": "comments",
+    "donated": "donated",
+    "comment_placeholder": "Write a comment...",
+    "time_now": "Now",
+    "time_hours_ago": "{hours} hours ago",
+    "time_minutes_ago": "{minutes} minutes ago"
+  },
+  "profile": {
+    "edit_profile": "Edit profile",
+    "about": "About",
+    "subjects_of_interest": "Subjects of interest",
+    "education_level": "Education level",
+    "high_school": "High School",
+    "final_year": "Final year",
+    "statistics": "Statistics",
+    "posts": "Posts",
+    "reactions": "Reactions",
+    "donated": "Donated",
+    "bio_placeholder": "Student passionate about science and technology. I love participating in renewable energy projects and sharing knowledge with my educational community."
+  },
+  "achievements": {
+    "title": "Achievements",
+    "coming_soon": "The achievements section will be available soon...",
+    "first_post": "First post",
+    "first_post_desc": "Share your first post on Atlas",
+    "popular_post": "Popular post",
+    "popular_post_desc": "Receive 50 reactions on a post",
+    "knowledge_sharer": "Knowledge sharer",
+    "knowledge_sharer_desc": "Help 10 classmates with your posts"
+  },
+  "content": {
+    "title": "Educational Content",
+    "coming_soon": "This section will be available soon..."
+  },
+  "donation": {
+    "modal_title": "Make a donation",
+    "modal_description": "Support this amazing educational project",
+    "custom_amount": "Custom amount",
+    "donate_btn": "Donate",
+    "processing": "Processing..."
+  },
+  "notifications": {
+    "welcome": "Welcome, {name}!",
+    "login_error": "Incorrect username or password",
+    "registration_success": "Account created successfully! You can now sign in",
+    "logout_success": "Successfully signed out",
+    "reaction_added": "You liked this post!",
+    "reaction_removed": "Reaction removed",
+    "comment_sent": "Comment sent",
+    "comment_required": "Write a comment before sending",
+    "donation_success": "Thank you for donating ${amount}! Your support is very valuable.",
+    "donation_amount_required": "Select a valid amount to donate",
+    "dark_mode_enabled": "Dark mode enabled",
+    "light_mode_enabled": "Light mode enabled",
+    "language_changed": "Language changed successfully",
+    "form_errors": "Please correct the errors in the form"
+  },
+  "validation": {
+    "username_required": "Enter your username or email",
+    "password_required": "Enter your password",
+    "username_max_length": "Username cannot be more than 20 characters",
+    "username_invalid_chars": "Only letters, numbers and underscores are allowed",
+    "username_taken": "This username is already taken",
+    "email_invalid": "Enter a valid email address",
+    "email_taken": "This email address is already registered",
+    "birthdate_invalid_format": "Invalid date format (DD/MM/YYYY)",
+    "birthdate_invalid": "Invalid date",
+    "age_too_young": "You must be at least 12 years old to register",
+    "age_too_old": "Please verify your date of birth",
+    "password_too_short": "Password must be at least 6 characters",
+    "name_too_short": "Must be at least 2 characters",
+    "name_invalid_chars": "Only letters and spaces are allowed"
+  },
+  "subjects": {
+    "physics": "Physics",
+    "chemistry": "Chemistry",
+    "mathematics": "Mathematics",
+    "environmental_science": "Environmental Science",
+    "technology": "Technology",
+    "biology": "Biology",
+    "history": "History",
+    "literature": "Literature",
+    "art": "Art",
+    "music": "Music"
+  }
+}

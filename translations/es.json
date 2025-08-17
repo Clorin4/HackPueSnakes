@@ -1,0 +1,133 @@
+{
+  "welcome": {
+    "title": "Bienvenido a Atlas",
+    "subtitle": "Tu plataforma de educación de calidad",
+    "login_btn": "Iniciar Sesión",
+    "register_btn": "Registrarse"
+  },
+  "auth": {
+    "login_title": "Iniciar Sesión",
+    "register_title": "Crear Cuenta",
+    "username_label": "Nombre de usuario o correo",
+    "password_label": "Contraseña",
+    "name_label": "Nombre",
+    "lastname_label": "Apellido",
+    "username_register_label": "Nombre de usuario",
+    "birthdate_label": "Fecha de nacimiento",
+    "email_label": "Correo electrónico",
+    "password_register_label": "Contraseña",
+    "login_btn": "Iniciar Sesión",
+    "register_btn": "Crear Cuenta",
+    "no_account": "¿No tienes cuenta?",
+    "register_here": "Regístrate aquí",
+    "have_account": "¿Ya tienes cuenta?",
+    "login_here": "Inicia sesión aquí",
+    "username_max_chars": "Máximo 20 caracteres",
+    "birthdate_format": "Formato: DD/MM/AAAA",
+    "password_min_chars": "Mínimo 6 caracteres"
+  },
+  "navigation": {
+    "feed": "Feed",
+    "content": "Contenido"
+  },
+  "profile_menu": {
+    "profile": "Perfil",
+    "achievements": "Logros",
+    "dark_mode": "Modo oscuro",
+    "language": "Idioma",
+    "logout": "Cerrar sesión"
+  },
+  "feed": {
+    "create_post_placeholder": "¿Qué quieres compartir hoy?",
+    "photo_btn": "Foto",
+    "location_btn": "Ubicación",
+    "like_btn": "Me gusta",
+    "comment_btn": "Comentar",
+    "donate_btn": "Donar",
+    "reactions": "reacciones",
+    "comments": "comentarios",
+    "donated": "donados",
+    "comment_placeholder": "Escribe un comentario...",
+    "time_now": "Ahora",
+    "time_hours_ago": "Hace {hours} horas",
+    "time_minutes_ago": "Hace {minutes} minutos"
+  },
+  "profile": {
+    "edit_profile": "Editar perfil",
+    "about": "Acerca de",
+    "subjects_of_interest": "Materias de interés",
+    "education_level": "Nivel educativo",
+    "high_school": "Bachillerato",
+    "final_year": "Último año",
+    "statistics": "Estadísticas",
+    "posts": "Publicaciones",
+    "reactions": "Reacciones",
+    "donated": "Donado",
+    "bio_placeholder": "Estudiante apasionada por las ciencias y la tecnología. Me encanta participar en proyectos de energías renovables y compartir conocimiento con mi comunidad educativa."
+  },
+  "achievements": {
+    "title": "Logros",
+    "coming_soon": "La sección de logros estará disponible próximamente...",
+    "first_post": "Primera publicación",
+    "first_post_desc": "Comparte tu primera publicación en Atlas",
+    "popular_post": "Publicación popular",
+    "popular_post_desc": "Recibe 50 reacciones en una publicación",
+    "knowledge_sharer": "Compartidor de conocimiento",
+    "knowledge_sharer_desc": "Ayuda a 10 compañeros con tus publicaciones"
+  },
+  "content": {
+    "title": "Contenido Educativo",
+    "coming_soon": "Esta sección estará disponible próximamente..."
+  },
+  "donation": {
+    "modal_title": "Hacer una donación",
+    "modal_description": "Apoya este increíble proyecto educativo",
+    "custom_amount": "Cantidad personalizada",
+    "donate_btn": "Donar",
+    "processing": "Procesando..."
+  },
+  "notifications": {
+    "welcome": "¡Bienvenido, {name}!",
+    "login_error": "Usuario o contraseña incorrectos",
+    "registration_success": "¡Cuenta creada exitosamente! Ahora puedes iniciar sesión",
+    "logout_success": "Sesión cerrada correctamente",
+    "reaction_added": "¡Te gusta esta publicación!",
+    "reaction_removed": "Reacción eliminada",
+    "comment_sent": "Comentario enviado",
+    "comment_required": "Escribe un comentario antes de enviar",
+    "donation_success": "¡Gracias por donar ${amount}! Tu apoyo es muy valioso.",
+    "donation_amount_required": "Selecciona una cantidad válida para donar",
+    "dark_mode_enabled": "Modo oscuro activado",
+    "light_mode_enabled": "Modo claro activado",
+    "language_changed": "Idioma cambiado exitosamente",
+    "form_errors": "Por favor, corrige los errores en el formulario"
+  },
+  "validation": {
+    "username_required": "Ingresa tu nombre de usuario o correo",
+    "password_required": "Ingresa tu contraseña",
+    "username_max_length": "El nombre de usuario no puede tener más de 20 caracteres",
+    "username_invalid_chars": "Solo se permiten letras, números y guiones bajos",
+    "username_taken": "Este nombre de usuario ya está en uso",
+    "email_invalid": "Ingresa un correo electrónico válido",
+    "email_taken": "Este correo electrónico ya está registrado",
+    "birthdate_invalid_format": "Formato de fecha inválido (DD/MM/AAAA)",
+    "birthdate_invalid": "Fecha inválida",
+    "age_too_young": "Debes tener al menos 12 años para registrarte",
+    "age_too_old": "Por favor, verifica la fecha de nacimiento",
+    "password_too_short": "La contraseña debe tener al menos 6 caracteres",
+    "name_too_short": "Debe tener al menos 2 caracteres",
+    "name_invalid_chars": "Solo se permiten letras y espacios"
+  },
+  "subjects": {
+    "physics": "Física",
+    "chemistry": "Química",
+    "mathematics": "Matemáticas",
+    "environmental_science": "Ciencias Ambientales",
+    "technology": "Tecnología",
+    "biology": "Biología",
+    "history": "Historia",
+    "literature": "Literatura",
+    "art": "Arte",
+    "music": "Música"
+  }
+}
