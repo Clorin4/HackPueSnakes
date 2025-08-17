@@ -156,8 +156,48 @@
                         <i class="fas fa-graduation-cap"></i>
                         <span>Atlas</span>
                     </div>
-                    <div class="user-menu">
-                        <div class="profile-dropdown" id="profile-dropdown">
+                    <div class="header-actions">
+                        <div class="create-dropdown" id="create-dropdown" style="display: none;">
+                            <button class="create-btn" id="create-btn">
+                                <i class="fas fa-plus"></i>
+                                <span data-translate="create.button">Crear</span>
+                            </button>
+                            
+                            <div class="create-menu" id="create-menu">
+                                <button class="create-option" id="create-course-option">
+                                    <i class="fas fa-book"></i>
+                                    <span data-translate="create.course">Crear curso</span>
+                                </button>
+                                <button class="create-option" id="create-class-option">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    <span data-translate="create.class">Crear clase</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button class="premium-btn" id="premium-btn">
+                            <i class="fas fa-crown"></i>
+                            <span data-translate="premium.get_premium">Obtener premium</span>
+                        </button>
+                        
+                        <div class="hamburger-menu-container" id="hamburger-menu-container">
+                            <button class="hamburger-btn" id="hamburger-btn">
+                                <div class="hamburger-lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </button>
+                            
+                            <div class="hamburger-dropdown" id="hamburger-dropdown">
+                                <button class="hamburger-option" id="verification-option">
+                                    <i class="fas fa-certificate"></i>
+                                    <span data-translate="hamburger.verification" id="verification-text">Hacer verificación</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="user-menu">
+                            <div class="profile-dropdown" id="profile-dropdown">
                             <button class="profile-trigger" id="profile-trigger">
                                 <div class="profile-avatar">
                                     <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Perfil" id="user-profile-image">
@@ -222,6 +262,7 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
                 
                 <!-- Navegación por pestañas -->
@@ -234,15 +275,88 @@
                         <i class="fas fa-book"></i>
                         <span data-translate="navigation.content">Contenido</span>
                     </button>
+                    <button class="tab-btn" data-tab="donation">
+                        <i class="fas fa-gift"></i>
+                        <span data-translate="navigation.donation">¿Quieres donar?</span>
+                    </button>
                 </nav>
             </header>
             
             <main class="dashboard-main">
                 <!-- Tab Feed -->
                 <div id="feed-tab" class="tab-content active">
-                    <div class="feed-container">
-                        <!-- Crear nueva publicación -->
-                        <div class="create-post-card">
+                    <div class="dashboard-layout">
+                        <!-- Sidebar Izquierda (Solo Desktop) -->
+                        <div class="left-sidebar" id="left-sidebar">
+                            <div class="sidebar-user-profile">
+                                <div class="sidebar-user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="Avatar" id="sidebar-profile-avatar">
+                                </div>
+                                <div class="sidebar-user-info">
+                                    <h3 id="sidebar-profile-name">Usuario</h3>
+                                    <p id="sidebar-profile-email">usuario@ejemplo.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="sidebar-menu">
+                                <button class="sidebar-btn" id="sidebar-profile-btn">
+                                    <i class="fas fa-user"></i>
+                                    <span data-translate="profile_menu.profile">Perfil</span>
+                                </button>
+                                
+                                <button class="sidebar-btn" id="sidebar-achievements-btn">
+                                    <i class="fas fa-trophy"></i>
+                                    <span data-translate="profile_menu.achievements">Logros</span>
+                                </button>
+                                
+                                <div class="sidebar-divider"></div>
+                                
+                                <button class="sidebar-btn" id="sidebar-dark-mode-btn">
+                                    <i class="fas fa-moon"></i>
+                                    <span data-translate="profile_menu.dark_mode">Modo oscuro</span>
+                                    <div class="sidebar-toggle">
+                                        <input type="checkbox" id="sidebar-dark-mode-toggle" class="toggle-input">
+                                        <label for="sidebar-dark-mode-toggle" class="toggle-label">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </button>
+                                
+                                <div class="sidebar-language">
+                                    <div class="sidebar-language-header">
+                                        <i class="fas fa-globe"></i>
+                                        <span data-translate="profile_menu.language">Idioma</span>
+                                    </div>
+                                    <div class="sidebar-language-options">
+                                        <button class="language-option active" data-lang="es">
+                                            <span class="flag">🇪🇸</span>
+                                            <span>Español</span>
+                                        </button>
+                                        <button class="language-option" data-lang="en">
+                                            <span class="flag">🇺🇸</span>
+                                            <span>English</span>
+                                        </button>
+                                        <button class="language-option" data-lang="fr">
+                                            <span class="flag">🇫🇷</span>
+                                            <span>Français</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="sidebar-divider"></div>
+                                
+                                <button class="sidebar-btn sidebar-logout-btn" id="sidebar-logout-btn">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span data-translate="profile_menu.logout">Cerrar sesión</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Contenido Principal (Feed) -->
+                        <div class="main-content">
+                            <div class="feed-container">
+                                <!-- Crear nueva publicación -->
+                                <div class="create-post-card">
                             <div class="create-post-header">
                                 <div class="user-avatar">
                                     <i class="fas fa-user"></i>
@@ -298,10 +412,7 @@
                                         <i class="fas fa-comment"></i>
                                         8 comentarios
                                     </span>
-                                    <span class="stat-item">
-                                        <i class="fas fa-hand-holding-heart"></i>
-                                        $15 donados
-                                    </span>
+
                                 </div>
                                 
                                 <div class="post-actions">
@@ -313,10 +424,7 @@
                                         <i class="fas fa-comment"></i>
                                         <span>Comentar</span>
                                     </button>
-                                    <button class="action-btn donate-btn">
-                                        <i class="fas fa-hand-holding-heart"></i>
-                                        <span>Donar</span>
-                                    </button>
+
                                 </div>
                                 
                                 <div class="comments-section" style="display: none;">
@@ -375,10 +483,7 @@
                                         <i class="fas fa-comment"></i>
                                         15 comentarios
                                     </span>
-                                    <span class="stat-item">
-                                        <i class="fas fa-hand-holding-heart"></i>
-                                        $35 donados
-                                    </span>
+
                                 </div>
                                 
                                 <div class="post-actions">
@@ -390,10 +495,7 @@
                                         <i class="fas fa-comment"></i>
                                         <span>Comentar</span>
                                     </button>
-                                    <button class="action-btn donate-btn">
-                                        <i class="fas fa-hand-holding-heart"></i>
-                                        <span>Donar</span>
-                                    </button>
+
                                 </div>
                                 
                                 <div class="comments-section" style="display: none;">
@@ -442,10 +544,7 @@
                                         <i class="fas fa-comment"></i>
                                         22 comentarios
                                     </span>
-                                    <span class="stat-item">
-                                        <i class="fas fa-hand-holding-heart"></i>
-                                        $50 donados
-                                    </span>
+
                                 </div>
                                 
                                 <div class="post-actions">
@@ -457,10 +556,7 @@
                                         <i class="fas fa-comment"></i>
                                         <span>Comentar</span>
                                     </button>
-                                    <button class="action-btn donate-btn">
-                                        <i class="fas fa-hand-holding-heart"></i>
-                                        <span>Donar</span>
-                                    </button>
+
                                 </div>
                                 
                                 <div class="comments-section" style="display: none;">
@@ -476,14 +572,568 @@
                                 </div>
                             </article>
                         </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Tab Contenido -->
                 <div id="content-tab" class="tab-content">
-                    <div class="content-container">
-                        <h2 data-translate="educational_content">Contenido Educativo</h2>
-                        <p data-translate="coming_soon">Esta sección estará disponible próximamente...</p>
+                    <div class="main-content">
+                        <div class="courses-container">
+                            <!-- Header de Contenido -->
+                            <div class="courses-header">
+                                <h1 data-translate="courses.title">Contenido Educativo</h1>
+                                <p data-translate="courses.subtitle">Descubre cursos de calidad diseñados para tu nivel de bachillerato</p>
+                            </div>
+
+                            <!-- Filtros y Búsqueda -->
+                            <div class="courses-filters">
+                                <div class="search-container">
+                                    <div class="search-input-wrapper">
+                                        <i class="fas fa-search search-icon"></i>
+                                        <input type="text" id="course-search" placeholder="Buscar cursos..." data-translate-placeholder="courses.search_placeholder">
+                                    </div>
+                                </div>
+                                <div class="filter-buttons">
+                                    <button class="filter-btn active" data-filter="all" data-translate="courses.all">Todos</button>
+                                    <button class="filter-btn" data-filter="basic" data-translate="courses.basic">Básico</button>
+                                    <button class="filter-btn" data-filter="intermediate" data-translate="courses.intermediate">Intermedio</button>
+                                    <button class="filter-btn" data-filter="advanced" data-translate="courses.advanced">Avanzado</button>
+                                </div>
+                            </div>
+
+                            <!-- Categorías de Cursos -->
+                            <div class="courses-categories">
+                                
+                                <!-- Física y Matemáticas -->
+                                <div class="category-section">
+                                    <div class="category-header">
+                                        <div class="category-icon">
+                                            <i class="fas fa-calculator"></i>
+                                        </div>
+                                        <h2 data-translate="courses.categories.physics_math">Física y Matemáticas</h2>
+                                        <span class="course-count">6 cursos</span>
+                                    </div>
+                                    <div class="courses-grid">
+                                        <!-- Curso 1 - Premium -->
+                                        <div class="course-card premium-course" data-level="basic" data-type="premium">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=300&h=200&fit=crop" alt="Álgebra Básica">
+                                                <div class="course-level basic">Básico</div>
+                                                <div class="premium-badge">
+                                                    <i class="fas fa-crown"></i>
+                                                    <span>Premium</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Álgebra Básica</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Dr. Carlos Mendoza">
+                                                    </div>
+                                                    <span class="instructor-name">Dr. Carlos Mendoza</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 8 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 1,234 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 2 - Gratuito -->
+                                        <div class="course-card" data-level="intermediate" data-type="free">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=300&h=200&fit=crop" alt="Cálculo Diferencial">
+                                                <div class="course-level intermediate">Intermedio</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Cálculo Diferencial</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
+                                                    </div>
+                                                    <span class="instructor-name">Dra. Ana García</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 12 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 856 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 4 - Premium del Dr. Carlos Mendoza -->
+                                        <div class="course-card premium-course" data-level="advanced" data-type="premium">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=300&h=200&fit=crop" alt="Matemáticas Avanzadas">
+                                                <div class="course-level advanced">Avanzado</div>
+                                                <div class="premium-badge">
+                                                    <i class="fas fa-crown"></i>
+                                                    <span>Premium</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Matemáticas Avanzadas</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Dr. Carlos Mendoza">
+                                                    </div>
+                                                    <span class="instructor-name">Dr. Carlos Mendoza</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 16 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 432 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 3 - Atlas (Gratuito) -->
+                                        <div class="course-card atlas-course" data-level="basic" data-type="free">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=300&h=200&fit=crop" alt="Física Básica">
+                                                <div class="course-level basic">Básico</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Física Básica</h3>
+                                                <div class="course-instructor atlas-instructor">
+                                                    <div class="instructor-avatar atlas-avatar">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                    </div>
+                                                    <span class="instructor-name">Atlas</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 10 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 2,145 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Ciencias Sociales -->
+                                <div class="category-section">
+                                    <div class="category-header">
+                                        <div class="category-icon">
+                                            <i class="fas fa-globe-americas"></i>
+                                        </div>
+                                        <h2 data-translate="courses.categories.social_sciences">Ciencias Sociales</h2>
+                                        <span class="course-count">4 cursos</span>
+                                    </div>
+                                    <div class="courses-grid">
+                                        <!-- Curso 1 - Gratuito -->
+                                        <div class="course-card" data-level="basic" data-type="free">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=300&h=200&fit=crop" alt="Historia Universal">
+                                                <div class="course-level basic">Básico</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Historia Universal</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Prof. Miguel Herrera">
+                                                    </div>
+                                                    <span class="instructor-name">Prof. Miguel Herrera</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 16 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 1,567 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 3 - Premium del Prof. Miguel Herrera -->
+                                        <div class="course-card premium-course" data-level="advanced" data-type="premium">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=300&h=200&fit=crop" alt="Historia de América Latina">
+                                                <div class="course-level advanced">Avanzado</div>
+                                                <div class="premium-badge">
+                                                    <i class="fas fa-crown"></i>
+                                                    <span>Premium</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Historia de América Latina</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Prof. Miguel Herrera">
+                                                    </div>
+                                                    <span class="instructor-name">Prof. Miguel Herrera</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 20 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 678 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 2 - Atlas (Gratuito) -->
+                                        <div class="course-card atlas-course" data-level="intermediate" data-type="free">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=300&h=200&fit=crop" alt="Geografía Económica">
+                                                <div class="course-level intermediate">Intermedio</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Geografía Económica</h3>
+                                                <div class="course-instructor atlas-instructor">
+                                                    <div class="instructor-avatar atlas-avatar">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                    </div>
+                                                    <span class="instructor-name">Atlas</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 14 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 1,023 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Habilidades Blandas -->
+                                <div class="category-section">
+                                    <div class="category-header">
+                                        <div class="category-icon">
+                                            <i class="fas fa-lightbulb"></i>
+                                        </div>
+                                        <h2 data-translate="courses.categories.soft_skills">Habilidades Blandas</h2>
+                                        <span class="course-count">5 cursos</span>
+                                    </div>
+                                    <div class="courses-grid">
+                                        <!-- Curso 1 - Atlas (Gratuito) -->
+                                        <div class="course-card atlas-course" data-level="basic" data-type="free">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop" alt="Liderazgo Juvenil">
+                                                <div class="course-level basic">Básico</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Liderazgo Juvenil</h3>
+                                                <div class="course-instructor atlas-instructor">
+                                                    <div class="instructor-avatar atlas-avatar">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                    </div>
+                                                    <span class="instructor-name">Atlas</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 6 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 3,421 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 2 - Premium -->
+                                        <div class="course-card premium-course" data-level="intermediate" data-type="premium">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=300&h=200&fit=crop" alt="Comunicación Efectiva">
+                                                <div class="course-level intermediate">Intermedio</div>
+                                                <div class="premium-badge">
+                                                    <i class="fas fa-crown"></i>
+                                                    <span>Premium</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Comunicación Efectiva</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Lic. Patricia López">
+                                                    </div>
+                                                    <span class="instructor-name">Lic. Patricia López</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 8 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 2,789 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Ciencias Biológicas -->
+                                <div class="category-section">
+                                    <div class="category-header">
+                                        <div class="category-icon">
+                                            <i class="fas fa-dna"></i>
+                                        </div>
+                                        <h2 data-translate="courses.categories.biological_sciences">Ciencias Biológicas</h2>
+                                        <span class="course-count">4 cursos</span>
+                                    </div>
+                                    <div class="courses-grid">
+                                        <!-- Curso 1 - Gratuito -->
+                                        <div class="course-card" data-level="basic" data-type="free">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=200&fit=crop" alt="Biología Celular">
+                                                <div class="course-level basic">Básico</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Biología Celular</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=40&h=40&fit=crop&crop=face" alt="Dr. Roberto Silva">
+                                                    </div>
+                                                    <span class="instructor-name">Dr. Roberto Silva</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 12 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 1,456 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 2 - Atlas (Gratuito) -->
+                                        <div class="course-card atlas-course" data-level="advanced" data-type="free">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=300&h=200&fit=crop" alt="Genética Avanzada">
+                                                <div class="course-level advanced">Avanzado</div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Genética Avanzada</h3>
+                                                <div class="course-instructor atlas-instructor">
+                                                    <div class="instructor-avatar atlas-avatar">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                    </div>
+                                                    <span class="instructor-name">Atlas</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 16 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 743 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Curso 3 - Premium del Dr. Roberto Silva -->
+                                        <div class="course-card premium-course" data-level="advanced" data-type="premium">
+                                            <div class="course-image">
+                                                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=300&h=200&fit=crop" alt="Biotecnología Moderna">
+                                                <div class="course-level advanced">Avanzado</div>
+                                                <div class="premium-badge">
+                                                    <i class="fas fa-crown"></i>
+                                                    <span>Premium</span>
+                                                </div>
+                                            </div>
+                                            <div class="course-content">
+                                                <h3 class="course-title">Biotecnología Moderna</h3>
+                                                <div class="course-instructor">
+                                                    <div class="instructor-avatar">
+                                                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=40&h=40&fit=crop&crop=face" alt="Dr. Roberto Silva">
+                                                    </div>
+                                                    <span class="instructor-name">Dr. Roberto Silva</span>
+                                                </div>
+                                                <div class="course-meta">
+                                                    <span class="course-duration"><i class="fas fa-clock"></i> 18 semanas</span>
+                                                    <span class="course-students"><i class="fas fa-users"></i> 289 estudiantes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Donación -->
+                <div id="donation-tab" class="tab-content">
+                    <div class="donation-container">
+                        <div class="donation-header">
+                            <h2 data-translate="donation.title">¿Quieres donar?</h2>
+                            <p data-translate="donation.subtitle">Apoya a otros estudiantes donando membresías premium</p>
+                        </div>
+                        
+                        <!-- Selector de tipo de donación -->
+                        <div class="donation-type-selector">
+                            <button class="donation-type-btn active" data-type="specific">
+                                <i class="fas fa-user"></i>
+                                <span data-translate="donation.specific_user">Usuario específico</span>
+                            </button>
+                            <button class="donation-type-btn" data-type="bulk">
+                                <i class="fas fa-users"></i>
+                                <span data-translate="donation.bulk_donation">Donación masiva</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Donación a usuario específico -->
+                        <div id="specific-donation" class="donation-section active">
+                            <div class="user-search-container">
+                                <h3 data-translate="donation.search_user">Buscar usuario</h3>
+                                <div class="search-input-container">
+                                    <input type="text" id="user-search" placeholder="Busca por nombre o email..." data-translate-placeholder="donation.search_placeholder">
+                                    <i class="fas fa-search search-icon"></i>
+                                </div>
+                                <div class="search-results" id="search-results"></div>
+                            </div>
+                            
+                            <div class="selected-user-container" id="selected-user-container" style="display: none;">
+                                <h3 data-translate="donation.selected_user">Usuario seleccionado</h3>
+                                <div class="selected-user-card" id="selected-user-card">
+                                    <!-- Usuario seleccionado aparecerá aquí -->
+                                </div>
+                            </div>
+                            
+                            <!-- Usuarios destacados también en esta sección -->
+                            <div class="featured-users-section">
+                                <h3 data-translate="donation.or_select_featured">O selecciona de nuestros usuarios destacados</h3>
+                                <div class="featured-users-grid">
+                                    <div class="featured-user-card" data-user-id="featured-1">
+                                        <div class="featured-user-avatar">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Usuario destacado">
+                                        </div>
+                                        <div class="featured-user-info">
+                                            <h4>Carlos Mendoza</h4>
+                                            <p>Estudiante de Física</p>
+                                            <span class="featured-reason">Excelente participación</span>
+                                        </div>
+                                        <button class="select-featured-btn" data-translate="donation.select">Seleccionar</button>
+                                    </div>
+                                    
+                                    <div class="featured-user-card" data-user-id="featured-2">
+                                        <div class="featured-user-avatar">
+                                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Usuario destacado">
+                                        </div>
+                                        <div class="featured-user-info">
+                                            <h4>Ana García</h4>
+                                            <p>Estudiante de Química</p>
+                                            <span class="featured-reason">Ayuda a compañeros</span>
+                                        </div>
+                                        <button class="select-featured-btn" data-translate="donation.select">Seleccionar</button>
+                                    </div>
+                                    
+                                    <div class="featured-user-card" data-user-id="featured-3">
+                                        <div class="featured-user-avatar">
+                                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face" alt="Usuario destacado">
+                                        </div>
+                                        <div class="featured-user-info">
+                                            <h4>Luis Rodríguez</h4>
+                                            <p>Estudiante de Matemáticas</p>
+                                            <span class="featured-reason">Contenido de calidad</span>
+                                        </div>
+                                        <button class="select-featured-btn" data-translate="donation.select">Seleccionar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Donación masiva a usuarios destacados -->
+                        <div id="bulk-donation" class="donation-section">
+                            <div class="bulk-donation-header">
+                                <h3 data-translate="donation.bulk_title">Donación masiva a usuarios destacados</h3>
+                                <p data-translate="donation.bulk_description">Dona múltiples membresías que serán distribuidas automáticamente entre usuarios destacados que harán valer su membresía premium.</p>
+                            </div>
+                            
+                            <div class="bulk-donation-info">
+                                <div class="info-card">
+                                    <i class="fas fa-star"></i>
+                                    <h4 data-translate="donation.auto_selection">Selección automática</h4>
+                                    <p data-translate="donation.auto_selection_desc">Nuestro sistema selecciona usuarios con mejor participación</p>
+                                </div>
+                                <div class="info-card">
+                                    <i class="fas fa-trophy"></i>
+                                    <h4 data-translate="donation.guaranteed_value">Valor garantizado</h4>
+                                    <p data-translate="donation.guaranteed_value_desc">Usuarios comprometidos que aprovechan al máximo su membresía</p>
+                                </div>
+                                <div class="info-card">
+                                    <i class="fas fa-heart"></i>
+                                    <h4 data-translate="donation.maximum_impact">Máximo impacto</h4>
+                                    <p data-translate="donation.maximum_impact_desc">Tu donación llegará a quienes más la necesitan</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bulk-membership-selector">
+                                <h4 data-translate="donation.select_bulk_amount">Selecciona la cantidad de membresías (11-50)</h4>
+                                <div class="bulk-input-container">
+                                    <input type="number" id="bulk-membership-amount" min="11" max="50" placeholder="Ej: 25">
+                                    <div class="bulk-price-info">
+                                        <span class="bulk-price" id="bulk-price">$0.00</span>
+                                        <span class="bulk-discount" id="bulk-discount" style="display: none;"></span>
+                                    </div>
+                                </div>
+                                <div class="bulk-pricing-tiers">
+                                    <h5 data-translate="donation.bulk_pricing">Precios con descuento por mayoreo:</h5>
+                                    <div class="pricing-tiers">
+                                        <div class="tier">
+                                            <span class="tier-range">11-20</span>
+                                            <span class="tier-price">$9.49 <small>(-5%)</small></span>
+                                        </div>
+                                        <div class="tier">
+                                            <span class="tier-range">21-35</span>
+                                            <span class="tier-price">$8.99 <small>(-10%)</small></span>
+                                        </div>
+                                        <div class="tier">
+                                            <span class="tier-range">36-50</span>
+                                            <span class="tier-price">$8.49 <small>(-15%)</small></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bulk-donation-summary" id="bulk-donation-summary" style="display: none;">
+                                <div class="summary-content">
+                                    <div class="summary-amount">
+                                        <span data-translate="donation.total_memberships">Total de membresías:</span>
+                                        <strong id="bulk-summary-count"></strong>
+                                    </div>
+                                    <div class="summary-distribution">
+                                        <span data-translate="donation.distribution">Distribución:</span>
+                                        <strong data-translate="donation.auto_distributed">Automática entre usuarios destacados</strong>
+                                    </div>
+                                    <div class="summary-price">
+                                        <span data-translate="donation.total_price">Precio total:</span>
+                                        <strong id="bulk-summary-price"></strong>
+                                    </div>
+                                </div>
+                                
+                                <button class="confirm-bulk-donation-btn" id="confirm-bulk-donation-btn">
+                                    <i class="fas fa-gift"></i>
+                                    <span data-translate="donation.confirm_bulk_donation">Confirmar donación masiva</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Selector de cantidad de membresías -->
+                        <div class="membership-selector" id="membership-selector" style="display: none;">
+                            <h3 data-translate="donation.individual_donation_title">Donación individual</h3>
+                            <p data-translate="donation.individual_donation_desc">Dona 1 membresía premium a este usuario</p>
+                            
+                            <div class="single-membership-option">
+                                <button class="membership-btn single-membership" data-amount="1">
+                                    <div class="membership-icon">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    <div class="membership-info">
+                                        <span class="membership-count">1</span>
+                                        <span class="membership-label" data-translate="donation.membership">Membresía Premium</span>
+                                    </div>
+                                    <div class="membership-price">$9.99</div>
+                                </button>
+                            </div>
+                            
+                            <div class="individual-donation-note">
+                                <div class="note-card">
+                                    <i class="fas fa-info-circle"></i>
+                                    <p data-translate="donation.individual_note">Las donaciones individuales están limitadas a 1 membresía por usuario para asegurar una distribución equitativa.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="donation-summary" id="donation-summary" style="display: none;">
+                                <div class="summary-content">
+                                    <div class="summary-user">
+                                        <span data-translate="donation.donating_to">Donando a:</span>
+                                        <strong id="summary-user-name"></strong>
+                                    </div>
+                                    <div class="summary-amount">
+                                        <span data-translate="donation.total_memberships">Total de membresías:</span>
+                                        <strong id="summary-membership-count"></strong>
+                                    </div>
+                                    <div class="summary-price">
+                                        <span data-translate="donation.total_price">Precio total:</span>
+                                        <strong id="summary-total-price"></strong>
+                                    </div>
+                                </div>
+                                
+                                <button class="confirm-donation-btn" id="confirm-donation-btn">
+                                    <i class="fas fa-gift"></i>
+                                    <span data-translate="donation.confirm_donation">Confirmar donación</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -511,7 +1161,7 @@
                                 <div class="profile-basic-info">
                                     <h2 id="profile-display-name">María González</h2>
                                     <p class="profile-email-display" id="profile-email-display">maria.gonzalez@atlas.com</p>
-                                    <p class="profile-institution" id="profile-institution">Instituto Tecnológico Nacional</p>
+                                    <p class="profile-career" id="profile-career">Ingeniería en Sistemas Computacionales</p>
                                 </div>
                                 
                                 <button class="btn btn-primary edit-profile-btn" id="edit-profile-btn">
@@ -560,8 +1210,8 @@
                                             <span class="stat-label" data-translate="reactions">Reacciones</span>
                                         </div>
                                         <div class="stat-item">
-                                            <span class="stat-number">$125</span>
-                                            <span class="stat-label" data-translate="donated">Donado</span>
+                                            <span class="stat-number">3</span>
+                                            <span class="stat-label" data-translate="memberships_donated">Membresías donadas</span>
                                         </div>
                                     </div>
                                 </div>
@@ -601,31 +1251,796 @@
             </main>
         </div>
         
-        <!-- Modal para donaciones -->
-        <div id="donation-modal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Hacer una donación</h3>
-                    <button class="close-modal" id="close-donation-modal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Apoya este increíble proyecto educativo</p>
-                    <div class="donation-amounts">
-                        <button class="amount-btn" data-amount="5">$5</button>
-                        <button class="amount-btn" data-amount="10">$10</button>
-                        <button class="amount-btn" data-amount="25">$25</button>
-                        <button class="amount-btn" data-amount="50">$50</button>
+
+    </div>
+
+    <!-- Sección de Verificación de Instructor -->
+    <div id="instructor-verification-screen" class="screen">
+        <div class="verification-container">
+            <div class="verification-header">
+                <button class="back-btn" id="verification-back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-translate="back">Volver</span>
+                </button>
+                <h1 data-translate="verification.title">Verificación de Instructor</h1>
+                <p data-translate="verification.subtitle">Complete la información requerida para convertirse en instructor certificado</p>
+            </div>
+
+            <div class="verification-content">
+                <!-- Paso 1: Verificación Académica -->
+                <div class="verification-step active" id="academic-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-info">
+                            <h2 data-translate="verification.academic.title">Verificación Académica</h2>
+                            <p data-translate="verification.academic.subtitle">Confirme sus credenciales educativas</p>
+                        </div>
                     </div>
-                    <div class="custom-amount">
-                        <input type="number" id="custom-amount" placeholder="Cantidad personalizada" min="1">
+
+                    <div class="verification-form">
+                        <div class="form-group">
+                            <label for="education-level" data-translate="verification.education_level">Nivel educativo</label>
+                            <select id="education-level" class="form-select" required>
+                                <option value="" data-translate="select_option">Seleccione una opción</option>
+                                <option value="university-graduate" data-translate="verification.university_graduate">Título universitario</option>
+                                <option value="university-student" data-translate="verification.university_student">Estudiante universitario</option>
+                                <option value="postgraduate" data-translate="verification.postgraduate">Posgrado</option>
+                                <option value="doctorate" data-translate="verification.doctorate">Doctorado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="institution-name" data-translate="verification.institution">Institución educativa</label>
+                            <input type="text" id="institution-name" placeholder="Nombre de la universidad o institución" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="career-field" data-translate="verification.field">Carrera o campo de estudio</label>
+                            <input type="text" id="career-field" placeholder="Ej: Ingeniería, Medicina, Educación" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="graduation-year" data-translate="verification.graduation_year">Año de graduación (o año esperado)</label>
+                            <input type="number" id="graduation-year" min="1980" max="2030" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="academic-document" data-translate="verification.document">Documento académico</label>
+                            <div class="file-upload">
+                                <input type="file" id="academic-document" accept=".pdf,.jpg,.jpeg,.png" required>
+                                <label for="academic-document" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span data-translate="verification.upload_document">Subir título, certificado o constancia</span>
+                                </label>
+                            </div>
+                            <small class="form-help" data-translate="verification.document_help">Formatos aceptados: PDF, JPG, PNG (máx. 5MB)</small>
+                        </div>
                     </div>
-                    <button class="btn btn-primary btn-full" id="confirm-donation">
-                        <i class="fas fa-heart"></i>
-                        Donar
-                    </button>
                 </div>
+
+                <!-- Paso 2: Datos Personales -->
+                <div class="verification-step" id="personal-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-info">
+                            <h2 data-translate="verification.personal.title">Datos Personales</h2>
+                            <p data-translate="verification.personal.subtitle">Información personal y de contacto</p>
+                        </div>
+                    </div>
+
+                    <div class="verification-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="instructor-name" data-translate="verification.full_name">Nombre completo</label>
+                                <input type="text" id="instructor-name" placeholder="Nombre y apellidos" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="instructor-phone" data-translate="verification.phone">Teléfono</label>
+                                <input type="tel" id="instructor-phone" placeholder="+52 123 456 7890" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instructor-email" data-translate="verification.email">Correo electrónico</label>
+                            <input type="email" id="instructor-email" placeholder="instructor@ejemplo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instructor-address" data-translate="verification.address">Dirección completa</label>
+                            <textarea id="instructor-address" rows="3" placeholder="Calle, número, colonia, ciudad, estado, CP" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instructor-bio" data-translate="verification.bio">Biografía profesional</label>
+                            <textarea id="instructor-bio" rows="4" placeholder="Describe tu experiencia, especialidades y motivación para enseñar..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instructor-photo" data-translate="verification.photo">Foto de perfil</label>
+                            <div class="file-upload">
+                                <input type="file" id="instructor-photo" accept=".jpg,.jpeg,.png" required>
+                                <label for="instructor-photo" class="file-upload-label">
+                                    <i class="fas fa-camera"></i>
+                                    <span data-translate="verification.upload_photo">Subir foto profesional</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Datos Bancarios -->
+                <div class="verification-step" id="banking-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-info">
+                            <h2 data-translate="verification.banking.title">Datos Bancarios</h2>
+                            <p data-translate="verification.banking.subtitle">Para recibir pagos por donaciones (meta: $500 MXN)</p>
+                        </div>
+                    </div>
+
+                    <div class="verification-form">
+                        <div class="form-group">
+                            <label for="bank-name" data-translate="verification.bank">Banco</label>
+                            <select id="bank-name" class="form-select" required>
+                                <option value="" data-translate="select_option">Seleccione su banco</option>
+                                <option value="bbva">BBVA</option>
+                                <option value="banamex">Banamex</option>
+                                <option value="santander">Santander</option>
+                                <option value="banorte">Banorte</option>
+                                <option value="hsbc">HSBC</option>
+                                <option value="scotiabank">Scotiabank</option>
+                                <option value="inbursa">Inbursa</option>
+                                <option value="azteca">Banco Azteca</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="account-holder" data-translate="verification.account_holder">Titular de la cuenta</label>
+                            <input type="text" id="account-holder" placeholder="Nombre del titular" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="account-number" data-translate="verification.account_number">Número de cuenta</label>
+                                <input type="text" id="account-number" placeholder="0123456789" maxlength="18" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="clabe" data-translate="verification.clabe">CLABE</label>
+                                <input type="text" id="clabe" placeholder="012345678901234567" maxlength="18" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="info-box">
+                                <i class="fas fa-info-circle"></i>
+                                <div>
+                                    <h4 data-translate="verification.payment_info">Información de pagos</h4>
+                                    <p data-translate="verification.payment_description">Los pagos se realizarán cuando sus cursos alcancen la meta de $500 MXN en donaciones. Los depósitos se procesan cada 15 días.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verification-actions">
+                <button class="btn-secondary" id="prev-step-btn" disabled>
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-translate="previous">Anterior</span>
+                </button>
+                <button class="btn-primary" id="next-step-btn">
+                    <span data-translate="next">Siguiente</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn-success" id="submit-verification-btn" style="display: none;">
+                    <i class="fas fa-check"></i>
+                    <span data-translate="verification.submit">Enviar para verificación</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Creación de Clase Individual -->
+    <div id="class-creator-screen" class="screen">
+        <div class="creator-container">
+            <div class="creator-header">
+                <button class="back-btn" id="class-creator-back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-translate="back">Volver</span>
+                </button>
+                <h1 data-translate="class_creator.title">Crear Nueva Clase</h1>
+                <p data-translate="class_creator.subtitle">Crea una clase individual con video y materiales de apoyo</p>
+            </div>
+
+            <div class="creator-content">
+                <!-- Clases creadas anteriormente -->
+                <div class="previous-content-section" id="previous-classes-section">
+                    <h2 data-translate="class_creator.previous_classes">Clases Creadas Anteriormente</h2>
+                    <div class="previous-content-grid" id="previous-classes-grid">
+                        <!-- Las clases anteriores se mostrarán aquí -->
+                    </div>
+                </div>
+
+                <!-- Información de la nueva clase -->
+                <div class="single-class-info">
+                    <h2 data-translate="class_creator.new_class">Nueva Clase</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="single-class-title" data-translate="class_creator.class_title">Título de la clase</label>
+                            <input type="text" id="single-class-title" placeholder="Ej: Ecuaciones lineales básicas" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="single-class-category" data-translate="creator.category">Categoría</label>
+                            <select id="single-class-category" class="form-select" required>
+                                <option value="" data-translate="select_option">Seleccione una categoría</option>
+                                <option value="physics-math" data-translate="courses.categories.physics_math">Física y Matemáticas</option>
+                                <option value="social-sciences" data-translate="courses.categories.social_sciences">Ciencias Sociales</option>
+                                <option value="soft-skills" data-translate="courses.categories.soft_skills">Habilidades Blandas</option>
+                                <option value="biological-sciences" data-translate="courses.categories.biological_sciences">Ciencias Biológicas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="single-class-level" data-translate="creator.level">Nivel</label>
+                            <select id="single-class-level" class="form-select" required>
+                                <option value="" data-translate="select_option">Seleccione el nivel</option>
+                                <option value="basic" data-translate="courses.basic">Básico</option>
+                                <option value="intermediate" data-translate="courses.intermediate">Intermedio</option>
+                                <option value="advanced" data-translate="courses.advanced">Avanzado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="single-class-duration" data-translate="class_creator.duration">Duración (minutos)</label>
+                            <input type="number" id="single-class-duration" placeholder="30" min="5" max="180" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="single-class-description" data-translate="class_creator.description">Descripción de la clase</label>
+                        <textarea id="single-class-description" rows="4" placeholder="Describe qué se enseñará en esta clase..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="single-class-video" data-translate="class_creator.video">Video de la clase</label>
+                        <div class="file-upload">
+                            <input type="file" id="single-class-video" accept=".mp4,.avi,.mov,.wmv" required>
+                            <label for="single-class-video" class="file-upload-label">
+                                <i class="fas fa-video"></i>
+                                <span data-translate="class_creator.upload_video">Subir video de la clase</span>
+                            </label>
+                        </div>
+                        <small class="form-help">Formatos: MP4, AVI, MOV, WMV (máx. 100MB)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="single-class-files" data-translate="class_creator.files">Archivos de apoyo (opcional)</label>
+                        <div class="file-upload">
+                            <input type="file" id="single-class-files" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" multiple>
+                            <label for="single-class-files" class="file-upload-label">
+                                <i class="fas fa-paperclip"></i>
+                                <span data-translate="class_creator.upload_files">Subir archivos de apoyo</span>
+                            </label>
+                        </div>
+                        <small class="form-help">PDF, Word, PowerPoint, TXT (máx. 10MB c/u)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="single-class-image" data-translate="class_creator.class_image">Imagen de la clase</label>
+                        <div class="file-upload">
+                            <input type="file" id="single-class-image" accept=".jpg,.jpeg,.png" required>
+                            <label for="single-class-image" class="file-upload-label">
+                                <i class="fas fa-image"></i>
+                                <span data-translate="class_creator.upload_image">Subir imagen representativa</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="creator-actions">
+                <button class="btn-secondary" id="save-class-draft-btn">
+                    <i class="fas fa-save"></i>
+                    <span data-translate="class_creator.save_draft">Guardar borrador</span>
+                </button>
+                <button class="btn-success" id="submit-class-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span data-translate="class_creator.submit_review">Enviar para revisión</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Creación de Curso -->
+    <div id="course-creator-screen" class="screen">
+        <div class="creator-container">
+            <div class="creator-header">
+                <button class="back-btn" id="creator-back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-translate="back">Volver</span>
+                </button>
+                <h1 data-translate="creator.title">Crear Nuevo Curso</h1>
+                <p data-translate="creator.subtitle">Diseña tu curso con unidades y clases estructuradas</p>
+            </div>
+
+            <div class="creator-content">
+                <!-- Cursos creados anteriormente -->
+                <div class="previous-content-section" id="previous-courses-section">
+                    <h2 data-translate="creator.previous_courses">Cursos Creados Anteriormente</h2>
+                    <div class="previous-content-grid" id="previous-courses-grid">
+                        <!-- Los cursos anteriores se mostrarán aquí -->
+                    </div>
+                </div>
+
+                <!-- Información básica del curso -->
+                <div class="course-basic-info">
+                    <h2 data-translate="creator.basic_info">Información básica</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-title" data-translate="creator.course_title">Título del curso</label>
+                            <input type="text" id="course-title" placeholder="Ej: Matemáticas Avanzadas para Bachillerato" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-category" data-translate="creator.category">Categoría</label>
+                            <select id="course-category" class="form-select" required>
+                                <option value="" data-translate="select_option">Seleccione una categoría</option>
+                                <option value="physics-math" data-translate="courses.categories.physics_math">Física y Matemáticas</option>
+                                <option value="social-sciences" data-translate="courses.categories.social_sciences">Ciencias Sociales</option>
+                                <option value="soft-skills" data-translate="courses.categories.soft_skills">Habilidades Blandas</option>
+                                <option value="biological-sciences" data-translate="courses.categories.biological_sciences">Ciencias Biológicas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-level" data-translate="creator.level">Nivel</label>
+                            <select id="course-level" class="form-select" required>
+                                <option value="" data-translate="select_option">Seleccione el nivel</option>
+                                <option value="basic" data-translate="courses.basic">Básico</option>
+                                <option value="intermediate" data-translate="courses.intermediate">Intermedio</option>
+                                <option value="advanced" data-translate="courses.advanced">Avanzado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-duration" data-translate="creator.duration">Duración estimada</label>
+                            <input type="number" id="course-duration" placeholder="8" min="1" max="52" required>
+                            <small class="form-help" data-translate="creator.duration_help">Semanas</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course-description" data-translate="creator.description">Descripción del curso</label>
+                        <textarea id="course-description" rows="4" placeholder="Describe qué aprenderán los estudiantes, objetivos y requisitos..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course-image" data-translate="creator.course_image">Imagen del curso</label>
+                        <div class="file-upload">
+                            <input type="file" id="course-image" accept=".jpg,.jpeg,.png" required>
+                            <label for="course-image" class="file-upload-label">
+                                <i class="fas fa-image"></i>
+                                <span data-translate="creator.upload_image">Subir imagen representativa</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Constructor de clases -->
+                <div class="course-builder">
+                    <div class="builder-header">
+                        <h2 data-translate="creator.course_classes">Clases del Curso</h2>
+                        <button class="btn-primary" id="add-class-btn">
+                            <i class="fas fa-plus"></i>
+                            <span data-translate="creator.add_class">Agregar Clase</span>
+                        </button>
+                    </div>
+
+                    <div class="course-classes-container" id="course-classes-container">
+                        <!-- Las clases se agregarán dinámicamente aquí -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="creator-actions">
+                <button class="btn-secondary" id="save-draft-btn">
+                    <i class="fas fa-save"></i>
+                    <span data-translate="creator.save_draft">Guardar borrador</span>
+                </button>
+                <button class="btn-success" id="submit-course-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span data-translate="creator.submit_review">Enviar para revisión</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Premium -->
+    <div id="premium-modal" class="modal premium-modal">
+        <div class="modal-content premium-modal-content">
+            <div class="premium-modal-header">
+                <div class="premium-logo">
+                    <i class="fas fa-crown"></i>
+                    <h2 data-translate="premium.title">Atlas Premium</h2>
+                </div>
+                <button class="close-modal" id="close-premium-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="premium-modal-body">
+                <!-- Beneficios Premium -->
+                <div class="premium-benefits">
+                    <h3 data-translate="premium.benefits_title">Beneficios Exclusivos</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4 data-translate="premium.unlimited_courses">Cursos Ilimitados</h4>
+                            <p data-translate="premium.unlimited_courses_desc">Acceso completo a todos nuestros cursos premium</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4 data-translate="premium.priority_support">Soporte Prioritario</h4>
+                            <p data-translate="premium.priority_support_desc">Atención personalizada y respuesta inmediata</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h4 data-translate="premium.certificates">Certificados</h4>
+                            <p data-translate="premium.certificates_desc">Obtén certificados oficiales al completar cursos</p>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4 data-translate="premium.analytics">Análisis Avanzado</h4>
+                            <p data-translate="premium.analytics_desc">Estadísticas detalladas de tu progreso académico</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comparación de Planes -->
+                <div class="plan-comparison">
+                    <h3 data-translate="premium.comparison_title">Comparación de Planes</h3>
+                    <div class="comparison-table">
+                        <div class="comparison-header">
+                            <div class="plan-column">
+                                <h4 data-translate="premium.feature">Característica</h4>
+                            </div>
+                            <div class="plan-column basic-plan">
+                                <div class="plan-badge basic">
+                                    <i class="fas fa-user"></i>
+                                    <span data-translate="premium.basic_plan">Básico</span>
+                                </div>
+                                <div class="plan-price">
+                                    <span class="price">$0</span>
+                                    <span class="period" data-translate="premium.free">Gratis</span>
+                                </div>
+                            </div>
+                            <div class="plan-column premium-plan">
+                                <div class="plan-badge premium">
+                                    <i class="fas fa-crown"></i>
+                                    <span data-translate="premium.premium_plan">Premium</span>
+                                </div>
+                                <div class="plan-price">
+                                    <span class="price">$9.99</span>
+                                    <span class="period" data-translate="premium.per_month">/mes</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name" data-translate="premium.course_access">Acceso a Cursos</div>
+                            <div class="feature-value basic">
+                                <span data-translate="premium.limited_courses">5 cursos básicos</span>
+                            </div>
+                            <div class="feature-value premium">
+                                <i class="fas fa-infinity text-success"></i>
+                                <span data-translate="premium.all_courses">Todos los cursos</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name" data-translate="premium.support">Soporte</div>
+                            <div class="feature-value basic">
+                                <span data-translate="premium.community_support">Soporte comunitario</span>
+                            </div>
+                            <div class="feature-value premium">
+                                <i class="fas fa-star text-success"></i>
+                                <span data-translate="premium.priority_support_text">Soporte prioritario 24/7</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name" data-translate="premium.certificates_feature">Certificados</div>
+                            <div class="feature-value basic">
+                                <i class="fas fa-times text-error"></i>
+                                <span data-translate="premium.no_certificates">No disponible</span>
+                            </div>
+                            <div class="feature-value premium">
+                                <i class="fas fa-check text-success"></i>
+                                <span data-translate="premium.official_certificates">Certificados oficiales</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="premium-cta">
+                    <div class="cta-content">
+                        <h3 data-translate="premium.upgrade_now_title">¡Actualiza a Premium Hoy!</h3>
+                        <p data-translate="premium.upgrade_description">Únete a miles de estudiantes que ya disfrutan de la experiencia premium</p>
+                        <div class="cta-buttons">
+                            <button class="btn btn-premium" id="upgrade-to-premium">
+                                <i class="fas fa-crown"></i>
+                                <span data-translate="premium.upgrade_button">Obtener Premium</span>
+                            </button>
+                            <button class="btn btn-secondary" id="start-free-trial">
+                                <i class="fas fa-gift"></i>
+                                <span data-translate="premium.free_trial">Prueba Gratis 7 Días</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección de Pago Premium -->
+                <div class="premium-payment-section" id="premium-payment-section" style="display: none;">
+                    <div class="payment-header">
+                        <button class="back-btn" id="back-to-premium">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-translate="premium.back">Volver</span>
+                        </button>
+                        <h3 data-translate="premium.payment_title">Finalizar Compra</h3>
+                    </div>
+                    
+                    <div class="payment-content">
+                        <!-- Resumen del Plan -->
+                        <div class="plan-summary">
+                            <div class="summary-card">
+                                <div class="plan-info">
+                                    <div class="plan-icon">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    <div class="plan-details">
+                                        <h4 data-translate="premium.premium_plan">Atlas Premium</h4>
+                                        <p data-translate="premium.plan_description">Acceso completo a todos los beneficios premium</p>
+                                    </div>
+                                    <div class="plan-price">
+                                        <span class="price">$9.99</span>
+                                        <span class="period" data-translate="premium.per_month">/mes</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="billing-cycle">
+                                    <h5 data-translate="premium.billing_cycle">Ciclo de Facturación</h5>
+                                    <div class="cycle-options">
+                                        <label class="cycle-option">
+                                            <input type="radio" name="billing" value="monthly" checked>
+                                            <span class="option-content">
+                                                <span class="option-title" data-translate="premium.monthly">Mensual</span>
+                                                <span class="option-price">$9.99/mes</span>
+                                            </span>
+                                        </label>
+                                        <label class="cycle-option popular">
+                                            <input type="radio" name="billing" value="yearly">
+                                            <span class="option-content">
+                                                <span class="option-title" data-translate="premium.yearly">Anual</span>
+                                                <span class="option-price">$99.99/año <small data-translate="premium.save_17">Ahorra 17%</small></span>
+                                            </span>
+                                            <span class="popular-badge" data-translate="premium.most_popular">Más Popular</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Información de Pago -->
+                        <div class="payment-form">
+                            <div class="form-card">
+                                <h4 data-translate="premium.payment_info">Información de Pago</h4>
+                                
+                                <div class="form-group">
+                                    <label data-translate="premium.card_number">Número de Tarjeta</label>
+                                    <div class="card-input">
+                                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                                        <div class="card-icons">
+                                            <i class="fab fa-cc-visa"></i>
+                                            <i class="fab fa-cc-mastercard"></i>
+                                            <i class="fab fa-cc-amex"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-translate="premium.expiry_date">Fecha de Vencimiento</label>
+                                        <input type="text" id="expiry-date" placeholder="MM/AA" maxlength="5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-translate="premium.cvv">CVV</label>
+                                        <input type="text" id="cvv" placeholder="123" maxlength="4">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label data-translate="premium.cardholder_name">Nombre del Titular</label>
+                                    <input type="text" id="cardholder-name" placeholder="Juan Pérez">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label data-translate="premium.email">Email para Facturación</label>
+                                    <input type="email" id="billing-email" placeholder="correo@ejemplo.com">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Resumen de Compra -->
+                        <div class="purchase-summary">
+                            <div class="summary-card">
+                                <h4 data-translate="premium.order_summary">Resumen del Pedido</h4>
+                                
+                                <div class="summary-line">
+                                    <span data-translate="premium.subscription">Atlas Premium</span>
+                                    <span class="amount" id="subscription-amount">$9.99</span>
+                                </div>
+                                
+                                <div class="summary-line">
+                                    <span data-translate="premium.tax">Impuestos</span>
+                                    <span class="amount" id="tax-amount">$1.50</span>
+                                </div>
+                                
+                                <div class="summary-line total">
+                                    <span data-translate="premium.total">Total</span>
+                                    <span class="amount" id="total-amount">$11.49</span>
+                                </div>
+                                
+                                <div class="payment-buttons">
+                                    <button class="btn btn-premium btn-large" id="complete-payment">
+                                        <i class="fas fa-lock"></i>
+                                        <span data-translate="premium.complete_payment">Completar Pago</span>
+                                    </button>
+                                    <p class="security-note">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span data-translate="premium.secure_payment">Pago 100% seguro y cifrado</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Edición de Perfil -->
+    <div id="profile-edit-modal" class="modal">
+        <div class="modal-content profile-edit-content">
+            <div class="modal-header">
+                <h2 data-translate="profile.edit_title">Editar Perfil</h2>
+                <button class="close-modal" id="close-profile-edit-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form class="profile-edit-form" id="profile-edit-form">
+                    <div class="form-section">
+                        <h3 data-translate="profile.basic_info">Información Básica</h3>
+                        
+                        <!-- Foto de perfil -->
+                        <div class="form-group">
+                            <label data-translate="profile.profile_photo">Foto de perfil</label>
+                            <div class="profile-photo-edit">
+                                <div class="current-photo">
+                                    <img id="current-profile-photo" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Foto actual">
+                                </div>
+                                <div class="photo-actions">
+                                    <input type="file" id="edit-profile-photo" accept=".jpg,.jpeg,.png" style="display: none;">
+                                    <button type="button" class="btn btn-secondary" id="change-photo-btn">
+                                        <i class="fas fa-camera"></i>
+                                        <span data-translate="profile.change_photo">Cambiar foto</span>
+                                    </button>
+                                    <small class="form-help" data-translate="profile.photo_help">JPG, PNG (máx. 2MB)</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Foto de portada -->
+                        <div class="form-group">
+                            <label data-translate="profile.cover_photo">Foto de portada</label>
+                            <div class="cover-photo-edit">
+                                <div class="current-cover">
+                                    <img id="current-cover-photo" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=150&fit=crop" alt="Portada actual">
+                                    <div class="cover-overlay">
+                                        <i class="fas fa-image"></i>
+                                        <span data-translate="profile.cover_preview">Vista previa de portada</span>
+                                    </div>
+                                </div>
+                                <div class="cover-actions">
+                                    <input type="file" id="edit-cover-photo" accept=".jpg,.jpeg,.png" style="display: none;">
+                                    <button type="button" class="btn btn-secondary" id="change-cover-btn">
+                                        <i class="fas fa-image"></i>
+                                        <span data-translate="profile.change_cover">Cambiar portada</span>
+                                    </button>
+                                    <small class="form-help" data-translate="profile.cover_help">JPG, PNG (máx. 5MB) - Recomendado: 1200x300px</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-profile-name" data-translate="profile.full_name">Nombre completo</label>
+                                <input type="text" id="edit-profile-name" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-profile-email" data-translate="profile.email">Correo electrónico</label>
+                                <input type="email" id="edit-profile-email" class="form-input" required>
+                                <small class="form-help" data-translate="profile.email_help">Debe coincidir con tu correo de inicio de sesión</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-profile-career" data-translate="profile.career_title">Carrera o Título</label>
+                                <input type="text" id="edit-profile-career" class="form-input" placeholder="Ej: Ingeniería en Sistemas, Licenciatura en Educación" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-profile-education-level" data-translate="profile.education_level">Nivel educativo</label>
+                                <select id="edit-profile-education-level" class="form-select" required>
+                                    <option value="" data-translate="select_option">Seleccione su nivel</option>
+                                    <option value="high_school" data-translate="profile.high_school">Bachillerato</option>
+                                    <option value="technical" data-translate="profile.technical">Técnico</option>
+                                    <option value="university" data-translate="profile.university">Universidad</option>
+                                    <option value="graduate" data-translate="profile.graduate">Posgrado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 data-translate="profile.about_section">Acerca de</h3>
+                        <div class="form-group">
+                            <label for="edit-profile-bio" data-translate="profile.bio">Biografía</label>
+                            <textarea id="edit-profile-bio" class="form-textarea" rows="4" placeholder="Cuéntanos sobre ti, tus intereses y objetivos académicos..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 data-translate="profile.interests_section">Temas de Interés</h3>
+                        <div class="form-group">
+                            <label for="edit-profile-interests" data-translate="profile.interests">Materias o temas de interés</label>
+                            <div class="interests-input-container">
+                                <input type="text" id="edit-profile-interests" class="form-input" placeholder="Escribe un tema y presiona Enter">
+                                <div class="interests-tags" id="interests-tags">
+                                    <!-- Los tags se agregarán dinámicamente aquí -->
+                                </div>
+                            </div>
+                            <small class="form-help" data-translate="profile.interests_help">Presiona Enter para agregar cada tema</small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancel-profile-edit">
+                    <span data-translate="cancel">Cancelar</span>
+                </button>
+                <button type="submit" class="btn btn-primary" id="save-profile-changes">
+                    <i class="fas fa-save"></i>
+                    <span data-translate="save_changes">Guardar Cambios</span>
+                </button>
             </div>
         </div>
     </div>
