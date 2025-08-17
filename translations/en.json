@@ -31,13 +31,14 @@
     "content": "Content",
     "donation": "Want to donate?"
   },
-  "profile_menu": {
-    "profile": "Profile",
-    "achievements": "Achievements",
-    "dark_mode": "Dark mode",
-    "language": "Language",
-    "logout": "Sign out"
-  },
+      "profile_menu": {
+        "profile": "Profile",
+        "achievements": "Achievements",
+        "progress": "Progress",
+        "dark_mode": "Dark mode",
+        "language": "Language",
+        "logout": "Sign out"
+    },
   "feed": {
     "create_post_placeholder": "What would you like to share today?",
     "photo_btn": "Photo",
@@ -75,6 +76,27 @@
     "popular_post_desc": "Receive 50 reactions on a post",
     "knowledge_sharer": "Knowledge sharer",
     "knowledge_sharer_desc": "Help 10 classmates with your posts"
+  },
+  "progress": {
+    "title": "Intelligent Progress",
+    "subtitle": "Advanced analysis of your educational progress with AI",
+    "coming_soon": "The progress section will be available soon...",
+    "total_study_time": "Total Study Time",
+    "courses_completed": "Courses Completed",
+    "learning_paths": "Learning Paths",
+    "achievement_rate": "Achievement Rate",
+    "study_time_chart": "Study Time by Day",
+    "course_progress_chart": "Course Progress",
+    "learning_paths_progress": "Learning Paths Progress",
+    "path_description": "Progress in basic skills",
+    "ai_analysis": "Intelligent Analysis with Gemini AI",
+    "refresh_analysis": "Refresh Analysis",
+    "analyzing_data": "Analyzing learning data...",
+    "learning_progress": "Learning progress",
+    "learning_progress_desc": "Track your educational evolution",
+    "courses_completed_desc": "History of completed courses and classes",
+    "study_time": "Study time",
+    "study_time_desc": "Statistics of time dedicated to learning"
   },
   "content": {
     "title": "Educational Content",
@@ -220,11 +242,11 @@
     "guaranteed_value_desc": "Committed users who make the most of their membership",
     "maximum_impact": "Maximum impact",
     "maximum_impact_desc": "Your donation will reach those who need it most",
-    "select_bulk_amount": "Select the number of memberships (11-50)",
+            "select_bulk_amount": "Select the number of memberships (1-50)",
     "bulk_pricing": "Bulk discount pricing:",
     "bulk_price_note": "Price: $9.99 per membership",
     "distribution": "Distribution:",
-    "auto_distributed": "Automatic among featured users",
+            "auto_distributed": "Automatic among vulnerable students",
     "confirm_bulk_donation": "Confirm bulk donation",
     "bulk_donation_success": "Bulk donation successful! {amount} memberships have been distributed among featured users.",
     "donation_success": "Donation successful! {user} has received {amount} memberships.",
@@ -238,10 +260,24 @@
     "title": "Educational Content",
     "subtitle": "Discover quality courses designed for your high school level",
     "search_placeholder": "Search courses...",
+    "view_learning_paths": "View learning paths",
     "all": "All",
     "basic": "Basic",
     "intermediate": "Intermediate",
     "advanced": "Advanced",
+    "learning_paths_title": "Recommended Learning Paths",
+    "learning_paths_subtitle": "Follow these structured paths to maximize your learning",
+    "paths": {
+      "math_fundamentals": "Mathematics Fundamentals",
+      "math_fundamentals_desc": "Build a solid foundation in mathematics",
+      "natural_sciences": "Natural Sciences",
+      "natural_sciences_desc": "Explore the world of science",
+      "programming_tech": "Programming and Technology",
+      "programming_tech_desc": "Develop technological skills",
+      "recommended_courses": "Recommended Courses:",
+      "view_courses": "View courses",
+      "start_path": "Start path"
+    },
     "categories": {
       "physics_math": "Physics and Mathematics",
       "social_sciences": "Social Sciences",

@@ -89,6 +89,9 @@ class AtlasApp {
         // Configurar sección de donación
         this.setupDonationSection();
         
+        // Configurar validación de escuela para descuento
+        this.setupSchoolValidation();
+        
         // Configurar sidebar
         this.setupSidebar();
         
@@ -104,6 +107,18 @@ class AtlasApp {
         // Configurar edición de perfil
         this.setupProfileEdit();
         
+        // Configurar compositor de publicaciones
+        this.setupPostComposer();
+        
+        // Arreglar imágenes de perfil en publicaciones existentes
+        this.fixExistingPostAvatars();
+        
+        // Configurar cursos clickeables
+        this.setupCourseCards();
+        
+        // Configurar botón de regreso en vista detallada
+        this.setupBackButton();
+        
         // Inicializar datos del usuario
         this.initializeUserData();
         
@@ -113,6 +128,7 @@ class AtlasApp {
         // Inicializar flags de guardado
         this.isSavingCourse = false;
         this.isSavingClass = false;
+        this.isPublishing = false;
         
         // Actualizar estado del menú hamburguesa después de inicializar
         setTimeout(() => {
@@ -605,6 +621,292 @@ if (window.location.hostname === 'localhost' || window.location.hostname === '12
     console.log('Atlas Debug disponible. Usa atlasDebug.clearUsers(), atlasDebug.getUsers(), o atlasDebug.addTestUser()');
 }
 
+// Configurar cursos clickeables
+AtlasApp.prototype.setupCourseCards = function() {
+    const courseCards = document.querySelectorAll('.course-card');
+    
+    courseCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const courseId = card.getAttribute('data-course-id');
+            if (courseId) {
+                this.showCourseDetail(courseId);
+            }
+        });
+    });
+};
+
+// Mostrar vista detallada del curso
+AtlasApp.prototype.showCourseDetail = function(courseId) {
+    // Ocultar todas las pestañas
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Mostrar la pestaña de detalle del curso
+    const courseDetailTab = document.getElementById('course-detail-tab');
+    if (courseDetailTab) {
+        courseDetailTab.classList.add('active');
+        
+        // Cambiar la pestaña activa en la navegación
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Agregar clase activa a la pestaña de contenido
+        const contentTabBtn = document.querySelector('[data-tab="content"]');
+        if (contentTabBtn) {
+            contentTabBtn.classList.add('active');
+        }
+    }
+    
+    // Cargar datos del curso
+    this.loadCourseData(courseId);
+};
+
+// Cargar datos del curso
+AtlasApp.prototype.loadCourseData = function(courseId) {
+    // Datos de los cursos (en un proyecto real vendrían de una API)
+    const courseData = {
+        'algebra-basica': {
+            title: 'Álgebra Básica',
+            description: 'Aprende los fundamentos del álgebra desde cero. Este curso te introducirá a los conceptos básicos como variables, ecuaciones lineales, sistemas de ecuaciones y más.',
+            learning: 'Al finalizar este curso serás capaz de resolver ecuaciones lineales, trabajar con sistemas de ecuaciones, entender el concepto de variables y aplicar el álgebra en problemas del mundo real.',
+            instructor: {
+                name: 'Dr. Carlos Mendoza',
+                bio: 'Doctor en Matemáticas con más de 15 años de experiencia docente. Especialista en álgebra y matemáticas aplicadas.',
+                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face'
+            },
+            duration: '8 semanas (32 horas)',
+            image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop',
+            type: 'premium',
+            classes: [
+                { number: 1, title: 'Introducción al Álgebra', topic: 'Conceptos básicos y notación matemática' },
+                { number: 2, title: 'Variables y Expresiones', topic: 'Trabajando con variables y expresiones algebraicas' },
+                { number: 3, title: 'Ecuaciones Lineales', topic: 'Resolución de ecuaciones de primer grado' },
+                { number: 4, title: 'Sistemas de Ecuaciones', topic: 'Métodos de resolución: sustitución y eliminación' },
+                { number: 5, title: 'Inecuaciones', topic: 'Resolución de desigualdades lineales' },
+                { number: 6, title: 'Aplicaciones Prácticas', topic: 'Problemas del mundo real usando álgebra' }
+            ]
+        },
+        'calculo-diferencial': {
+            title: 'Cálculo Diferencial',
+            description: 'Explora el fascinante mundo del cálculo diferencial. Aprende sobre límites, derivadas y sus aplicaciones en física, economía y más.',
+            learning: 'Comprenderás los conceptos fundamentales del cálculo, serás capaz de calcular derivadas, interpretar su significado geométrico y aplicarlas en problemas prácticos.',
+            instructor: {
+                name: 'Dra. Ana García',
+                bio: 'Doctora en Matemáticas Aplicadas. Investigadora en análisis matemático con amplia experiencia en enseñanza del cálculo.',
+                avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face'
+            },
+            duration: '12 semanas (48 horas)',
+            image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&h=300&fit=crop',
+            type: 'free',
+            classes: [
+                { number: 1, title: 'Límites y Continuidad', topic: 'Conceptos fundamentales de límites' },
+                { number: 2, title: 'Derivadas Básicas', topic: 'Reglas de derivación y técnicas fundamentales' },
+                { number: 3, title: 'Regla de la Cadena', topic: 'Derivación de funciones compuestas' },
+                { number: 4, title: 'Derivadas Implícitas', topic: 'Derivación de funciones definidas implícitamente' },
+                { number: 5, title: 'Aplicaciones de Derivadas', topic: 'Máximos, mínimos y optimización' },
+                { number: 6, title: 'Gráficas y Análisis', topic: 'Análisis de funciones usando derivadas' },
+                { number: 7, title: 'Problemas de Optimización', topic: 'Aplicaciones prácticas en física y economía' },
+                { number: 8, title: 'Derivadas de Orden Superior', topic: 'Segundas y terceras derivadas' }
+            ]
+        },
+        'fisica-basica': {
+            title: 'Física Básica',
+            description: 'Descubre los principios fundamentales de la física. Desde la mecánica clásica hasta conceptos modernos, este curso te dará una base sólida.',
+            learning: 'Entenderás las leyes fundamentales de la naturaleza, serás capaz de resolver problemas de mecánica, comprender el movimiento y aplicar la física en situaciones cotidianas.',
+            instructor: {
+                name: 'Prof. Luis Rodríguez',
+                bio: 'Profesor de Física con más de 20 años de experiencia. Especialista en mecánica clásica y física moderna.',
+                avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face'
+            },
+            duration: '10 semanas (40 horas)',
+            image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&h=300&fit=crop',
+            type: 'free',
+            classes: [
+                { number: 1, title: 'Introducción a la Física', topic: 'Método científico y unidades de medida' },
+                { number: 2, title: 'Cinemática', topic: 'Descripción del movimiento en una y dos dimensiones' },
+                { number: 3, title: 'Dinámica', topic: 'Leyes de Newton y fuerzas' },
+                { number: 4, title: 'Energía y Trabajo', topic: 'Conservación de la energía y trabajo mecánico' },
+                { number: 5, title: 'Momentum y Colisiones', topic: 'Conservación del momentum lineal' },
+                { number: 6, title: 'Gravitación', topic: 'Ley de gravitación universal' },
+                { number: 7, title: 'Ondas', topic: 'Propiedades de las ondas mecánicas' },
+                { number: 8, title: 'Termodinámica Básica', topic: 'Calor, temperatura y leyes de la termodinámica' }
+            ]
+        },
+        'matematicas-avanzadas': {
+            title: 'Matemáticas Avanzadas',
+            description: 'Un curso avanzado que combina análisis matemático, álgebra lineal y teoría de números. Para estudiantes que quieren profundizar en matemáticas superiores.',
+            learning: 'Dominarás técnicas avanzadas de análisis matemático, álgebra lineal y teoría de números. Serás capaz de abordar problemas matemáticos complejos y desarrollar pensamiento abstracto.',
+            instructor: {
+                name: 'Dr. Carlos Mendoza',
+                bio: 'Doctor en Matemáticas Puras. Investigador en teoría de números y análisis matemático. Más de 20 años de experiencia en investigación y docencia.',
+                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face'
+            },
+            duration: '16 semanas (64 horas)',
+            image: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=300&fit=crop',
+            type: 'premium',
+            classes: [
+                { number: 1, title: 'Análisis Real Avanzado', topic: 'Teoría de conjuntos y números reales' },
+                { number: 2, title: 'Sucesiones y Series', topic: 'Convergencia y divergencia de series' },
+                { number: 3, title: 'Funciones Continuas', topic: 'Continuidad uniforme y teoremas fundamentales' },
+                { number: 4, title: 'Derivabilidad', topic: 'Teoremas del valor medio y aplicaciones' },
+                { number: 5, title: 'Integración Avanzada', topic: 'Integrales impropias y teoremas de convergencia' },
+                { number: 6, title: 'Álgebra Lineal', topic: 'Espacios vectoriales y transformaciones lineales' },
+                { number: 7, title: 'Teoría de Números', topic: 'Números primos y aritmética modular' },
+                { number: 8, title: 'Topología Básica', topic: 'Espacios métricos y continuidad' }
+            ]
+        },
+        'historia-universal': {
+            title: 'Historia Universal',
+            description: 'Un viaje a través del tiempo que te llevará desde las primeras civilizaciones hasta la era moderna. Descubre cómo el pasado ha moldeado nuestro presente.',
+            learning: 'Comprenderás los grandes procesos históricos, serás capaz de analizar eventos históricos desde múltiples perspectivas y desarrollarás pensamiento crítico sobre el pasado.',
+            instructor: {
+                name: 'Prof. Miguel Herrera',
+                bio: 'Historiador con especialización en historia antigua y medieval. Más de 18 años de experiencia docente en universidades.',
+                avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face'
+            },
+            duration: '16 semanas (64 horas)',
+            image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=300&fit=crop',
+            type: 'free',
+            classes: [
+                { number: 1, title: 'Las Primeras Civilizaciones', topic: 'Mesopotamia, Egipto y el valle del Indo' },
+                { number: 2, title: 'Grecia Clásica', topic: 'Democracia ateniense y filosofía griega' },
+                { number: 3, title: 'Roma Antigua', topic: 'República e Imperio Romano' },
+                { number: 4, title: 'Edad Media', topic: 'Feudalismo y la Iglesia medieval' },
+                { number: 5, title: 'Renacimiento', topic: 'Humanismo y arte renacentista' },
+                { number: 6, title: 'Revolución Industrial', topic: 'Cambios sociales y económicos' },
+                { number: 7, title: 'Guerras Mundiales', topic: 'Conflictos del siglo XX' },
+                { number: 8, title: 'Era Contemporánea', topic: 'Globalización y desafíos actuales' }
+            ]
+        },
+        'historia-america-latina': {
+            title: 'Historia de América Latina',
+            description: 'Explora la rica historia de América Latina, desde las civilizaciones precolombinas hasta la actualidad. Descubre la diversidad cultural y los procesos históricos únicos de la región.',
+            learning: 'Comprenderás la historia de América Latina desde múltiples perspectivas, serás capaz de analizar los procesos de colonización, independencia y desarrollo de la región.',
+            instructor: {
+                name: 'Prof. Miguel Herrera',
+                bio: 'Historiador especializado en historia latinoamericana. Investigador en procesos de independencia y desarrollo económico de la región.',
+                avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face'
+            },
+            duration: '14 semanas (56 horas)',
+            image: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=400&h=300&fit=crop',
+            type: 'premium',
+            classes: [
+                { number: 1, title: 'Civilizaciones Precolombinas', topic: 'Mayas, aztecas e incas' },
+                { number: 2, title: 'Conquista Española', topic: 'Proceso de colonización y resistencia' },
+                { number: 3, title: 'Período Colonial', topic: 'Sociedad colonial y economía extractiva' },
+                { number: 4, title: 'Independencias', topic: 'Procesos de emancipación en el siglo XIX' },
+                { number: 5, title: 'Siglo XIX', topic: 'Formación de estados nacionales' },
+                { number: 6, title: 'Revolución Mexicana', topic: 'Transformaciones sociales y políticas' },
+                { number: 7, title: 'Siglo XX', topic: 'Dictaduras, democracias y desarrollo' },
+                { number: 8, title: 'América Latina Actual', topic: 'Desafíos y oportunidades del siglo XXI' }
+            ]
+        }
+    };
+    
+    const course = courseData[courseId];
+    if (course) {
+        this.displayCourseDetail(course);
+    }
+};
+
+// Mostrar datos del curso en la interfaz
+AtlasApp.prototype.displayCourseDetail = function(course) {
+    // Título y descripción
+    const titleElement = document.getElementById('course-detail-title');
+    const descriptionElement = document.getElementById('course-detail-description');
+    if (titleElement) titleElement.textContent = course.title;
+    if (descriptionElement) descriptionElement.textContent = course.description;
+    
+    // Aprendizaje esperado
+    const learningElement = document.getElementById('course-detail-learning');
+    if (learningElement) learningElement.textContent = course.learning;
+    
+    // Instructor
+    const instructorAvatarElement = document.getElementById('course-detail-instructor-avatar');
+    const instructorNameElement = document.getElementById('course-detail-instructor-name');
+    const instructorBioElement = document.getElementById('course-detail-instructor-bio');
+    
+    if (instructorAvatarElement) instructorAvatarElement.src = course.instructor.avatar;
+    if (instructorNameElement) instructorNameElement.textContent = course.instructor.name;
+    if (instructorBioElement) instructorBioElement.textContent = course.instructor.bio;
+    
+    // Duración
+    const durationElement = document.getElementById('course-detail-duration');
+    if (durationElement) {
+        const spanElement = durationElement.querySelector('span');
+        if (spanElement) spanElement.textContent = course.duration;
+    }
+    
+    // Imagen del curso
+    const imageElement = document.getElementById('course-detail-image');
+    if (imageElement) imageElement.src = course.image;
+    
+    // Badge del curso
+    const badgeElement = document.getElementById('course-detail-badge');
+    if (badgeElement) {
+        badgeElement.className = `course-detail-badge ${course.type}`;
+        badgeElement.textContent = course.type === 'premium' ? 'Premium' : 'Gratuito';
+    }
+    
+    // Botón de comenzar
+    const startBtnElement = document.getElementById('course-start-btn');
+    if (startBtnElement) {
+        startBtnElement.className = `course-start-btn ${course.type}`;
+        startBtnElement.onclick = () => this.handleCourseStart(course.type);
+    }
+    
+    // Lista de clases
+    const classesElement = document.getElementById('course-detail-classes');
+    if (classesElement) {
+        classesElement.innerHTML = '';
+        course.classes.forEach(classItem => {
+            const classElement = document.createElement('div');
+            classElement.className = 'class-item';
+            classElement.innerHTML = `
+                <div class="class-number">${classItem.number}</div>
+                <div class="class-info">
+                    <h4>${classItem.title}</h4>
+                    <p>${classItem.topic}</p>
+                </div>
+            `;
+            classesElement.appendChild(classElement);
+        });
+    }
+};
+
+// Manejar clic en botón de comenzar curso
+AtlasApp.prototype.handleCourseStart = function(courseType) {
+    if (courseType === 'premium') {
+        alert('¡Este curso requiere una suscripción Premium! 🎓\n\nPara acceder a este contenido exclusivo, necesitas actualizar tu cuenta a Premium.\n\nPrecios Premium (IVA incluido):\n• Mensual: $99.00 MXN (Base: $85.34 + IVA: $13.66)\n• Anual: $1,009.75 MXN (Base: $870.47 + IVA: $139.28) - Ahorra 15%\n\nBeneficios Premium:\n• Acceso a todos los cursos\n• Certificados de finalización\n• Soporte prioritario\n• Contenido exclusivo');
+    } else {
+        alert('¡Perfecto! 🚀\n\nHas comenzado el curso gratuito.\n\nPróximamente podrás:\n• Acceder a las clases\n• Completar ejercicios\n• Obtener tu certificado\n• Interactuar con otros estudiantes');
+    }
+};
+
+// Configurar botón de regreso
+AtlasApp.prototype.setupBackButton = function() {
+    const backBtn = document.getElementById('back-to-courses');
+    if (backBtn) {
+        backBtn.addEventListener('click', () => {
+            // Ocultar vista detallada
+            document.getElementById('course-detail-tab').classList.remove('active');
+            // Mostrar vista de cursos
+            document.getElementById('content-tab').classList.add('active');
+            
+            // Actualizar pestaña activa
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const contentTabBtn = document.querySelector('[data-tab="content"]');
+            if (contentTabBtn) {
+                contentTabBtn.classList.add('active');
+            }
+        });
+    }
+};
+
 // Añadir métodos para las nuevas funcionalidades al prototipo de AtlasApp
 AtlasApp.prototype.setupTabs = function() {
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -795,6 +1097,12 @@ AtlasApp.prototype.setupProfileMenu = function() {
         this.closeProfileMenu();
     });
 
+    document.getElementById('progress-option').addEventListener('click', () => {
+        console.log('🔄 Botón de avances clickeado');
+        this.showProgressPage();
+        this.closeProfileMenu();
+    });
+
     document.getElementById('logout-option').addEventListener('click', () => {
         this.handleLogout();
         this.closeProfileMenu();
@@ -955,6 +1263,52 @@ AtlasApp.prototype.showAchievementsPage = function() {
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active');
     });
+};
+
+AtlasApp.prototype.showProgressPage = function() {
+    console.log('🔄 showProgressPage llamada');
+    
+    // Ocultar todas las pestañas
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Mostrar página de avances
+    const progressPage = document.getElementById('progress-page');
+    if (progressPage) {
+        progressPage.classList.add('active');
+        console.log('✅ Página de avances activada');
+    } else {
+        console.error('❌ No se encontró la página de avances');
+    }
+    
+    // Desactivar pestañas de navegación
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Inicializar página de avances avanzada
+    console.log('🚀 Inicializando página de avances avanzada...');
+    this.initializeAdvancedProgress();
+};
+
+// Inicializar página de avances avanzada
+AtlasApp.prototype.initializeAdvancedProgress = function() {
+    console.log('🚀 Inicializando página de avances avanzada...');
+    
+    // Cargar datos de progreso del usuario
+    this.loadUserProgressData();
+    
+    // Configurar gráficos
+    this.setupProgressCharts();
+    
+    // Configurar análisis de IA
+    this.setupAIAnalysis();
+    
+    // Configurar eventos de la página
+    this.setupProgressPageEvents();
+    
+    console.log('✅ Página de avances avanzada inicializada');
 };
 
 // Configuración del modo oscuro
@@ -1296,23 +1650,95 @@ AtlasApp.prototype.setupCoursesSection = function() {
     // Configurar todos los filtros (nivel y tipo) con la misma lógica
     this.setupAllFilters();
     
-    // Configurar clicks en tarjetas de curso
-    const courseCards = document.querySelectorAll('.course-card');
-    courseCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            const courseTitle = card.querySelector('.course-title').textContent;
-            const instructorName = card.querySelector('.instructor-name').textContent;
-            const level = card.dataset.level;
-            
-            console.log(`🎯 Curso clickeado: ${courseTitle} por ${instructorName} (${level})`);
-            
-            // Por ahora solo mostrar información en consola
-            // Más adelante implementaremos la vista detallada del curso
-            this.showCourseInfo(courseTitle, instructorName, level);
+    // Configurar funcionalidad de rutas de aprendizaje
+    this.setupLearningPaths();
+    
+    // Los clicks en tarjetas de curso se configuran en setupCourseCards()
+    // No necesitamos duplicar la funcionalidad aquí
+    
+    console.log('✅ Sección de cursos configurada correctamente');
+};
+
+// Configuración de rutas de aprendizaje
+AtlasApp.prototype.setupLearningPaths = function() {
+    console.log('🛤️ Configurando rutas de aprendizaje...');
+    
+    // Configurar enlace para mostrar rutas de aprendizaje
+    const showLearningPathsLink = document.getElementById('show-learning-paths');
+    if (showLearningPathsLink) {
+        showLearningPathsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.toggleLearningPaths();
+        });
+    }
+    
+    // Configurar botones de toggle para cada ruta
+    const toggleButtons = document.querySelectorAll('.path-toggle-btn');
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const pathId = button.dataset.path;
+            this.togglePathCourses(pathId);
         });
     });
     
-    console.log('✅ Sección de cursos configurada correctamente');
+    // Configurar botones de comenzar ruta (por ahora sin funcionalidad)
+    const startPathButtons = document.querySelectorAll('.path-start-btn');
+    startPathButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const pathId = button.dataset.path;
+            this.startLearningPath(pathId);
+        });
+    });
+    
+    console.log('✅ Rutas de aprendizaje configuradas correctamente');
+};
+
+// Mostrar/ocultar interfaz de rutas de aprendizaje
+AtlasApp.prototype.toggleLearningPaths = function() {
+    const learningPathsContainer = document.getElementById('learning-paths-container');
+    const coursesCategories = document.querySelector('.courses-categories');
+    
+    if (learningPathsContainer && coursesCategories) {
+        if (learningPathsContainer.style.display === 'none') {
+            // Mostrar rutas de aprendizaje
+            learningPathsContainer.style.display = 'block';
+            coursesCategories.style.display = 'none';
+            console.log('🛤️ Mostrando rutas de aprendizaje');
+        } else {
+            // Mostrar categorías de cursos
+            learningPathsContainer.style.display = 'none';
+            coursesCategories.style.display = 'block';
+            console.log('📚 Mostrando categorías de cursos');
+        }
+    }
+};
+
+// Mostrar/ocultar cursos de una ruta específica
+AtlasApp.prototype.togglePathCourses = function(pathId) {
+    const coursesContainer = document.getElementById(`${pathId}-courses`);
+    const toggleButton = document.querySelector(`[data-path="${pathId}"]`);
+    
+    if (coursesContainer && toggleButton) {
+        const isVisible = coursesContainer.style.display !== 'none';
+        
+        if (isVisible) {
+            // Ocultar cursos
+            coursesContainer.style.display = 'none';
+            toggleButton.innerHTML = '<i class="fas fa-chevron-down"></i><span data-translate="courses.paths.view_courses">Ver cursos</span>';
+            console.log(`🛤️ Ocultando cursos de la ruta: ${pathId}`);
+        } else {
+            // Mostrar cursos
+            coursesContainer.style.display = 'block';
+            toggleButton.innerHTML = '<i class="fas fa-chevron-up"></i><span data-translate="courses.paths.view_courses">Ocultar cursos</span>';
+            console.log(`🛤️ Mostrando cursos de la ruta: ${pathId}`);
+        }
+    }
+};
+
+// Función para comenzar una ruta de aprendizaje (por ahora sin funcionalidad)
+AtlasApp.prototype.startLearningPath = function(pathId) {
+    console.log(`🚀 Iniciando ruta de aprendizaje: ${pathId}`);
+    this.showNotification('Función de comenzar ruta estará disponible próximamente', 'info');
 };
 
 AtlasApp.prototype.filterCourses = function(searchTerm) {
@@ -1541,74 +1967,7 @@ AtlasApp.prototype.filterCoursesByType = function(type) {
     this.applyFilter(type);
 };
 
-AtlasApp.prototype.showCourseInfo = function(title, instructor, level) {
-    // Obtener información adicional del curso
-    const courseCard = event.target.closest('.course-card');
-    const courseType = courseCard.dataset.type;
-    const isAtlas = courseCard.classList.contains('atlas-course');
-    const isPremium = courseCard.classList.contains('premium-course');
-    
-    // Crear notificación temporal con información del curso
-    const notification = document.createElement('div');
-    notification.className = 'course-info-notification';
-    
-    let typeIcon = '';
-    let typeText = '';
-    let accessInfo = '';
-    
-    if (isAtlas) {
-        typeIcon = '🎓';
-        typeText = 'Atlas';
-        accessInfo = '✅ Acceso gratuito';
-    } else if (isPremium) {
-        typeIcon = '👑';
-        typeText = 'Premium';
-        accessInfo = '🔒 Requiere suscripción Premium';
-    } else {
-        typeIcon = '💚';
-        typeText = 'Gratuito';
-        accessInfo = '✅ Acceso gratuito';
-    }
-    
-    notification.innerHTML = `
-        <div class="notification-content">
-            <h4>${typeIcon} ${title}</h4>
-            <p><strong>Instructor:</strong> ${instructor}</p>
-            <p><strong>Nivel:</strong> ${level}</p>
-            <p><strong>Tipo:</strong> ${typeText}</p>
-            <p><strong>Acceso:</strong> ${accessInfo}</p>
-            <p><em>Vista detallada próximamente...</em></p>
-        </div>
-    `;
-    
-    // Estilos inline para la notificación
-    const borderColor = isPremium ? '#8b5cf6' : isAtlas ? 'var(--primary-color)' : '#10b981';
-    Object.assign(notification.style, {
-        position: 'fixed',
-        top: '20px',
-        right: '20px',
-        background: 'var(--background)',
-        border: `2px solid ${borderColor}`,
-        borderRadius: 'var(--radius-lg)',
-        padding: '1rem',
-        boxShadow: 'var(--shadow-lg)',
-        zIndex: '1000',
-        maxWidth: '300px',
-        animation: 'slideInRight 0.3s ease-out'
-    });
-    
-    document.body.appendChild(notification);
-    
-    // Remover después de 4 segundos (más tiempo para leer la información adicional)
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease-in';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    }, 4000);
-};
+
 
 // Configuración del menú hamburguesa
 AtlasApp.prototype.setupHamburgerMenu = function() {
@@ -3122,11 +3481,36 @@ AtlasApp.prototype.showNotification = function(message, type = 'info') {
         </div>
     `;
     
+    // Detectar si estamos en el contexto de validación de escuela
+    const schoolValidationSection = document.querySelector('.school-validation-section');
+    let notificationPosition = {};
+    
+    if (schoolValidationSection && schoolValidationSection.getBoundingClientRect) {
+        const rect = schoolValidationSection.getBoundingClientRect();
+        // Posicionar sobre el contenedor de validación, esquina superior derecha
+        notificationPosition = {
+            position: 'absolute',
+            top: `${rect.top + 20}px`,
+            right: `${window.innerWidth - rect.right + 180}px`
+        };
+        
+        // Agregar la notificación al contenedor de validación
+        schoolValidationSection.appendChild(notification);
+    } else {
+        // Posición por defecto (esquina superior derecha de la pantalla)
+        notificationPosition = {
+            position: 'fixed',
+            top: '20px',
+            right: '20px'
+        };
+        
+        // Agregar al body
+        document.body.appendChild(notification);
+    }
+    
     // Estilos inline
     Object.assign(notification.style, {
-        position: 'fixed',
-        top: '20px',
-        right: '20px',
+        ...notificationPosition,
         padding: '1rem 1.5rem',
         borderRadius: 'var(--radius-lg)',
         color: 'white',
@@ -3134,10 +3518,12 @@ AtlasApp.prototype.showNotification = function(message, type = 'info') {
         zIndex: '9999',
         maxWidth: '400px',
         animation: 'slideInRight 0.3s ease-out',
-        background: type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'
+        background: type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6',
+        boxShadow: 'var(--shadow-lg)',
+        border: '1px solid rgba(255, 255, 255, 0.2)'
     });
     
-    document.body.appendChild(notification);
+    // La notificación ya se agregó en la lógica anterior
     
     setTimeout(() => {
         notification.style.animation = 'slideOutRight 0.3s ease-in';
@@ -3602,6 +3988,543 @@ AtlasApp.prototype.getEducationLevelText = function(level) {
     return levels[level] || 'No especificado';
 };
 
+// ===== COMPOSITOR DE PUBLICACIONES =====
+
+AtlasApp.prototype.setupPostComposer = function() {
+    console.log('📝 Configurando compositor de publicaciones...');
+    
+    // Elementos principales
+    const openCreatePostBtn = document.getElementById('open-create-post');
+    const addPhotoBtn = document.getElementById('add-photo-btn');
+    const createPostModal = document.getElementById('create-post-modal');
+    const closeCreatePostModal = document.getElementById('close-create-post-modal');
+    const cancelCreatePost = document.getElementById('cancel-create-post');
+    const publishPostBtn = document.getElementById('publish-post-btn');
+    
+    // Elementos del modal
+    const postTextarea = document.getElementById('post-text');
+    const charCount = document.getElementById('char-count');
+    const addImageBtn = document.getElementById('add-image-btn');
+    const postMediaInput = document.getElementById('post-media-input');
+    const postMediaPreview = document.getElementById('post-media-preview');
+    const mediaContainer = document.getElementById('media-container');
+    const removeMediaBtn = document.getElementById('remove-media-btn');
+    
+    // Variables para manejar archivos
+    this.selectedPostFiles = [];
+    
+    // Abrir modal
+    if (openCreatePostBtn) {
+        openCreatePostBtn.addEventListener('click', () => {
+            this.openCreatePostModal();
+        });
+    }
+    
+    // Abrir modal desde el botón de foto
+    if (addPhotoBtn) {
+        addPhotoBtn.addEventListener('click', () => {
+            this.openCreatePostModal();
+            setTimeout(() => {
+                if (postMediaInput) postMediaInput.click();
+            }, 100);
+        });
+    }
+    
+    // Cerrar modal
+    if (closeCreatePostModal) {
+        closeCreatePostModal.addEventListener('click', () => {
+            this.closeCreatePostModal();
+        });
+    }
+    
+    if (cancelCreatePost) {
+        cancelCreatePost.addEventListener('click', () => {
+            this.closeCreatePostModal();
+        });
+    }
+    
+    // Contador de caracteres
+    if (postTextarea) {
+        postTextarea.addEventListener('input', () => {
+            this.updateCharacterCount();
+            this.updatePublishButton();
+        });
+    }
+    
+    // Subir imágenes
+    if (addImageBtn) {
+        addImageBtn.addEventListener('click', () => {
+            if (postMediaInput) postMediaInput.click();
+        });
+    }
+    
+    if (postMediaInput) {
+        postMediaInput.addEventListener('change', (e) => {
+            this.handlePostMediaUpload(e);
+        });
+    }
+    
+    // Remover medios
+    if (removeMediaBtn) {
+        removeMediaBtn.addEventListener('click', () => {
+            this.removeAllPostMedia();
+        });
+    }
+    
+    // Publicar post con protección extra
+    if (publishPostBtn) {
+        publishPostBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.publishPost();
+        });
+        
+        // Prevenir doble clic
+        publishPostBtn.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    }
+    
+    console.log('✅ Compositor de publicaciones configurado');
+};
+
+AtlasApp.prototype.openCreatePostModal = function() {
+    const modal = document.getElementById('create-post-modal');
+    const modalUserName = document.getElementById('modal-user-name');
+    const modalUserAvatar = document.getElementById('modal-user-avatar');
+    
+    // Actualizar información del usuario en el modal
+    const userData = JSON.parse(localStorage.getItem('profile_data') || localStorage.getItem('user_data') || '{}');
+    if (modalUserName) {
+        modalUserName.textContent = userData.name || 'Usuario';
+    }
+    if (modalUserAvatar && userData.photo) {
+        modalUserAvatar.src = userData.photo;
+        // Forzar estilos correctos con máxima prioridad
+        modalUserAvatar.style.cssText = `
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            display: block !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            outline: none !important;
+            box-sizing: border-box !important;
+            clip-path: circle(25px at 50% 50%) !important;
+        `;
+    }
+    
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Focus en el textarea
+        setTimeout(() => {
+            const postTextarea = document.getElementById('post-text');
+            if (postTextarea) {
+                postTextarea.focus();
+            }
+        }, 100);
+    }
+};
+
+AtlasApp.prototype.closeCreatePostModal = function() {
+    const modal = document.getElementById('create-post-modal');
+    
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        // Limpiar formulario
+        this.clearPostForm();
+        
+        // Resetear flag de publicación por si acaso
+        this.isPublishing = false;
+    }
+};
+
+AtlasApp.prototype.clearPostForm = function() {
+    const postTextarea = document.getElementById('post-text');
+    const charCount = document.getElementById('char-count');
+    const publishBtn = document.getElementById('publish-post-btn');
+    
+    if (postTextarea) postTextarea.value = '';
+    if (charCount) charCount.textContent = '0';
+    if (publishBtn) publishBtn.disabled = true;
+    
+    // Limpiar archivos seleccionados
+    this.selectedPostFiles = [];
+    this.removeAllPostMedia();
+    
+    // Resetear flag de publicación por seguridad
+    this.isPublishing = false;
+};
+
+AtlasApp.prototype.updateCharacterCount = function() {
+    const postTextarea = document.getElementById('post-text');
+    const charCount = document.getElementById('char-count');
+    const charCountContainer = document.querySelector('.character-count');
+    
+    if (postTextarea && charCount) {
+        const count = postTextarea.value.length;
+        charCount.textContent = count;
+        
+        // Cambiar color según la cantidad
+        if (charCountContainer) {
+            charCountContainer.classList.remove('warning', 'error');
+            
+            if (count > 1800) {
+                charCountContainer.classList.add('error');
+            } else if (count > 1500) {
+                charCountContainer.classList.add('warning');
+            }
+        }
+    }
+};
+
+AtlasApp.prototype.updatePublishButton = function() {
+    const postTextarea = document.getElementById('post-text');
+    const publishBtn = document.getElementById('publish-post-btn');
+    
+    if (postTextarea && publishBtn) {
+        const hasText = postTextarea.value.trim().length > 0;
+        const hasMedia = this.selectedPostFiles.length > 0;
+        
+        publishBtn.disabled = !(hasText || hasMedia);
+    }
+};
+
+AtlasApp.prototype.handlePostMediaUpload = function(event) {
+    const files = Array.from(event.target.files);
+    
+    if (files.length === 0) return;
+    
+    // Validar archivos - SOLO IMÁGENES
+    for (const file of files) {
+        // Solo permitir imágenes
+        if (!file.type.startsWith('image/')) {
+            this.showNotification('Solo se permiten imágenes', 'error');
+            return;
+        }
+        
+        // Validar tamaño (máximo 10MB por imagen)
+        if (file.size > 10 * 1024 * 1024) {
+            this.showNotification('La imagen es demasiado grande (máx. 10MB)', 'error');
+            return;
+        }
+    }
+    
+    // Limitar a 4 imágenes máximo
+    const totalFiles = this.selectedPostFiles.length + files.length;
+    if (totalFiles > 4) {
+        this.showNotification('Máximo 4 imágenes por publicación', 'error');
+        return;
+    }
+    
+    // Agregar archivos
+    files.forEach(file => {
+        this.selectedPostFiles.push(file);
+    });
+    
+    // Actualizar vista previa
+    this.updateMediaPreview();
+    this.updatePublishButton();
+    
+    // Limpiar input para permitir seleccionar los mismos archivos de nuevo
+    event.target.value = '';
+};
+
+AtlasApp.prototype.updateMediaPreview = function() {
+    const postMediaPreview = document.getElementById('post-media-preview');
+    const mediaContainer = document.getElementById('media-container');
+    
+    if (!postMediaPreview || !mediaContainer) return;
+    
+    if (this.selectedPostFiles.length === 0) {
+        postMediaPreview.style.display = 'none';
+        return;
+    }
+    
+    postMediaPreview.style.display = 'block';
+    mediaContainer.innerHTML = '';
+    
+    // Configurar grid según cantidad de imágenes
+    mediaContainer.className = 'media-container';
+    if (this.selectedPostFiles.length === 1) {
+        mediaContainer.classList.add('single');
+    } else if (this.selectedPostFiles.length === 2) {
+        mediaContainer.classList.add('double');
+    } else {
+        mediaContainer.classList.add('multiple');
+    }
+    
+    // Crear elementos de vista previa para imágenes
+    this.selectedPostFiles.forEach((file, index) => {
+        const mediaItem = document.createElement('div');
+        mediaItem.className = 'media-item';
+        
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'media-item-remove';
+        removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        removeBtn.addEventListener('click', () => {
+            this.removePostMedia(index);
+        });
+        
+        // Solo crear elementos de imagen
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.alt = 'Vista previa';
+        mediaItem.appendChild(img);
+        
+        mediaItem.appendChild(removeBtn);
+        mediaContainer.appendChild(mediaItem);
+    });
+};
+
+AtlasApp.prototype.removePostMedia = function(index) {
+    this.selectedPostFiles.splice(index, 1);
+    this.updateMediaPreview();
+    this.updatePublishButton();
+};
+
+AtlasApp.prototype.removeAllPostMedia = function() {
+    this.selectedPostFiles = [];
+    this.updateMediaPreview();
+    this.updatePublishButton();
+};
+
+AtlasApp.prototype.publishPost = function() {
+    // PROTECCIÓN MÚLTIPLE CONTRA PUBLICACIONES DUPLICADAS
+    if (this.isPublishing) {
+        console.log('⏳ Ya se está publicando, ignorando clic adicional');
+        return;
+    }
+    
+    const postTextarea = document.getElementById('post-text');
+    const publishBtn = document.getElementById('publish-post-btn');
+    
+    if (!postTextarea || !publishBtn) return;
+    
+    // Verificar si el botón ya está deshabilitado
+    if (publishBtn.disabled) {
+        console.log('⏳ Botón ya deshabilitado, ignorando clic');
+        return;
+    }
+    
+    const text = postTextarea.value.trim();
+    const hasMedia = this.selectedPostFiles.length > 0;
+    
+    if (!text && !hasMedia) {
+        this.showNotification('Escribe algo o agrega una imagen para publicar', 'error');
+        return;
+    }
+    
+    // Marcar como publicando
+    this.isPublishing = true;
+    
+    // Deshabilitar botón mientras se publica
+    publishBtn.disabled = true;
+    const originalText = publishBtn.innerHTML;
+    publishBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Publicando...</span>';
+    
+    // Simular publicación
+    setTimeout(() => {
+        const postData = {
+            id: Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+            text: text,
+            images: this.selectedPostFiles.map(file => ({
+                name: file.name,
+                url: URL.createObjectURL(file) // En producción sería una URL real
+            })),
+            author: JSON.parse(localStorage.getItem('profile_data') || localStorage.getItem('user_data') || '{}'),
+            timestamp: new Date().toISOString(),
+            likes: 0,
+            comments: []
+        };
+        
+        // Guardar en localStorage
+        const posts = JSON.parse(localStorage.getItem('user_posts') || '[]');
+        posts.unshift(postData); // Agregar al inicio
+        localStorage.setItem('user_posts', JSON.stringify(posts));
+        
+        // Agregar al feed
+        this.addPostToFeed(postData);
+        
+        // Mostrar notificación
+        this.showNotification('¡Publicación creada exitosamente!', 'success');
+        
+        // Cerrar modal
+        this.closeCreatePostModal();
+        
+        // Restaurar botón
+        publishBtn.innerHTML = originalText;
+        publishBtn.disabled = false;
+        
+        // Liberar flag de publicación
+        this.isPublishing = false;
+        
+    }, 1000); // Reducido a 1 segundo para respuesta más rápida
+};
+
+AtlasApp.prototype.addPostToFeed = function(postData) {
+    const feedPosts = document.getElementById('feed-posts');
+    if (!feedPosts) return;
+    
+    const postElement = this.createPostElement(postData);
+    feedPosts.insertBefore(postElement, feedPosts.firstChild);
+};
+
+AtlasApp.prototype.createPostElement = function(postData) {
+    const article = document.createElement('article');
+    article.className = 'post-card';
+    article.dataset.postId = postData.id;
+    
+    const timeAgo = this.getTimeAgo(new Date(postData.timestamp));
+    
+    // Crear HTML para imágenes con tamaños apropiados
+    let imagesHTML = '';
+    if (postData.images && postData.images.length > 0) {
+        imagesHTML = '<div class="post-images';
+        
+        // Agregar clase según cantidad de imágenes
+        if (postData.images.length === 1) {
+            imagesHTML += ' single-image';
+        } else if (postData.images.length === 2) {
+            imagesHTML += ' two-images';
+        } else if (postData.images.length === 3) {
+            imagesHTML += ' three-images';
+        } else {
+            imagesHTML += ' four-images';
+        }
+        
+        imagesHTML += '">';
+        
+        postData.images.forEach((image, index) => {
+            imagesHTML += `<div class="post-image-container">
+                <img src="${image.url}" alt="Imagen de publicación" class="post-image">
+            </div>`;
+        });
+        
+        imagesHTML += '</div>';
+    }
+    
+    article.innerHTML = `
+        <div class="post-header">
+            <div class="post-user">
+                <div class="user-avatar">
+                    <img src="${postData.author.photo || 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face'}" alt="${postData.author.name || 'Usuario'}">
+                </div>
+                <div class="user-info">
+                    <h3>${postData.author.name || 'Usuario'}</h3>
+                    <p>${timeAgo}</p>
+                </div>
+            </div>
+            <button class="post-options-btn">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+        </div>
+        
+        ${postData.text ? `<div class="post-content"><p>${postData.text}</p></div>` : ''}
+        
+        ${imagesHTML}
+        
+        <div class="post-stats">
+            <span class="stat-item">
+                <i class="fas fa-heart"></i>
+                ${postData.likes} reacciones
+            </span>
+            <span class="stat-item">
+                <i class="fas fa-comment"></i>
+                ${postData.comments.length} comentarios
+            </span>
+        </div>
+        
+        <div class="post-actions">
+            <button class="action-btn reaction-btn" data-reaction="like">
+                <i class="fas fa-heart"></i>
+                <span>Me gusta</span>
+            </button>
+            <button class="action-btn comment-btn">
+                <i class="fas fa-comment"></i>
+                <span>Comentar</span>
+            </button>
+        </div>
+    `;
+    
+    // Forzar estilos circulares en la imagen de perfil
+    setTimeout(() => {
+        const avatarImg = article.querySelector('.user-avatar img');
+        if (avatarImg) {
+            avatarImg.style.cssText = `
+                width: 40px !important;
+                height: 40px !important;
+                border-radius: 50% !important;
+                object-fit: cover !important;
+                display: block !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                border: none !important;
+                outline: none !important;
+                box-sizing: border-box !important;
+                clip-path: circle(20px at 50% 50%) !important;
+            `;
+        }
+    }, 10);
+    
+    return article;
+};
+
+AtlasApp.prototype.getTimeAgo = function(date) {
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+    
+    if (diffInSeconds < 60) return 'Ahora';
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h`;
+    if (diffInSeconds < 2592000) return `${Math.floor(diffInSeconds / 86400)}d`;
+    
+    return date.toLocaleDateString();
+};
+
+AtlasApp.prototype.fixExistingPostAvatars = function() {
+    console.log('🔧 Arreglando avatares en publicaciones existentes...');
+    
+    // Buscar todas las imágenes de perfil en publicaciones
+    const postAvatars = document.querySelectorAll('.post-card .post-user .user-avatar img');
+    
+    postAvatars.forEach(avatarImg => {
+        if (avatarImg) {
+            avatarImg.style.cssText = `
+                width: 40px !important;
+                height: 40px !important;
+                border-radius: 50% !important;
+                object-fit: cover !important;
+                display: block !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                border: none !important;
+                outline: none !important;
+                box-sizing: border-box !important;
+                clip-path: circle(20px at 50% 50%) !important;
+            `;
+        }
+    });
+    
+    console.log(`✅ ${postAvatars.length} avatares arreglados en publicaciones`);
+};
+
 // Configuración del botón premium
 AtlasApp.prototype.setupPremiumButton = function() {
     const premiumBtn = document.getElementById('premium-btn');
@@ -3796,13 +4719,19 @@ AtlasApp.prototype.updatePricingSummary = function(billingCycle) {
     let price, tax, total;
     
     if (billingCycle === 'yearly') {
-        price = 99.99;
-        tax = 15.00;
-        total = 114.99;
+        // Precio mensual: $99.00 (IVA incluido)
+        // Precio base mensual: $85.34
+        // IVA mensual: $13.66
+        // Para anual: ($85.34 * 12 meses * 0.85) = $870.47 (precio base)
+        // IVA anual: $870.47 * 0.16 = $139.28
+        // Total anual: $870.47 + $139.28 = $1,009.75
+        price = 1009.75; // Precio final anual con IVA incluido
+        tax = 139.28;    // IVA sobre el precio base anual
+        total = 1009.75; // Total igual al precio (IVA incluido)
     } else {
-        price = 9.99;
-        tax = 1.50;
-        total = 11.49;
+        price = 99.00;   // Precio final mensual con IVA incluido
+        tax = 13.66;     // IVA sobre el precio base mensual ($85.34)
+        total = 99.00;   // Total igual al precio (IVA incluido)
     }
     
     if (subscriptionAmount) subscriptionAmount.textContent = `$${price.toFixed(2)}`;
@@ -3908,6 +4837,7 @@ AtlasApp.prototype.setupSidebar = function() {
     // Configurar botones de sidebar
     const sidebarProfileBtn = document.getElementById('sidebar-profile-btn');
     const sidebarAchievementsBtn = document.getElementById('sidebar-achievements-btn');
+    const sidebarProgressBtn = document.getElementById('sidebar-progress-btn');
     const sidebarLogoutBtn = document.getElementById('sidebar-logout-btn');
     
     if (sidebarProfileBtn) {
@@ -3919,6 +4849,13 @@ AtlasApp.prototype.setupSidebar = function() {
     if (sidebarAchievementsBtn) {
         sidebarAchievementsBtn.addEventListener('click', () => {
             this.showAchievementsPage();
+        });
+    }
+    
+    if (sidebarProgressBtn) {
+        sidebarProgressBtn.addEventListener('click', () => {
+            console.log('🔄 Botón de avances del sidebar clickeado');
+            this.showProgressPage();
         });
     }
     
@@ -4080,13 +5017,13 @@ AtlasApp.prototype.setupDonationSection = function() {
     // Variables para el estado de la donación
     this.selectedUser = null;
     this.selectedAmount = 0;
-    this.membershipPrice = 9.99; // Precio base por membresía
+            this.membershipPrice = 25.00; // Precio base por membresía en pesos mexicanos
     
     // Sistema de precios con descuentos por mayoreo
     this.bulkPricingTiers = [
-        { min: 11, max: 20, price: 9.49, discount: 5 },
-        { min: 21, max: 35, price: 8.99, discount: 10 },
-        { min: 36, max: 50, price: 8.49, discount: 15 }
+        { min: 1, max: 20, price: 25.00, discount: 0 },
+        { min: 21, max: 35, price: 25.00, discount: 0 },
+        { min: 36, max: 50, price: 25.00, discount: 0 }
     ];
 };
 
@@ -4387,16 +5324,20 @@ AtlasApp.prototype.updateBulkPrice = function(amount, priceElement) {
     const numAmount = parseInt(amount);
     const bulkDiscount = document.getElementById('bulk-discount');
     
-    if (numAmount >= 11 && numAmount <= 50) {
+    if (numAmount >= 1 && numAmount <= 50) {
         const pricing = this.getBulkPrice(numAmount);
         
         if (pricing) {
             priceElement.textContent = `$${pricing.totalPrice}`;
             
             // Mostrar descuento
-            const savings = (parseFloat(pricing.originalPrice) - parseFloat(pricing.totalPrice)).toFixed(2);
-            bulkDiscount.textContent = `¡Ahorras $${savings} (-${pricing.discount}%)!`;
-            bulkDiscount.style.display = 'inline-block';
+            if (pricing.discount > 0) {
+                const savings = (parseFloat(pricing.originalPrice) - parseFloat(pricing.totalPrice)).toFixed(2);
+                bulkDiscount.textContent = `¡Ahorras $${savings} (-${pricing.discount}%)!`;
+                bulkDiscount.style.display = 'inline-block';
+            } else {
+                bulkDiscount.style.display = 'none';
+            }
         }
         
         this.selectedAmount = numAmount;
@@ -4410,7 +5351,7 @@ AtlasApp.prototype.updateBulkPrice = function(amount, priceElement) {
 };
 
 AtlasApp.prototype.updateBulkDonationSummary = function() {
-    if (this.selectedAmount === 0 || this.selectedAmount < 11 || this.selectedAmount > 50) {
+    if (this.selectedAmount === 0 || this.selectedAmount < 1 || this.selectedAmount > 50) {
         this.hideBulkDonationSummary();
         return;
     }
@@ -4440,8 +5381,8 @@ AtlasApp.prototype.hideBulkDonationSummary = function() {
 };
 
 AtlasApp.prototype.processBulkDonation = function() {
-    if (this.selectedAmount === 0 || this.selectedAmount < 11 || this.selectedAmount > 50) {
-        this.showNotification(this.getTranslation('donation.invalid_bulk_amount') || 'La cantidad debe estar entre 11 y 50 membresías', 'warning');
+    if (this.selectedAmount === 0 || this.selectedAmount < 1 || this.selectedAmount > 50) {
+        this.showNotification(this.getTranslation('donation.invalid_bulk_amount') || 'La cantidad debe estar entre 1 y 50 membresías', 'warning');
         return;
     }
     
@@ -4469,8 +5410,1120 @@ AtlasApp.prototype.processBulkDonation = function() {
     }, 2000);
 };
 
+// ===== VALIDACIÓN DE ESCUELA PARA DESCUENTO =====
+
+// Configuración de validación de escuela para descuento
+AtlasApp.prototype.setupSchoolValidation = function() {
+    console.log('🎓 Configurando validación de escuela para descuento...');
+    
+    const validateBtn = document.getElementById('validate-school-btn');
+    const verifyEmailBtn = document.getElementById('verify-email-btn');
+    const applyDiscountBtn = document.getElementById('apply-discount-btn');
+    
+    if (validateBtn) {
+        validateBtn.addEventListener('click', () => {
+            this.validateSchool();
+        });
+    }
+    
+    if (verifyEmailBtn) {
+        verifyEmailBtn.addEventListener('click', () => {
+            this.verifyInstitutionalEmail();
+        });
+    }
+    
+    if (applyDiscountBtn) {
+        applyDiscountBtn.addEventListener('click', () => {
+            this.applyStudentDiscount();
+        });
+    }
+    
+    // Configurar formateo automático de la clave
+    const schoolClaveInput = document.getElementById('school-clave');
+    if (schoolClaveInput) {
+        schoolClaveInput.addEventListener('input', (e) => {
+            this.formatSchoolClave(e.target);
+        });
+        
+        schoolClaveInput.addEventListener('keypress', (e) => {
+            // Solo permitir números y letras
+            const char = String.fromCharCode(e.which);
+            if (!/[0-9A-Za-z]/.test(char)) {
+                e.preventDefault();
+            }
+        });
+    }
+    
+    console.log('✅ Validación de escuela configurada correctamente');
+};
+
+// Validar escuela
+AtlasApp.prototype.validateSchool = function() {
+    const schoolName = document.getElementById('school-name').value.trim();
+    const schoolClave = document.getElementById('school-clave').value.trim();
+    
+    if (!schoolName || !schoolClave) {
+        this.showNotification('Por favor completa todos los campos', 'error');
+        return;
+    }
+    
+    // Validar formato de clave (ejemplo: 21PES0001A)
+    if (!this.isValidSchoolClave(schoolClave)) {
+        this.showNotification('Por favor ingresa una clave de escuela válida', 'error');
+        return;
+    }
+    
+    // Simular validación con base de datos usando la clave
+    const schoolInfo = this.getSchoolInfoByClave(schoolClave);
+    
+    if (schoolInfo && schoolInfo.isEligibleForDiscount) {
+        this.showValidationResult(true, schoolInfo);
+    } else {
+        this.showValidationResult(false);
+    }
+};
+
+// Verificar correo institucional
+AtlasApp.prototype.verifyInstitutionalEmail = function() {
+    const email = document.getElementById('institutional-email').value.trim();
+    
+    if (!email) {
+        this.showNotification('Por favor ingresa tu correo institucional', 'error');
+        return;
+    }
+    
+    if (!this.isValidInstitutionalEmail(email)) {
+        this.showNotification('Por favor ingresa un correo institucional válido', 'error');
+        return;
+    }
+    
+    // Simular verificación
+    this.showNotification('Correo institucional verificado exitosamente', 'success');
+    this.showDiscountedPrices();
+};
+
+// Aplicar descuento estudiantil
+AtlasApp.prototype.applyStudentDiscount = function() {
+    this.showNotification('¡Descuento aplicado exitosamente! 🎓', 'success');
+    
+    // Aquí podrías redirigir al proceso de pago con descuento
+    setTimeout(() => {
+        // Mostrar sección de pago premium con descuento
+        const paymentSection = document.getElementById('premium-payment-section');
+        if (paymentSection) {
+            paymentSection.style.display = 'block';
+        }
+    }, 2000);
+};
+
+// Mostrar resultado de validación
+AtlasApp.prototype.showValidationResult = function(isValid, schoolInfo = null) {
+    const validationResult = document.getElementById('validation-result');
+    const invalidResult = document.getElementById('invalid-result');
+    
+    if (isValid && schoolInfo) {
+        validationResult.style.display = 'block';
+        invalidResult.style.display = 'none';
+        
+        // Actualizar información de la escuela validada
+        this.updateSchoolValidationInfo(schoolInfo);
+        
+        // Mostrar formulario de correo institucional
+        const emailForm = document.getElementById('email-form');
+        if (emailForm) {
+            emailForm.style.display = 'block';
+        }
+    } else {
+        validationResult.style.display = 'none';
+        invalidResult.style.display = 'block';
+    }
+};
+
+// Mostrar precios con descuento
+AtlasApp.prototype.showDiscountedPrices = function() {
+    const discountedPrices = document.getElementById('discounted-prices');
+    if (discountedPrices) {
+        discountedPrices.style.display = 'block';
+    }
+};
+
+// Verificar formato de clave de escuela
+AtlasApp.prototype.isValidSchoolClave = function(clave) {
+    // Formato 1: 21PES0001A (2 dígitos + 3 letras + 4 dígitos + 1 letra)
+    // Formato 2: 32PB123 (2 dígitos + 2 letras + 3 dígitos)
+    const clavePattern1 = /^\d{2}[A-Z]{3}\d{4}[A-Z]$/;
+    const clavePattern2 = /^\d{2}[A-Z]{2}\d{3}$/;
+    
+    return clavePattern1.test(clave) || clavePattern2.test(clave);
+};
+
+// Obtener información de la escuela por clave
+AtlasApp.prototype.getSchoolInfoByClave = function(clave) {
+    // Base de datos simulada de escuelas con claves y ubicaciones geográficas
+    const schoolDatabase = {
+        '21PES0001A': {
+            name: 'Telesecundaria "Benito Juárez"',
+            location: 'Zona Rural',
+            municipality: 'San Pedro Tlaquepaque',
+            state: 'Jalisco',
+            coordinates: { lat: 20.6595, lng: -103.3494 },
+            isEligibleForDiscount: true,
+            discountReason: 'Escuela ubicada en zona rural con índice de marginación alto'
+        },
+        '21PES0002B': {
+            name: 'Escuela Secundaria Técnica Rural',
+            location: 'Zona Rural',
+            municipality: 'Tonalá',
+            state: 'Jalisco',
+            coordinates: { lat: 20.6244, lng: -103.2342 },
+            isEligibleForDiscount: true,
+            discountReason: 'Escuela en comunidad rural con acceso limitado a servicios'
+        },
+        '21PES0003C': {
+            name: 'Centro de Bachillerato Rural',
+            location: 'Zona Rural',
+            municipality: 'Zapopan',
+            state: 'Jalisco',
+            coordinates: { lat: 20.7239, lng: -103.3848 },
+            isEligibleForDiscount: true,
+            discountReason: 'Bachillerato en zona rural con población indígena'
+        },
+        '21PES0004D': {
+            name: 'Escuela Secundaria General',
+            location: 'Zona Urbana',
+            municipality: 'Guadalajara',
+            state: 'Jalisco',
+            coordinates: { lat: 20.6595, lng: -103.3494 },
+            isEligibleForDiscount: false,
+            discountReason: 'Escuela en zona urbana con acceso completo a servicios'
+        },
+        '21PES0005E': {
+            name: 'Preparatoria Comunitaria',
+            location: 'Zona Marginada',
+            municipality: 'El Salto',
+            state: 'Jalisco',
+            coordinates: { lat: 20.5189, lng: -103.1792 },
+            isEligibleForDiscount: true,
+            discountReason: 'Preparatoria en zona urbano-marginada con alta densidad poblacional'
+        },
+        '21PES0006F': {
+            name: 'Escuela Indígena Bilingüe',
+            location: 'Comunidad Indígena',
+            municipality: 'Tuxpan',
+            state: 'Jalisco',
+            coordinates: { lat: 19.5544, lng: -103.3758 },
+            isEligibleForDiscount: true,
+            discountReason: 'Escuela en comunidad indígena con preservación de lengua originaria'
+        },
+        '21PES0007G': {
+            name: 'Colegio de Bachilleres',
+            location: 'Zona Urbana',
+            municipality: 'Tlajomulco',
+            state: 'Jalisco',
+            coordinates: { lat: 20.4731, lng: -103.4439 },
+            isEligibleForDiscount: false,
+            discountReason: 'Escuela en zona urbana consolidada'
+            },
+        '21PES0008H': {
+            name: 'Centro de Educación Indígena',
+            location: 'Comunidad Indígena',
+            municipality: 'Zapotlán el Grande',
+            state: 'Jalisco',
+            coordinates: { lat: 19.7167, lng: -103.4667 },
+            isEligibleForDiscount: true,
+            discountReason: 'Preparatoria en comunidad indígena con necesidades especiales'
+        },
+        '32PB123': {
+            name: 'Benito Juárez',
+            location: 'Zona Rural',
+            municipality: 'San Luis Potosí',
+            state: 'San Luis Potosí',
+            coordinates: { lat: 22.1565, lng: -100.9855 },
+            isEligibleForDiscount: true,
+            discountReason: 'Escuela en zona rural con acceso limitado a servicios educativos'
+        }
+    };
+    
+    return schoolDatabase[clave] || null;
+};
+
+// Actualizar información de la escuela validada
+AtlasApp.prototype.updateSchoolValidationInfo = function(schoolInfo) {
+    const resultTitle = document.getElementById('result-title');
+    const resultDescription = document.getElementById('result-description');
+    
+    if (resultTitle && resultDescription) {
+        resultTitle.textContent = `Escuela Validada: ${schoolInfo.name}`;
+        resultDescription.innerHTML = `
+            <strong>Ubicación:</strong> ${schoolInfo.location}<br>
+            <strong>Municipio:</strong> ${schoolInfo.municipality}, ${schoolInfo.state}<br>
+            <strong>Razón del descuento:</strong> ${schoolInfo.discountReason}
+        `;
+    }
+};
+
+// Formatear automáticamente la clave de la escuela
+AtlasApp.prototype.formatSchoolClave = function(input) {
+    let value = input.value.replace(/[^0-9A-Za-z]/g, '').toUpperCase();
+    
+    // Limitar a 15 caracteres
+    if (value.length > 15) {
+        value = value.substring(0, 15);
+    }
+    
+    // Formatear según el patrón detectado
+    if (value.length >= 2) {
+        const digits = value.substring(0, 2);
+        
+        // Detectar si es formato largo (21PES0001A) o corto (32PB123)
+        if (value.length >= 5 && /[A-Z]/.test(value.charAt(2)) && /[A-Z]/.test(value.charAt(3)) && /[A-Z]/.test(value.charAt(4))) {
+            // Formato largo: 21PES0001A
+            const letters = value.substring(2, 5);
+            const numbers = value.substring(5, 9);
+            const finalLetter = value.substring(9, 10);
+            
+            let formatted = digits + letters;
+            if (numbers) formatted += numbers;
+            if (finalLetter) formatted += finalLetter;
+            
+            input.value = formatted;
+        } else if (value.length >= 4 && /[A-Z]/.test(value.charAt(2)) && /[A-Z]/.test(value.charAt(3))) {
+            // Formato corto: 32PB123
+            const letters = value.substring(2, 4);
+            const numbers = value.substring(4, 7);
+            
+            let formatted = digits + letters;
+            if (numbers) formatted += numbers;
+            
+            input.value = formatted;
+        } else {
+            input.value = value;
+        }
+    } else {
+        input.value = value;
+    }
+};
+
+// Verificar si el correo es institucional válido
+AtlasApp.prototype.isValidInstitutionalEmail = function(email) {
+    const institutionalDomains = [
+        'gob.mx',
+        'edu.mx',
+        'sep.gob.mx',
+        'conalep.edu.mx',
+        'cobach.edu.mx',
+        'dgeti.edu.mx',
+        'dgeta.edu.mx',
+        'cecyte.edu.mx',
+        'prepa.edu.mx',
+        'bachiller.edu.mx',
+        'unam.mx',
+        'ipn.mx',
+        'uabc.edu.mx',
+        'udg.mx',
+        'uanl.mx'
+    ];
+    
+    const domain = email.split('@')[1];
+    return institutionalDomains.some(validDomain => 
+        domain && domain.toLowerCase().includes(validDomain)
+    );
+};
+
+// Calcular similitud entre strings
+AtlasApp.prototype.calculateStringSimilarity = function(str1, str2) {
+    if (str1 === str2) return 1.0;
+    if (str1.length === 0) return str2.length === 0 ? 1.0 : 0.0;
+    if (str2.length === 0) return 0.0;
+    
+    const matrix = [];
+    for (let i = 0; i <= str2.length; i++) {
+        matrix[i] = [i];
+    }
+    for (let j = 0; j <= str2.length; j++) {
+        matrix[0][j] = 0;
+    }
+    
+    for (let i = 1; i <= str2.length; i++) {
+        for (let j = 1; j <= str1.length; j++) {
+            if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+                matrix[i][j] = Math.min(
+                    matrix[i - 1][j - 1] + 1,
+                    matrix[i][j - 1] + 1,
+                    matrix[i - 1][j] + 1
+                );
+            }
+        }
+    }
+    
+    return 1.0 - (matrix[str2.length][str1.length] / Math.max(str1.length, str2.length));
+};
+
 // Inicializar la aplicación cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
     const app = new AtlasApp();
     app.init();
 });
+
+AtlasApp.prototype.showProgressPage = function() {
+    console.log('🔄 showProgressPage llamada');
+    
+    // Ocultar todas las pestañas
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Mostrar página de avances
+    const progressPage = document.getElementById('progress-page');
+    if (progressPage) {
+        progressPage.classList.add('active');
+        console.log('✅ Página de avances activada');
+    } else {
+        console.error('❌ No se encontró la página de avances');
+    }
+    
+    // Desactivar pestañas de navegación
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Inicializar página de avances avanzada
+    console.log('🚀 Inicializando página de avances avanzada...');
+    this.initializeAdvancedProgress();
+};
+
+// Cargar datos de progreso del usuario
+AtlasApp.prototype.loadUserProgressData = function() {
+    console.log('📊 Cargando datos de progreso del usuario...');
+    
+    // Simular datos de progreso de un estudiante específico
+    // Estudiante: Carlos Mendoza, 17 años, bachillerato, interés en física y matemáticas
+    const progressData = {
+        // Información del estudiante
+        studentInfo: {
+            name: "Carlos Mendoza",
+            age: 17,
+            grade: "5to Semestre de Bachillerato",
+            interests: ["Física", "Matemáticas", "Astronomía", "Programación"],
+            studyStyle: "Visual y Práctico",
+            goals: "Ingeniería Física o Matemáticas Aplicadas"
+        },
+        
+        // Métricas principales
+        totalStudyTime: 342, // horas acumuladas en 6 meses
+        coursesCompleted: 12,
+        learningPathsProgress: 1, // Ha completado 1 ruta completa
+        achievementRate: 87,
+        studyTimeChange: 23, // +23% vs mes anterior
+        coursesChange: 3, // +3 cursos este mes
+        pathsChange: 33, // +33% en progreso de rutas
+        achievementChange: 12, // +12% en tasa de logro
+        
+        // Patrón de estudio diario (últimas 20 sesiones)
+        dailyStudyTime: [3, 4, 2, 5, 3, 6, 4, 3, 5, 2, 4, 3, 5, 4, 6, 3, 4, 5, 3, 4],
+        
+        // Progreso detallado de cursos
+        courseProgress: [
+            { name: 'Álgebra Básica', progress: 100, category: 'Matemáticas', difficulty: 'Básico', timeSpent: 45 },
+            { name: 'Geometría Plana', progress: 100, category: 'Matemáticas', difficulty: 'Básico', timeSpent: 38 },
+            { name: 'Trigonometría', progress: 100, category: 'Matemáticas', difficulty: 'Intermedio', timeSpent: 52 },
+            { name: 'Cálculo Diferencial', progress: 85, category: 'Matemáticas', difficulty: 'Avanzado', timeSpent: 67 },
+            { name: 'Física Mecánica', progress: 100, category: 'Física', difficulty: 'Intermedio', timeSpent: 58 },
+            { name: 'Física Ondulatoria', progress: 100, category: 'Física', difficulty: 'Intermedio', timeSpent: 62 },
+            { name: 'Física Moderna', progress: 75, category: 'Física', difficulty: 'Avanzado', timeSpent: 48 },
+            { name: 'Química General', progress: 60, category: 'Química', difficulty: 'Básico', timeSpent: 35 },
+            { name: 'Introducción a la Programación', progress: 100, category: 'Tecnología', difficulty: 'Básico', timeSpent: 42 },
+            { name: 'Python para Principiantes', progress: 90, category: 'Tecnología', difficulty: 'Intermedio', timeSpent: 55 },
+            { name: 'Astronomía Básica', progress: 45, category: 'Astronomía', difficulty: 'Intermedio', timeSpent: 28 },
+            { name: 'Estadística Descriptiva', progress: 30, category: 'Matemáticas', difficulty: 'Intermedio', timeSpent: 18 }
+        ],
+        
+        // Progreso de rutas de aprendizaje
+        learningPaths: {
+            'math-fundamentals': 100, // Ruta completada al 100%
+            'natural-sciences': 85,   // Ruta en progreso avanzado
+            'programming-tech': 70    // Ruta en progreso intermedio
+        },
+        
+        // Patrones de estudio específicos
+        studyPatterns: {
+            preferredTime: "Tardes (2:00 PM - 6:00 PM)",
+            sessionLength: "3-5 horas por sesión",
+            frequency: "5-6 días por semana",
+            breakPattern: "Descansos de 15 min cada 2 horas",
+            environment: "Biblioteca y estudio en casa"
+        },
+        
+        // Logros y reconocimientos
+        achievements: [
+            "Completó la ruta de Fundamentos de Matemáticas",
+            "Mantiene promedio de 9.2/10 en cursos de física",
+            "Líder en proyectos de matemáticas escolares",
+            "Participa en olimpiadas de física regionales"
+        ],
+        
+        // Áreas de mejora identificadas
+        improvementAreas: [
+            "Química General (necesita más práctica)",
+            "Estadística (conceptos avanzados)",
+            "Astronomía (especialización)"
+        ]
+    };
+    
+    console.log('📊 Datos del estudiante creados:', progressData);
+    console.log('📊 Estructura de studentInfo:', progressData.studentInfo);
+    console.log('📊 Estructura de studyPatterns:', progressData.studyPatterns);
+    console.log('📊 Estructura de achievements:', progressData.achievements);
+    
+    // Actualizar métricas principales
+    this.updateProgressMetrics(progressData);
+    
+    // Actualizar barras de progreso de rutas
+    this.updateLearningPathsProgress(progressData.learningPaths);
+    
+    // Actualizar estado de cursos en rutas
+    this.updateCourseStatuses(progressData);
+    
+    // Guardar datos para el análisis de IA
+    this.currentStudentData = progressData;
+    
+    console.log('✅ Datos de progreso del estudiante Carlos Mendoza cargados y mostrados');
+    console.log('✅ this.currentStudentData establecido:', this.currentStudentData);
+};
+
+// Actualizar métricas principales
+AtlasApp.prototype.updateProgressMetrics = function(data) {
+    // Actualizar tiempo total de estudio
+    const totalStudyTimeElement = document.getElementById('total-study-time');
+    if (totalStudyTimeElement) {
+        const hours = Math.floor(data.totalStudyTime);
+        const minutes = Math.round((data.totalStudyTime - hours) * 60);
+        totalStudyTimeElement.textContent = `${hours}h ${minutes}m`;
+    }
+    
+    // Actualizar cambio en tiempo de estudio
+    const studyTimeChangeElement = document.getElementById('study-time-change');
+    if (studyTimeChangeElement) {
+        studyTimeChangeElement.textContent = `+${data.studyTimeChange}%`;
+        studyTimeChangeElement.parentElement.className = 'metric-change positive';
+    }
+    
+    // Actualizar cursos completados
+    const coursesCompletedElement = document.getElementById('courses-completed');
+    if (coursesCompletedElement) {
+        coursesCompletedElement.textContent = data.coursesCompleted;
+    }
+    
+    // Actualizar cambio en cursos
+    const coursesChangeElement = document.getElementById('courses-change');
+    if (coursesChangeElement) {
+        coursesChangeElement.textContent = `+${data.coursesChange}`;
+        coursesChangeElement.parentElement.className = 'metric-change positive';
+    }
+    
+    // Actualizar progreso de rutas de aprendizaje
+    const learningPathsProgressElement = document.getElementById('learning-paths-progress');
+    if (learningPathsProgressElement) {
+        learningPathsProgressElement.textContent = `${data.learningPathsProgress}/3`;
+    }
+    
+    // Actualizar cambio en rutas
+    const pathsChangeElement = document.getElementById('paths-change');
+    if (pathsChangeElement) {
+        pathsChangeElement.textContent = `+${data.pathsChange}%`;
+        pathsChangeElement.parentElement.className = 'metric-change positive';
+    }
+    
+    // Actualizar tasa de logro
+    const achievementRateElement = document.getElementById('achievement-rate');
+    if (achievementRateElement) {
+        achievementRateElement.textContent = `${data.achievementRate}%`;
+    }
+    
+    // Actualizar cambio en logros
+    const achievementChangeElement = document.getElementById('achievement-change');
+    if (achievementChangeElement) {
+        achievementChangeElement.textContent = `+${data.achievementChange}%`;
+        achievementChangeElement.parentElement.className = 'metric-change positive';
+    }
+};
+
+// Actualizar barras de progreso de rutas de aprendizaje
+AtlasApp.prototype.updateLearningPathsProgress = function(learningPaths) {
+    // Actualizar progreso de matemáticas
+    const mathProgressElement = document.getElementById('math-progress');
+    const mathPercentageElement = document.getElementById('math-percentage');
+    if (mathProgressElement && mathPercentageElement) {
+        const progress = learningPaths['math-fundamentals'] || 0;
+        mathProgressElement.style.width = `${progress}%`;
+        mathPercentageElement.textContent = `${progress}%`;
+    }
+    
+    // Actualizar progreso de ciencias
+    const sciencesProgressElement = document.getElementById('sciences-progress');
+    const sciencesPercentageElement = document.getElementById('sciences-percentage');
+    if (sciencesProgressElement && sciencesPercentageElement) {
+        const progress = learningPaths['natural-sciences'] || 0;
+        sciencesProgressElement.style.width = `${progress}%`;
+        sciencesPercentageElement.textContent = `${progress}%`;
+    }
+    
+    // Actualizar progreso de programación
+    const programmingProgressElement = document.getElementById('programming-progress');
+    const programmingPercentageElement = document.getElementById('programming-percentage');
+    if (programmingProgressElement && programmingPercentageElement) {
+        const progress = learningPaths['programming-tech'] || 0;
+        programmingProgressElement.style.width = `${progress}%`;
+        programmingPercentageElement.textContent = `${progress}%`;
+    }
+};
+
+// Actualizar estado de cursos en rutas
+AtlasApp.prototype.updateCourseStatuses = function(data) {
+    // Mapear progreso de cursos a estados
+    const courseStatuses = {};
+    data.courseProgress.forEach(course => {
+        if (course.progress >= 100) {
+            courseStatuses[course.name] = 'completed';
+        } else if (course.progress > 0) {
+            courseStatuses[course.name] = 'in-progress';
+        } else {
+            courseStatuses[course.name] = 'pending';
+        }
+    });
+    
+    // Actualizar estados visuales de los cursos
+    this.updateCourseStatusDisplay(courseStatuses);
+    
+    // Actualizar información adicional de cursos si está disponible
+    this.updateCourseDetails(data.courseProgress);
+};
+
+// Actualizar información detallada de cursos
+AtlasApp.prototype.updateCourseDetails = function(courses) {
+    courses.forEach(course => {
+        // Buscar el elemento del curso en la interfaz
+        const courseElement = document.querySelector(`[data-course-name="${course.name}"]`);
+        if (courseElement) {
+            // Agregar información adicional como tooltip o badge
+            const progressBadge = courseElement.querySelector('.progress-badge');
+            if (progressBadge) {
+                progressBadge.innerHTML = `
+                    <span class="progress-percent">${course.progress}%</span>
+                    <span class="course-difficulty ${course.difficulty.toLowerCase()}">${course.difficulty}</span>
+                    <span class="time-spent">${course.timeSpent}h</span>
+                `;
+            }
+        }
+    });
+};
+
+// Actualizar visualización del estado de cursos
+AtlasApp.prototype.updateCourseStatusDisplay = function(courseStatuses) {
+    // Buscar todos los elementos de estado de curso
+    const courseItems = document.querySelectorAll('.course-progress-item');
+    
+    courseItems.forEach(item => {
+        const courseNameElement = item.querySelector('.course-name');
+        const courseStatusElement = item.querySelector('.course-status');
+        
+        if (courseNameElement && courseStatusElement) {
+            const courseName = courseNameElement.textContent;
+            const status = courseStatuses[courseName] || 'pending';
+            
+            // Actualizar clase CSS y texto
+            courseStatusElement.className = `course-status ${status}`;
+            
+            switch (status) {
+                case 'completed':
+                    courseStatusElement.innerHTML = '✓ Completado';
+                    break;
+                case 'in-progress':
+                    courseStatusElement.innerHTML = '🔄 En progreso';
+                    break;
+                case 'pending':
+                    courseStatusElement.innerHTML = '⏳ Pendiente';
+                    break;
+            }
+        }
+    });
+};
+
+// Configurar gráficos de progreso
+AtlasApp.prototype.setupProgressCharts = function() {
+    console.log('📊 Configurando gráficos de progreso...');
+    
+    // Verificar si Chart.js está disponible
+    if (typeof Chart === 'undefined') {
+        console.log('Chart.js no está disponible, usando gráficos simples');
+        this.setupSimpleCharts();
+        return;
+    }
+    
+    // Configurar gráfico de tiempo de estudio por día
+    this.setupStudyTimeChart();
+    
+    // Configurar gráfico de progreso de cursos
+    this.setupCourseProgressChart();
+    
+    console.log('✅ Gráficos configurados correctamente');
+};
+
+// Configurar gráfico de tiempo de estudio por día
+AtlasApp.prototype.setupStudyTimeChart = function() {
+    const ctx = document.getElementById('study-time-chart');
+    if (!ctx) return;
+    
+    // Datos simulados para las últimas 15 sesiones
+    const labels = Array.from({length: 15}, (_, i) => `Sesión ${i + 1}`);
+    const data = [2, 3, 1, 4, 2, 5, 3, 2, 4, 1, 3, 2, 4, 3, 2];
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Horas de Estudio',
+                data: data,
+                borderColor: '#6366f1',
+                backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#6366f1',
+                pointBorderColor: '#ffffff',
+                pointBorderWidth: 2,
+                pointRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    },
+                    ticks: {
+                        color: '#6b7280'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    },
+                    ticks: {
+                        color: '#6b7280'
+                    }
+                }
+            }
+        }
+    });
+};
+
+// Configurar gráfico de progreso de cursos
+AtlasApp.prototype.setupCourseProgressChart = function() {
+    const ctx = document.getElementById('course-progress-chart');
+    if (!ctx) return;
+    
+    // Datos simulados de progreso de cursos
+    const data = {
+        labels: ['Álgebra', 'Geometría', 'Física', 'Química', 'Programación', 'Python'],
+        datasets: [{
+            label: 'Progreso (%)',
+            data: [100, 75, 100, 60, 100, 45],
+            backgroundColor: [
+                '#10b981', // Verde para completado
+                '#f59e0b', // Amarillo para en progreso
+                '#10b981',
+                '#f59e0b',
+                '#10b981',
+                '#f59e0b'
+            ],
+            borderColor: [
+                '#059669',
+                '#d97706',
+                '#059669',
+                '#d97706',
+                '#059669',
+                '#d97706'
+            ],
+            borderWidth: 2,
+            borderRadius: 8
+        }]
+    };
+    
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    },
+                    ticks: {
+                        color: '#6b7280',
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#6b7280'
+                    }
+                }
+            }
+        }
+    });
+};
+
+// Configurar gráficos simples si Chart.js no está disponible
+AtlasApp.prototype.setupSimpleCharts = function() {
+    console.log('📊 Configurando gráficos simples...');
+    
+    // Crear gráficos simples con CSS y HTML
+    this.createSimpleStudyTimeChart();
+    this.createSimpleCourseProgressChart();
+};
+
+// Configurar análisis de IA
+AtlasApp.prototype.setupAIAnalysis = function() {
+    console.log('🤖 Configurando análisis de IA...');
+    
+    // Configurar botón de actualizar análisis
+    const refreshButton = document.getElementById('refresh-analysis');
+    if (refreshButton) {
+        refreshButton.addEventListener('click', () => {
+            this.performAIAnalysis();
+        });
+    }
+    
+    // Realizar análisis inicial
+    this.performAIAnalysis();
+    
+    console.log('✅ Análisis de IA configurado');
+};
+
+// Realizar análisis de IA
+AtlasApp.prototype.performAIAnalysis = function() {
+    console.log('🧠 Realizando análisis de IA...');
+    
+    const analysisContent = document.getElementById('ai-analysis-content');
+    if (!analysisContent) return;
+    
+    // Mostrar estado de carga
+    analysisContent.innerHTML = `
+        <div class="analysis-loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p data-translate="progress.analyzing_data">Analizando datos de aprendizaje...</p>
+        </div>
+    `;
+    
+    // Simular análisis de IA (en implementación real, aquí se llamaría a Gemini AI)
+    setTimeout(() => {
+        this.generateAIAnalysis(analysisContent);
+    }, 2000);
+};
+
+// Generar análisis de IA
+AtlasApp.prototype.generateAIAnalysis = function(container) {
+    console.log('📝 Generando análisis de IA...');
+    
+    // Análisis personalizado basado en datos del estudiante
+    const analysis = this.generateSimulatedAIAnalysis();
+    console.log('📝 Análisis generado:', analysis);
+    
+    // Obtener información del estudiante si está disponible
+    const studentData = this.currentStudentData;
+    console.log('📝 this.currentStudentData:', this.currentStudentData);
+    console.log('📝 studentData:', studentData);
+    
+    // Verificar si studentData existe y tiene la estructura esperada
+    const hasStudentData = studentData && studentData.studentInfo && studentData.studyPatterns && studentData.achievements;
+    console.log('📝 hasStudentData:', hasStudentData);
+    console.log('📝 studentData.studentInfo:', studentData?.studentInfo);
+    console.log('📝 studentData.studyPatterns:', studentData?.studyPatterns);
+    console.log('📝 studentData.achievements:', studentData?.achievements);
+    
+    container.innerHTML = `
+        <div class="ai-analysis-result">
+            ${hasStudentData ? `
+                <div class="student-profile">
+                    <h4>👨‍🎓 Tu Perfil de Estudiante</h4>
+                    <div class="profile-details">
+                        <p><strong>Nombre:</strong> ${studentData.studentInfo.name}</p>
+                        <p><strong>Edad:</strong> ${studentData.studentInfo.age} años</p>
+                        <p><strong>Grado:</strong> ${studentData.studentInfo.grade}</p>
+                        <p><strong>Intereses:</strong> ${studentData.studentInfo.interests.join(', ')}</p>
+                        <p><strong>Estilo de Aprendizaje:</strong> ${studentData.studentInfo.studyStyle}</p>
+                        <p><strong>Objetivos:</strong> ${studentData.studentInfo.goals}</p>
+                    </div>
+                </div>
+            ` : ''}
+            
+            <div class="analysis-summary">
+                <h4>📊 Tu Resumen Ejecutivo</h4>
+                <p>${analysis.summary}</p>
+            </div>
+            
+            <div class="analysis-insights">
+                <h4>💡 Insights Clave sobre tu Progreso</h4>
+                <ul>
+                    ${analysis.insights.map(insight => `<li>${insight}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <div class="analysis-recommendations">
+                <h4>🎯 Recomendaciones Personalizadas para ti</h4>
+                <ul>
+                    ${analysis.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <div class="analysis-strengths">
+                <h4>⭐ Tus Fortalezas Identificadas</h4>
+                <ul>
+                    ${analysis.strengths.map(strength => `<li>${strength}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <div class="analysis-areas">
+                <h4>🔍 Áreas de Oportunidad para ti</h4>
+                <ul>
+                    ${analysis.areas.map(area => `<li>${area}</li>`).join('')}
+                </ul>
+            </div>
+            
+            ${hasStudentData ? `
+                <div class="study-patterns">
+                    <h4>📚 Tus Patrones de Estudio</h4>
+                    <div class="patterns-grid">
+                        <div class="pattern-item">
+                            <strong>Horario Preferido:</strong> ${studentData.studyPatterns.preferredTime}
+                        </div>
+                        <div class="pattern-item">
+                            <strong>Duración de Sesión:</strong> ${studentData.studyPatterns.sessionLength}
+                        </div>
+                        <div class="pattern-item">
+                            <strong>Frecuencia:</strong> ${studentData.studyPatterns.frequency}
+                        </div>
+                        <div class="pattern-item">
+                            <strong>Patrón de Descansos:</strong> ${studentData.studyPatterns.breakPattern}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="achievements-section">
+                    <h4>🏆 Tus Logros y Reconocimientos</h4>
+                    <ul>
+                        ${studentData.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
+                    </ul>
+                </div>
+            ` : ''}
+        </div>
+    `;
+    
+    console.log('✅ Análisis de IA generado y mostrado');
+};
+
+// Generar análisis simulado de IA
+AtlasApp.prototype.generateSimulatedAIAnalysis = function() {
+    // Obtener datos del estudiante actual
+    const studentData = this.currentStudentData;
+    
+    if (!studentData) {
+        return this.getDefaultAnalysis();
+    }
+    
+    // Análisis personalizado basado en los datos del estudiante
+    return {
+        summary: `Has demostrado un perfil académico excepcionalmente fuerte en ciencias exactas. Con ${studentData.totalStudyTime} horas de estudio acumuladas y una tasa de logro del ${studentData.achievementRate}%, representas el prototipo de un futuro ingeniero o científico. Tu dedicación de ${studentData.studyPatterns.frequency} y sesiones de ${studentData.studyPatterns.sessionLength} refleja una disciplina de estudio sobresaliente.`,
+        
+        insights: [
+            `Has completado exitosamente la ruta de Fundamentos de Matemáticas (100%), demostrando dominio completo en álgebra, geometría y trigonometría. Tu progreso en cálculo diferencial (85%) indica una transición exitosa hacia matemáticas avanzadas.`,
+            `En física, mantienes un rendimiento excepcional con promedio de 9.2/10. Has completado Física Mecánica y Ondulatoria al 100%, y progresas bien en Física Moderna (75%), mostrando una comprensión profunda de conceptos fundamentales.`,
+            `Tu patrón de estudio es altamente efectivo: prefieres estudiar en las tardes (2:00-6:00 PM) con sesiones de 3-5 horas, manteniendo descansos regulares de 15 minutos cada 2 horas. Esta rutina optimiza tu retención y concentración.`,
+            `Aunque progresas bien en programación (Python al 90%), tu verdadera pasión está en física y matemáticas. Tu interés en astronomía (45% completado) sugiere una inclinación hacia la física aplicada y la investigación científica.`
+        ],
+        
+        recommendations: [
+            `Deberías considerar especializarte en Física Teórica o Matemáticas Aplicadas. Tu perfil es ideal para carreras como Ingeniería Física, Física, o Matemáticas con especialización en física.`,
+            `Para fortalecer tu candidatura universitaria, debes completar Física Moderna (actualmente 75%) y profundizar en Estadística Descriptiva (30%). Estas materias son fundamentales para la investigación científica.`,
+            `Dado tu interés en astronomía, podrías explorar cursos de astrofísica y mecánica celeste. Tu base sólida en matemáticas y física te permitiría destacar en esta área emergente.`,
+            `Debes mantener tu excelente rutina de estudio, pero podrías beneficiarte de proyectos de investigación escolar en física o matemáticas para desarrollar habilidades de investigación.`
+        ],
+        
+        strengths: [
+            `Dominio excepcional en matemáticas fundamentales (100% en álgebra, geometría, trigonometría)`,
+            `Excelencia en física con promedio de 9.2/10 y completitud en mecánica y ondulatoria`,
+            `Disciplina de estudio sobresaliente: 342 horas acumuladas, 5-6 días por semana`,
+            `Capacidad para manejar conceptos avanzados (cálculo diferencial al 85%)`,
+            `Liderazgo académico: participas en olimpiadas de física y lideras proyectos escolares`
+        ],
+        
+        areas: [
+            `Química General (60%): Necesitas más práctica en conceptos fundamentales de química para tener una base científica completa`,
+            `Estadística Descriptiva (30%): Los conceptos avanzados requieren más tiempo y práctica para consolidarse`,
+            `Astronomía Básica (45%): Aunque progresas bien, podrías beneficiarte de más recursos especializados`,
+            `Física Moderna (75%): Estás cerca de completar, pero los conceptos cuánticos requieren consolidación adicional`
+        ]
+    };
+};
+
+// Configurar eventos de la página de avances
+AtlasApp.prototype.setupProgressPageEvents = function() {
+    console.log('🎯 Configurando eventos de la página de avances...');
+    
+    // Configurar botones de toggle de rutas de aprendizaje
+    const toggleButtons = document.querySelectorAll('.path-toggle-btn');
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const pathId = button.dataset.path;
+            this.togglePathCourses(pathId);
+        });
+    });
+    
+    // Configurar botones de comenzar ruta
+    const startPathButtons = document.querySelectorAll('.path-start-btn');
+    startPathButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const pathId = button.dataset.path;
+            this.startLearningPath(pathId);
+        });
+    });
+    
+    console.log('✅ Eventos de la página de avances configurados');
+};
+
+// Toggle de cursos en rutas de aprendizaje
+AtlasApp.prototype.togglePathCourses = function(pathId) {
+    const coursesContainer = document.getElementById(`${pathId}-courses`);
+    const toggleButton = document.querySelector(`[data-path="${pathId}"]`);
+    
+    if (coursesContainer && toggleButton) {
+        const isVisible = coursesContainer.style.display !== 'none';
+        
+        if (isVisible) {
+            // Ocultar cursos
+            coursesContainer.style.display = 'none';
+            toggleButton.innerHTML = '<i class="fas fa-chevron-down"></i><span data-translate="courses.paths.view_courses">Ver cursos</span>';
+            console.log(`🛤️ Ocultando cursos de la ruta: ${pathId}`);
+        } else {
+            // Mostrar cursos
+            coursesContainer.style.display = 'block';
+            toggleButton.innerHTML = '<i class="fas fa-chevron-up"></i><span data-translate="courses.paths.view_courses">Ocultar cursos</span>';
+            console.log(`🛤️ Mostrando cursos de la ruta: ${pathId}`);
+        }
+    }
+};
+
+// Función para comenzar una ruta de aprendizaje
+AtlasApp.prototype.startLearningPath = function(pathId) {
+    console.log(`🚀 Iniciando ruta de aprendizaje: ${pathId}`);
+    
+    // Mostrar notificación
+    this.showNotification('Función de comenzar ruta estará disponible próximamente', 'info');
+    
+    // En una implementación real, aquí se redirigiría al usuario a la ruta seleccionada
+    // o se iniciaría un proceso de seguimiento específico
+};
+
+// Análisis por defecto si no hay datos del estudiante
+AtlasApp.prototype.getDefaultAnalysis = function() {
+    return {
+        summary: "No hay datos específicos disponibles para tu análisis. Por favor, completa algunos cursos para recibir un análisis personalizado.",
+        insights: ["Completa tu primer curso para obtener insights personalizados"],
+        recommendations: ["Comienza con cursos básicos para establecer una base sólida"],
+        strengths: ["Tu compromiso con el aprendizaje es admirable"],
+        areas: ["Explora diferentes áreas para identificar tus intereses"]
+    };
+};
+
+// Configurar gráficos simples si Chart.js no está disponible
+AtlasApp.prototype.setupSimpleCharts = function() {
+    console.log('📊 Configurando gráficos simples...');
+    
+    // Crear gráficos simples con CSS y HTML
+    this.createSimpleStudyTimeChart();
+    this.createSimpleCourseProgressChart();
+};
+
+// Crear gráfico simple de tiempo de estudio
+AtlasApp.prototype.createSimpleStudyTimeChart = function() {
+    console.log('📊 Creando gráfico simple de tiempo de estudio...');
+    
+    const chartContainer = document.getElementById('study-time-chart');
+    if (!chartContainer) {
+        console.log('📊 Contenedor de gráfico de tiempo de estudio no encontrado');
+        return;
+    }
+    
+    // Crear gráfico simple con HTML y CSS
+    chartContainer.innerHTML = `
+        <div class="simple-chart">
+            <div class="chart-title">Tiempo de Estudio por Día (últimas 20 sesiones)</div>
+            <div class="chart-bars">
+                ${this.currentStudentData?.dailyStudyTime?.map((hours, index) => `
+                    <div class="chart-bar" style="height: ${hours * 20}px;" title="Día ${index + 1}: ${hours}h">
+                        <span class="bar-value">${hours}h</span>
+                    </div>
+                `).join('') || ''}
+            </div>
+            <div class="chart-labels">
+                ${Array.from({length: 20}, (_, i) => `<span class="chart-label">${i + 1}</span>`).join('')}
+            </div>
+        </div>
+    `;
+    
+    console.log('✅ Gráfico simple de tiempo de estudio creado');
+};
+
+// Crear gráfico simple de progreso de cursos
+AtlasApp.prototype.createSimpleCourseProgressChart = function() {
+    console.log('📊 Creando gráfico simple de progreso de cursos...');
+    
+    const chartContainer = document.getElementById('course-progress-chart');
+    if (!chartContainer) {
+        console.log('📊 Contenedor de gráfico de progreso de cursos no encontrado');
+        return;
+    }
+    
+    // Crear gráfico simple con HTML y CSS
+    chartContainer.innerHTML = `
+        <div class="simple-chart">
+            <div class="chart-title">Progreso de Cursos</div>
+            <div class="chart-bars">
+                ${this.currentStudentData?.courseProgress?.map(course => `
+                    <div class="chart-bar" style="height: ${course.progress * 2}px;" title="${course.name}: ${course.progress}%">
+                        <span class="bar-value">${course.progress}%</span>
+                        <span class="course-name">${course.name}</span>
+                    </div>
+                `).join('') || ''}
+            </div>
+        </div>
+    `;
+    
+    console.log('✅ Gráfico simple de progreso de cursos creado');
+};

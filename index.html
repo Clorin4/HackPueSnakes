@@ -233,6 +233,11 @@
                                         <span data-translate="profile_menu.achievements">Logros</span>
                                     </button>
                                     
+                                    <button class="dropdown-item" id="progress-option">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span data-translate="profile_menu.progress">Avances</span>
+                                    </button>
+                                    
                                     <button class="dropdown-item" id="dark-mode-toggle">
                                         <i class="fas fa-moon"></i>
                                         <span data-translate="profile_menu.dark_mode">Modo oscuro</span>
@@ -307,6 +312,11 @@
                                 <button class="sidebar-btn" id="sidebar-achievements-btn">
                                     <i class="fas fa-trophy"></i>
                                     <span data-translate="profile_menu.achievements">Logros</span>
+                                </button>
+                                
+                                <button class="sidebar-btn" id="sidebar-progress-btn">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span data-translate="profile_menu.progress">Avances</span>
                                 </button>
                                 
                                 <div class="sidebar-divider"></div>
@@ -583,8 +593,18 @@
                         <div class="courses-container">
                             <!-- Header de Contenido -->
                             <div class="courses-header">
-                                <h1 data-translate="courses.title">Contenido Educativo</h1>
-                                <p data-translate="courses.subtitle">Descubre cursos de calidad diseñados para tu nivel de bachillerato</p>
+                                <div class="header-content">
+                                    <div class="header-text">
+                                        <h1 data-translate="courses.title">Contenido Educativo</h1>
+                                        <p data-translate="courses.subtitle">Descubre cursos de calidad diseñados para tu nivel de bachillerato</p>
+                                    </div>
+                                    <div class="header-actions">
+                                        <a href="#" class="learning-paths-link" id="show-learning-paths">
+                                            <i class="fas fa-route"></i>
+                                            <span data-translate="courses.view_learning_paths">Ver rutas de aprendizaje</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Filtros y Búsqueda -->
@@ -617,7 +637,7 @@
                                     </div>
                                     <div class="courses-grid">
                                         <!-- Curso 1 - Premium -->
-                                        <div class="course-card premium-course" data-level="basic" data-type="premium">
+                                        <div class="course-card premium-course" data-level="basic" data-type="premium" data-course-id="algebra-basica">
                                             <div class="course-image">
                                                 <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=300&h=200&fit=crop" alt="Álgebra Básica">
                                                 <div class="course-level basic">Básico</div>
@@ -642,7 +662,7 @@
                                         </div>
 
                                         <!-- Curso 2 - Gratuito -->
-                                        <div class="course-card" data-level="intermediate" data-type="free">
+                                        <div class="course-card" data-level="intermediate" data-type="free" data-course-id="calculo-diferencial">
                                             <div class="course-image">
                                                 <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=300&h=200&fit=crop" alt="Cálculo Diferencial">
                                                 <div class="course-level intermediate">Intermedio</div>
@@ -650,9 +670,9 @@
                                             <div class="course-content">
                                                 <h3 class="course-title">Cálculo Diferencial</h3>
                                                 <div class="course-instructor">
-                                                    <div class="instructor-avatar">
-                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
-                                                    </div>
+                                                                                                    <div class="instructor-avatar">
+                                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Dra. Ana García">
+                                                </div>
                                                     <span class="instructor-name">Dra. Ana García</span>
                                                 </div>
                                                 <div class="course-meta">
@@ -663,7 +683,7 @@
                                         </div>
 
                                         <!-- Curso 4 - Premium del Dr. Carlos Mendoza -->
-                                        <div class="course-card premium-course" data-level="advanced" data-type="premium">
+                                        <div class="course-card premium-course" data-level="advanced" data-type="premium" data-course-id="matematicas-avanzadas">
                                             <div class="course-image">
                                                 <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=300&h=200&fit=crop" alt="Matemáticas Avanzadas">
                                                 <div class="course-level advanced">Avanzado</div>
@@ -688,7 +708,7 @@
                                         </div>
 
                                         <!-- Curso 3 - Atlas (Gratuito) -->
-                                        <div class="course-card atlas-course" data-level="basic" data-type="free">
+                                        <div class="course-card atlas-course" data-level="basic" data-type="free" data-course-id="fisica-basica">
                                             <div class="course-image">
                                                 <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=300&h=200&fit=crop" alt="Física Básica">
                                                 <div class="course-level basic">Básico</div>
@@ -721,7 +741,7 @@
                                     </div>
                                     <div class="courses-grid">
                                         <!-- Curso 1 - Gratuito -->
-                                        <div class="course-card" data-level="basic" data-type="free">
+                                        <div class="course-card" data-level="basic" data-type="free" data-course-id="historia-universal">
                                             <div class="course-image">
                                                 <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=300&h=200&fit=crop" alt="Historia Universal">
                                                 <div class="course-level basic">Básico</div>
@@ -742,7 +762,7 @@
                                         </div>
 
                                         <!-- Curso 3 - Premium del Prof. Miguel Herrera -->
-                                        <div class="course-card premium-course" data-level="advanced" data-type="premium">
+                                        <div class="course-card premium-course" data-level="advanced" data-type="premium" data-course-id="historia-america-latina">
                                             <div class="course-image">
                                                 <img src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=300&h=200&fit=crop" alt="Historia de América Latina">
                                                 <div class="course-level advanced">Avanzado</div>
@@ -927,6 +947,239 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Interfaz de Rutas de Aprendizaje -->
+                        <div class="learning-paths-container" id="learning-paths-container" style="display: none;">
+                            <div class="learning-paths-header">
+                                <h2 data-translate="courses.learning_paths_title">Rutas de Aprendizaje Recomendadas</h2>
+                                <p data-translate="courses.learning_paths_subtitle">Sigue estas rutas estructuradas para maximizar tu aprendizaje</p>
+                            </div>
+                            
+                            <div class="learning-paths-grid">
+                                <!-- Ruta 1: Fundamentos de Matemáticas -->
+                                <div class="learning-path-card" data-path-id="math-fundamentals">
+                                    <div class="path-header">
+                                        <div class="path-icon">
+                                            <i class="fas fa-calculator"></i>
+                                        </div>
+                                        <div class="path-info">
+                                            <h3 data-translate="courses.paths.math_fundamentals">Fundamentos de Matemáticas</h3>
+                                            <p data-translate="courses.paths.math_fundamentals_desc">Construye una base sólida en matemáticas</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="path-courses" id="math-fundamentals-courses" style="display: none;">
+                                        <h4 data-translate="courses.paths.recommended_courses">Cursos Recomendados:</h4>
+                                        <div class="path-courses-list">
+                                            <div class="path-course-item">
+                                                <span class="course-number">1</span>
+                                                <span class="course-name">Álgebra Básica</span>
+                                                <span class="course-level">Básico</span>
+                                            </div>
+                                            <div class="path-course-item">
+                                                <span class="course-number">2</span>
+                                                <span class="course-name">Geometría Plana</span>
+                                                <span class="course-level">Básico</span>
+                                            </div>
+                                            <div class="path-course-item">
+                                                <span class="course-number">3</span>
+                                                <span class="course-name">Trigonometría</span>
+                                                <span class="course-level">Intermedio</span>
+                                            </div>
+                                            <div class="path-course-item">
+                                                <span class="course-number">4</span>
+                                                <span class="course-name">Cálculo Diferencial</span>
+                                                <span class="course-level">Intermedio</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="path-actions">
+                                        <button class="path-toggle-btn" data-path="math-fundamentals">
+                                            <i class="fas fa-chevron-down"></i>
+                                            <span data-translate="courses.paths.view_courses">Ver cursos</span>
+                                        </button>
+                                        <button class="path-start-btn" data-path="math-fundamentals">
+                                            <i class="fas fa-play"></i>
+                                            <span data-translate="courses.paths.start_path">Comenzar ruta</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Ruta 2: Ciencias Naturales -->
+                                <div class="learning-path-card" data-path-id="natural-sciences">
+                                    <div class="path-header">
+                                        <div class="path-icon">
+                                            <i class="fas fa-flask"></i>
+                                        </div>
+                                        <div class="path-info">
+                                            <h3 data-translate="courses.paths.natural_sciences">Ciencias Naturales</h3>
+                                            <p data-translate="courses.paths.natural_sciences_desc">Explora el mundo de la ciencia</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="path-courses" id="natural-sciences-courses" style="display: none;">
+                                        <h4 data-translate="courses.paths.recommended_courses">Cursos Recomendados:</h4>
+                                        <div class="path-courses-list">
+                                            <div class="path-course-item">
+                                                <span class="course-number">1</span>
+                                                <span class="course-name">Física Básica</span>
+                                                <span class="course-level">Básico</span>
+                                            </div>
+                                            <div class="path-course-item">
+                                                <span class="course-number">2</span>
+                                                <span class="course-name">Química General</span>
+                                                <span class="course-level">Básico</span>
+                                            </div>
+                                            <div class="path-course-item">
+                                                <span class="course-number">3</span>
+                                                <span class="course-name">Biología Celular</span>
+                                                <span class="course-level">Intermedio</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="path-actions">
+                                        <button class="path-toggle-btn" data-path="natural-sciences">
+                                            <i class="fas fa-chevron-down"></i>
+                                            <span data-translate="courses.paths.view_courses">Ver cursos</span>
+                                        </button>
+                                        <button class="path-start-btn" data-path="natural-sciences">
+                                            <i class="fas fa-play"></i>
+                                            <span data-translate="courses.paths.start_path">Comenzar ruta</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Ruta 3: Programación y Tecnología -->
+                                <div class="learning-path-card" data-path-id="programming-tech">
+                                    <div class="path-header">
+                                        <div class="path-icon">
+                                            <i class="fas fa-code"></i>
+                                        </div>
+                                        <div class="path-info">
+                                            <h3 data-translate="courses.paths.programming_tech">Programación y Tecnología</h3>
+                                            <p data-translate="courses.paths.programming_tech_desc">Desarrolla habilidades tecnológicas</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="path-courses" id="programming-tech-courses" style="display: none;">
+                                        <h4 data-translate="courses.paths.recommended_courses">Cursos Recomendados:</h4>
+                                        <div class="path-courses-list">
+                                            <div class="path-course-item">
+                                                <span class="course-number">1</span>
+                                                <span class="path-course-name">Introducción a la Programación</span>
+                                                <span class="path-course-level">Básico</span>
+                                            </div>
+                                            <div class="path-course-item">
+                                                <span class="course-number">2</span>
+                                                <span class="path-course-name">Python para Principiantes</span>
+                                                <span class="path-course-level">Básico</span>
+                                            </div>
+                                            <div class="path-course-item">
+                                                <span class="course-number">3</span>
+                                                <span class="path-course-name">Desarrollo Web Básico</span>
+                                                <span class="path-course-level">Intermedio</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="path-actions">
+                                        <button class="path-toggle-btn" data-path="programming-tech">
+                                            <i class="fas fa-chevron-down"></i>
+                                            <span data-translate="courses.paths.view_courses">Ver cursos</span>
+                                        </button>
+                                        <button class="path-start-btn" data-path="programming-tech">
+                                            <i class="fas fa-play"></i>
+                                            <span data-translate="courses.paths.start_path">Comenzar ruta</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Vista Detallada del Curso -->
+                <div id="course-detail-tab" class="tab-content">
+                    <div class="course-detail-container">
+                        <!-- Header con botón de regreso -->
+                        <div class="course-detail-header">
+                            <button class="back-btn" id="back-to-courses">
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Volver a cursos</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Contenido del curso -->
+                        <div class="course-detail-content">
+                            <div class="course-detail-layout">
+                                <!-- Información principal del curso -->
+                                <div class="course-detail-info">
+                                    <!-- Título y resumen -->
+                                    <div class="course-summary">
+                                        <h1 id="course-detail-title">Título del Curso</h1>
+                                        <p id="course-detail-description">Descripción del curso...</p>
+                                    </div>
+                                    
+                                    <!-- Aprendizaje esperado -->
+                                    <div class="course-learning">
+                                        <h3>¿Qué aprenderás?</h3>
+                                        <p id="course-detail-learning">Aprendizajes esperados...</p>
+                                    </div>
+                                    
+                                    <!-- Información del instructor -->
+                                    <div class="course-instructor-detail">
+                                        <h3>Instructor</h3>
+                                        <div class="instructor-info">
+                                            <div class="instructor-avatar">
+                                                <img id="course-detail-instructor-avatar" src="" alt="Instructor">
+                                            </div>
+                                            <div class="instructor-details">
+                                                <h4 id="course-detail-instructor-name">Nombre del Instructor</h4>
+                                                <p id="course-detail-instructor-bio">Biografía del instructor...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Duración del curso -->
+                                    <div class="course-duration-detail">
+                                        <h3>Duración</h3>
+                                        <p id="course-detail-duration">
+                                            <i class="fas fa-clock"></i>
+                                            <span>Duración del curso...</span>
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- Lista de clases -->
+                                    <div class="course-classes-detail">
+                                        <h3>Contenido del curso</h3>
+                                        <div class="classes-list" id="course-detail-classes">
+                                            <!-- Las clases se cargarán dinámicamente -->
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Sidebar derecha -->
+                                <div class="course-detail-sidebar">
+                                    <!-- Imagen del curso -->
+                                    <div class="course-detail-image">
+                                        <img id="course-detail-image" src="" alt="Imagen del curso">
+                                        <div class="course-detail-badge" id="course-detail-badge">
+                                            <!-- Badge se cargará dinámicamente -->
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Botón de comenzar -->
+                                    <div class="course-detail-actions">
+                                        <button class="course-start-btn" id="course-start-btn">
+                                            <i class="fas fa-play"></i>
+                                            <span>Comenzar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -935,7 +1188,7 @@
                     <div class="donation-container">
                         <div class="donation-header">
                             <h2 data-translate="donation.title">¿Quieres donar?</h2>
-                            <p data-translate="donation.subtitle">Apoya a otros estudiantes donando membresías premium</p>
+                            <p data-translate="donation.subtitle">Apoya a estudiantes de escasos recursos donando membresías premium</p>
                         </div>
                         
                         <!-- Selector de tipo de donación -->
@@ -1014,8 +1267,8 @@
                         <!-- Donación masiva a usuarios destacados -->
                         <div id="bulk-donation" class="donation-section">
                             <div class="bulk-donation-header">
-                                <h3 data-translate="donation.bulk_title">Donación masiva a usuarios destacados</h3>
-                                <p data-translate="donation.bulk_description">Dona múltiples membresías que serán distribuidas automáticamente entre usuarios destacados que harán valer su membresía premium.</p>
+                                <h3 data-translate="donation.bulk_title">Donación masiva a estudiantes vulnerables</h3>
+                                <p data-translate="donation.bulk_description">Dona múltiples membresías que serán distribuidas automáticamente entre estudiantes de escasos recursos que más necesitan el acceso premium.</p>
                             </div>
                             
                             <div class="bulk-donation-info">
@@ -1037,28 +1290,28 @@
                             </div>
                             
                             <div class="bulk-membership-selector">
-                                <h4 data-translate="donation.select_bulk_amount">Selecciona la cantidad de membresías (11-50)</h4>
+                                <h4 data-translate="donation.select_bulk_amount">Selecciona la cantidad de membresías (1-50)</h4>
                                 <div class="bulk-input-container">
-                                    <input type="number" id="bulk-membership-amount" min="11" max="50" placeholder="Ej: 25">
+                                    <input type="number" id="bulk-membership-amount" min="1" max="50" placeholder="Ej: 25">
                                     <div class="bulk-price-info">
                                         <span class="bulk-price" id="bulk-price">$0.00</span>
                                         <span class="bulk-discount" id="bulk-discount" style="display: none;"></span>
                                     </div>
                                 </div>
                                 <div class="bulk-pricing-tiers">
-                                    <h5 data-translate="donation.bulk_pricing">Precios con descuento por mayoreo:</h5>
+                                    <h5 data-translate="donation.bulk_pricing">Planes y paquetes que puedes adquirir:</h5>
                                     <div class="pricing-tiers">
                                         <div class="tier">
-                                            <span class="tier-range">11-20</span>
-                                            <span class="tier-price">$9.49 <small>(-5%)</small></span>
+                                            <span class="tier-range">1-20</span>
+                                            <span class="tier-price">$25.00 <small>por membresía</small></span>
                                         </div>
                                         <div class="tier">
                                             <span class="tier-range">21-35</span>
-                                            <span class="tier-price">$8.99 <small>(-10%)</small></span>
+                                            <span class="tier-price">$25.00 <small>por membresía</small></span>
                                         </div>
                                         <div class="tier">
                                             <span class="tier-range">36-50</span>
-                                            <span class="tier-price">$8.49 <small>(-15%)</small></span>
+                                            <span class="tier-price">$25.00 <small>por membresía</small></span>
                                         </div>
                                     </div>
                                 </div>
@@ -1072,7 +1325,7 @@
                                     </div>
                                     <div class="summary-distribution">
                                         <span data-translate="donation.distribution">Distribución:</span>
-                                        <strong data-translate="donation.auto_distributed">Automática entre usuarios destacados</strong>
+                                        <strong data-translate="donation.auto_distributed">Automática entre estudiantes vulnerables</strong>
                                     </div>
                                     <div class="summary-price">
                                         <span data-translate="donation.total_price">Precio total:</span>
@@ -1090,7 +1343,7 @@
                         <!-- Selector de cantidad de membresías -->
                         <div class="membership-selector" id="membership-selector" style="display: none;">
                             <h3 data-translate="donation.individual_donation_title">Donación individual</h3>
-                            <p data-translate="donation.individual_donation_desc">Dona 1 membresía premium a este usuario</p>
+                            <p data-translate="donation.individual_donation_desc">Dona 1 membresía premium a este estudiante</p>
                             
                             <div class="single-membership-option">
                                 <button class="membership-btn single-membership" data-amount="1">
@@ -1101,14 +1354,14 @@
                                         <span class="membership-count">1</span>
                                         <span class="membership-label" data-translate="donation.membership">Membresía Premium</span>
                                     </div>
-                                    <div class="membership-price">$9.99</div>
+                                    <div class="membership-price">$25.00</div>
                                 </button>
                             </div>
                             
                             <div class="individual-donation-note">
                                 <div class="note-card">
                                     <i class="fas fa-info-circle"></i>
-                                    <p data-translate="donation.individual_note">Las donaciones individuales están limitadas a 1 membresía por usuario para asegurar una distribución equitativa.</p>
+                                    <p data-translate="donation.individual_note">Las donaciones individuales están limitadas a 1 membresía por estudiante para asegurar una distribución equitativa entre estudiantes de escasos recursos.</p>
                                 </div>
                             </div>
                             
@@ -1244,6 +1497,222 @@
                                 <i class="fas fa-graduation-cap"></i>
                                 <h3 data-translate="knowledge_sharer">Compartidor de conocimiento</h3>
                                 <p data-translate="knowledge_sharer_desc">Ayuda a 10 compañeros con tus publicaciones</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página de Avances -->
+                <div id="progress-page" class="tab-content">
+                    <div class="progress-container">
+                        <div class="progress-header">
+                            <h2 data-translate="progress.title">Tus Avances Inteligentes</h2>
+                            <p data-translate="progress.subtitle">Análisis avanzado de tu progreso educativo con IA</p>
+                        </div>
+
+                        <!-- Dashboard de Estadísticas -->
+                        <div class="progress-dashboard">
+                            <!-- Métricas Principales -->
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <h3 data-translate="progress.total_study_time">Tiempo Total de Estudio</h3>
+                                        <div class="metric-value" id="total-study-time">0h 0m</div>
+                                        <div class="metric-change positive">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span id="study-time-change">+0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <h3 data-translate="progress.courses_completed">Cursos Completados</h3>
+                                        <div class="metric-value" id="courses-completed">0</div>
+                                        <div class="metric-change positive">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span id="courses-change">+0</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-route"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <h3 data-translate="progress.learning_paths">Rutas de Aprendizaje</h3>
+                                        <div class="metric-value" id="learning-paths-progress">0/3</div>
+                                        <div class="metric-change positive">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span id="paths-change">+0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <h3 data-translate="progress.achievement_rate">Tasa de Logro</h3>
+                                        <div class="metric-value" id="achievement-rate">0%</div>
+                                        <div class="metric-change positive">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span id="achievement-change">+0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gráficos y Visualizaciones -->
+                            <div class="charts-section">
+                                <div class="chart-container">
+                                    <h3 data-translate="progress.study_time_chart">Tu Tiempo de Estudio por Día</h3>
+                                    <div class="chart-wrapper">
+                                        <canvas id="study-time-chart"></canvas>
+                                    </div>
+                                </div>
+
+                                <div class="chart-container">
+                                    <h3 data-translate="progress.course_progress_chart">Tu Progreso en Cursos</h3>
+                                    <div class="chart-wrapper">
+                                        <canvas id="course-progress-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Progreso de Rutas de Aprendizaje -->
+                            <div class="learning-paths-progress">
+                                <h3 data-translate="progress.learning_paths_progress">Tu Progreso en Rutas de Aprendizaje</h3>
+                                <div class="paths-progress-grid">
+                                    <div class="path-progress-card" data-path="math-fundamentals">
+                                        <div class="path-progress-header">
+                                            <div class="path-icon">
+                                                <i class="fas fa-calculator"></i>
+                                            </div>
+                                            <div class="path-info">
+                                                <h4 data-translate="courses.paths.math_fundamentals">Fundamentos de Matemáticas</h4>
+                                                <p data-translate="progress.path_description">Progreso en matemáticas básicas</p>
+                                            </div>
+                                        </div>
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" id="math-progress" style="width: 0%"></div>
+                                            </div>
+                                            <span class="progress-percentage" id="math-percentage">0%</span>
+                                        </div>
+                                        <div class="path-courses-progress">
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Álgebra Básica</span>
+                                                <span class="course-status completed">✓ Completado</span>
+                                            </div>
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Geometría Plana</span>
+                                                <span class="course-status in-progress">🔄 En progreso</span>
+                                            </div>
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Trigonometría</span>
+                                                <span class="course-status pending">⏳ Pendiente</span>
+                                            </div>
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Cálculo Diferencial</span>
+                                                <span class="course-status pending">⏳ Pendiente</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="path-progress-card" data-path="natural-sciences">
+                                        <div class="path-progress-header">
+                                            <div class="path-icon">
+                                                <i class="fas fa-flask"></i>
+                                            </div>
+                                            <div class="path-info">
+                                                <h4 data-translate="courses.paths.natural_sciences">Ciencias Naturales</h4>
+                                                <p data-translate="progress.path_description">Progreso en ciencias básicas</p>
+                                            </div>
+                                        </div>
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" id="sciences-progress" style="width: 0%"></div>
+                                            </div>
+                                            <span class="progress-percentage" id="sciences-percentage">0%</span>
+                                        </div>
+                                        <div class="path-courses-progress">
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Física Básica</span>
+                                                <span class="course-status completed">✓ Completado</span>
+                                            </div>
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Química General</span>
+                                                <span class="course-status in-progress">🔄 En progreso</span>
+                                            </div>
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Biología Celular</span>
+                                                <span class="course-status pending">⏳ Pendiente</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="path-progress-card" data-path="programming-tech">
+                                        <div class="path-progress-header">
+                                            <div class="path-icon">
+                                                <i class="fas fa-code"></i>
+                                            </div>
+                                            <div class="path-info">
+                                                <h4 data-translate="courses.paths.programming_tech">Programación y Tecnología</h4>
+                                                <p data-translate="progress.path_description">Progreso en habilidades tecnológicas</p>
+                                            </div>
+                                        </div>
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" id="programming-progress" style="width: 0%"></div>
+                                            </div>
+                                            <span class="progress-percentage" id="programming-percentage">0%</span>
+                                        </div>
+                                        <div class="path-courses-progress">
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Introducción a la Programación</span>
+                                                <span class="course-status completed">✓ Completado</span>
+                                            </div>
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Python para Principiantes</span>
+                                                <span class="course-status in-progress">🔄 En progreso</span>
+                                            </div>
+                                            <div class="course-progress-item">
+                                                <span class="course-name">Desarrollo Web Básico</span>
+                                                <span class="course-status pending">⏳ Pendiente</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Análisis de IA -->
+                            <div class="ai-analysis-section">
+                                <div class="ai-analysis-header">
+                                    <div class="ai-icon">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <h3 data-translate="progress.ai_analysis">Tu Análisis Inteligente con Gemini AI</h3>
+                                    <button class="refresh-analysis-btn" id="refresh-analysis">
+                                        <i class="fas fa-sync-alt"></i>
+                                        <span data-translate="progress.refresh_analysis">Actualizar Análisis</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="ai-analysis-content" id="ai-analysis-content">
+                                    <div class="analysis-loading">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        <p data-translate="progress.analyzing_data">Analizando datos de aprendizaje...</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1714,6 +2183,9 @@
                 <!-- Comparación de Planes -->
                 <div class="plan-comparison">
                     <h3 data-translate="premium.comparison_title">Comparación de Planes</h3>
+                    <p style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 2rem;">
+                        <i class="fas fa-info-circle"></i> Todos los precios mostrados incluyen IVA del 16%
+                    </p>
                     <div class="comparison-table">
                         <div class="comparison-header">
                             <div class="plan-column">
@@ -1735,8 +2207,9 @@
                                     <span data-translate="premium.premium_plan">Premium</span>
                                 </div>
                                 <div class="plan-price">
-                                    <span class="price">$9.99</span>
+                                    <span class="price">$99.00</span>
                                     <span class="period" data-translate="premium.per_month">/mes</span>
+                                    <small style="color: #666; font-size: 0.8em; display: block; margin-top: 5px;">Precio final con IVA</small>
                                 </div>
                             </div>
                         </div>
@@ -1777,6 +2250,115 @@
                     </div>
                 </div>
                 
+                <!-- Validación de Escuela para Descuento -->
+                <div class="school-validation-section">
+                    <div class="validation-header">
+                        <h3>🎓 ¿Eres estudiante de una escuela vulnerable?</h3>
+                        <p>Si estudias en una escuela vulnerable puedes obtener un descuento especial del 75% en tu suscripción Premium</p>
+                    </div>
+                    
+                    <div class="validation-form">
+                        <div class="form-group">
+                            <label for="school-name">Nombre de tu escuela:</label>
+                            <input type="text" id="school-name" placeholder="Escribe el nombre de tu escuela" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="school-clave">Clave de la escuela:</label>
+                            <input type="text" id="school-clave" placeholder="Ej: 21PES0001A o 32PB123" class="form-input" maxlength="15" style="font-family: monospace; letter-spacing: 1px;">
+                            <small class="form-help">
+                                <i class="fas fa-info-circle"></i> 
+                                La clave oficial de tu escuela<br>
+                                <strong>Formatos válidos:</strong><br>
+                                • 21PES0001A (2 dígitos + 3 letras + 4 dígitos + 1 letra)<br>
+                                • 32PB123 (2 dígitos + 2 letras + 3 dígitos)
+                            </small>
+                        </div>
+                        
+                        <button type="button" id="validate-school-btn" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                            Validar Escuela
+                        </button>
+                    </div>
+                    
+                    <!-- Resultado de validación -->
+                    <div class="validation-result" id="validation-result" style="display: none;">
+                        <div class="result-content">
+                            <div class="result-icon">
+                                <i class="fas fa-check-circle text-success" id="validation-icon"></i>
+                            </div>
+                            <div class="result-info">
+                                <h4 id="result-title">Escuela Validada</h4>
+                                <p id="result-description">Tu escuela ha sido validada para el descuento especial.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Formulario de correo institucional -->
+                        <div class="institutional-email-form" id="email-form" style="display: none;">
+                            <h5>📧 Verifica tu correo institucional</h5>
+                            <p>Para completar la validación, necesitamos verificar tu correo institucional.</p>
+                            
+                            <div class="form-group">
+                                <label for="institutional-email">Correo institucional:</label>
+                                <input type="email" id="institutional-email" placeholder="tu.correo@escuela.edu.mx" class="form-input">
+                                <small class="form-help">Debe ser un correo oficial de tu institución educativa</small>
+                            </div>
+                            
+                            <button type="button" id="verify-email-btn" class="btn btn-success">
+                                <i class="fas fa-envelope"></i>
+                                Verificar Correo
+                            </button>
+                        </div>
+                        
+                        <!-- Precios con descuento -->
+                        <div class="discounted-prices" id="discounted-prices" style="display: none;">
+                            <h5>💰 Precios con Descuento del 75%</h5>
+                            <div class="price-cards">
+                                <div class="price-card">
+                                    <div class="price-header">
+                                        <span class="price-label">Plan Mensual</span>
+                                        <div class="price-amount">
+                                            <span class="original-price">$99.00</span>
+                                            <span class="discounted-price">$24.75</span>
+                                        </div>
+                                    </div>
+                                    <p class="price-description">Ahorras $74.25 mensuales</p>
+                                </div>
+                                
+                                <div class="price-card popular">
+                                    <div class="price-header">
+                                        <span class="price-label">Plan Anual</span>
+                                        <div class="popular-badge">Más Popular</div>
+                                        <div class="price-amount">
+                                            <span class="original-price">$1,009.75</span>
+                                            <span class="discounted-price">$252.44</span>
+                                        </div>
+                                    </div>
+                                    <p class="price-description">Ahorras $757.31 al año</p>
+                                </div>
+                            </div>
+                            
+                            <button type="button" id="apply-discount-btn" class="btn btn-premium btn-large">
+                                <i class="fas fa-graduation-cap"></i>
+                                Aplicar Descuento Estudiantil
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Escuela no válida -->
+                    <div class="validation-result invalid" id="invalid-result" style="display: none;">
+                        <div class="result-content">
+                            <div class="result-icon">
+                                <i class="fas fa-times-circle text-error"></i>
+                            </div>
+                            <div class="result-info">
+                                <h4>Escuela no válida para descuento</h4>
+                                <p>Tu escuela no está registrada en nuestro programa de descuentos. Sin embargo, puedes acceder a nuestros planes regulares con el descuento anual del 15%.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Call to Action -->
                 <div class="premium-cta">
                     <div class="cta-content">
@@ -1803,6 +2385,9 @@
                             <span data-translate="premium.back">Volver</span>
                         </button>
                         <h3 data-translate="premium.payment_title">Finalizar Compra</h3>
+                        <p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 1rem;">
+                            <i class="fas fa-info-circle"></i> Todos los precios mostrados incluyen IVA del 16%
+                        </p>
                     </div>
                     
                     <div class="payment-content">
@@ -1818,8 +2403,9 @@
                                         <p data-translate="premium.plan_description">Acceso completo a todos los beneficios premium</p>
                                     </div>
                                     <div class="plan-price">
-                                        <span class="price">$9.99</span>
+                                        <span class="price">$99.00</span>
                                         <span class="period" data-translate="premium.per_month">/mes</span>
+                                        <small style="color: #666; font-size: 0.8em; display: block; margin-top: 5px;">Precio final con IVA</small>
                                     </div>
                                 </div>
                                 
@@ -1830,14 +2416,14 @@
                                             <input type="radio" name="billing" value="monthly" checked>
                                             <span class="option-content">
                                                 <span class="option-title" data-translate="premium.monthly">Mensual</span>
-                                                <span class="option-price">$9.99/mes</span>
+                                                <span class="option-price">$99.00/mes <small style="color: #666;">(Precio final con IVA)</small></span>
                                             </span>
                                         </label>
                                         <label class="cycle-option popular">
                                             <input type="radio" name="billing" value="yearly">
                                             <span class="option-content">
                                                 <span class="option-title" data-translate="premium.yearly">Anual</span>
-                                                <span class="option-price">$99.99/año <small data-translate="premium.save_17">Ahorra 17%</small></span>
+                                                <span class="option-price">$1,009.75/año <small data-translate="premium.save_15">Ahorra 15%</small> <small style="color: #666;">(Precio final con IVA)</small></span>
                                             </span>
                                             <span class="popular-badge" data-translate="premium.most_popular">Más Popular</span>
                                         </label>
@@ -1891,19 +2477,25 @@
                             <div class="summary-card">
                                 <h4 data-translate="premium.order_summary">Resumen del Pedido</h4>
                                 
-                                <div class="summary-line">
+                                                                <div class="summary-line">
                                     <span data-translate="premium.subscription">Atlas Premium</span>
-                                    <span class="amount" id="subscription-amount">$9.99</span>
+                                    <span class="amount" id="subscription-amount">$99.00</span>
+                                </div>
+                                
+                                <div class="summary-line">
+                                    <span>Precio base (sin IVA)</span>
+                                    <span class="amount">$85.34</span>
                                 </div>
                                 
                                 <div class="summary-line">
                                     <span data-translate="premium.tax">Impuestos</span>
-                                    <span class="amount" id="tax-amount">$1.50</span>
+                                    <span class="amount" id="tax-amount">$13.66</span>
+                                    <small style="color: #666; font-size: 0.8em;">(16% IVA)</small>
                                 </div>
                                 
                                 <div class="summary-line total">
                                     <span data-translate="premium.total">Total</span>
-                                    <span class="amount" id="total-amount">$11.49</span>
+                                    <span class="amount" id="total-amount">$99.00</span>
                                 </div>
                                 
                                 <div class="payment-buttons">
@@ -2040,6 +2632,74 @@
                 <button type="submit" class="btn btn-primary" id="save-profile-changes">
                     <i class="fas fa-save"></i>
                     <span data-translate="save_changes">Guardar Cambios</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para crear publicaciones -->
+    <div id="create-post-modal" class="modal">
+        <div class="modal-content post-modal-content">
+            <div class="modal-header">
+                <h2 data-translate="create_post.title">Crear publicación</h2>
+                <button class="close-modal" id="close-create-post-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="post-author">
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Tu perfil" id="modal-user-avatar">
+                    </div>
+                    <div class="user-info">
+                        <h4 id="modal-user-name">Usuario</h4>
+                        <span class="privacy-setting">
+                            <i class="fas fa-globe"></i>
+                            <span data-translate="create_post.public">Público</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="post-form">
+                    <textarea 
+                        id="post-text" 
+                        placeholder="¿Qué tienes en mente?"
+                        data-translate-placeholder="create_post.placeholder"
+                        maxlength="2000"
+                    ></textarea>
+                    
+                    <div class="character-count">
+                        <span id="char-count">0</span>/2000
+                    </div>
+                    
+                    <!-- Vista previa de imágenes -->
+                    <div id="post-media-preview" class="post-media-preview" style="display: none;">
+                        <div id="media-container" class="media-container"></div>
+                        <button type="button" class="remove-all-media" id="remove-media-btn">
+                            <i class="fas fa-times"></i>
+                            <span data-translate="create_post.remove_all">Quitar todo</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Input oculto para archivos -->
+                    <input type="file" id="post-media-input" accept="image/*" multiple style="display: none;">
+                    
+                    <div class="post-options">
+                        <button type="button" class="post-option" id="add-image-btn">
+                            <i class="fas fa-image"></i>
+                            <span data-translate="create_post.add_images">Agregar imágenes</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-create-post">
+                    <span data-translate="cancel">Cancelar</span>
+                </button>
+                <button class="btn btn-primary" id="publish-post-btn" disabled>
+                    <span data-translate="create_post.publish">Publicar</span>
                 </button>
             </div>
         </div>

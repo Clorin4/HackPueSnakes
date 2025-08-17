@@ -31,13 +31,14 @@
     "content": "Contenu",
     "donation": "Vous voulez faire un don?"
   },
-  "profile_menu": {
-    "profile": "Profil",
-    "achievements": "Réalisations",
-    "dark_mode": "Mode sombre",
-    "language": "Langue",
-    "logout": "Se déconnecter"
-  },
+      "profile_menu": {
+        "profile": "Profil",
+        "achievements": "Réalisations",
+        "progress": "Progrès",
+        "dark_mode": "Mode sombre",
+        "language": "Langue",
+        "logout": "Se déconnecter"
+    },
   "feed": {
     "create_post_placeholder": "Que souhaitez-vous partager aujourd'hui ?",
     "photo_btn": "Photo",
@@ -75,6 +76,27 @@
     "popular_post_desc": "Recevez 50 réactions sur une publication",
     "knowledge_sharer": "Partageur de connaissances",
     "knowledge_sharer_desc": "Aidez 10 camarades avec vos publications"
+  },
+  "progress": {
+    "title": "Progrès Intelligent",
+    "subtitle": "Analyse avancée de vos progrès éducatifs avec l'IA",
+    "coming_soon": "La section des progrès sera bientôt disponible...",
+    "total_study_time": "Temps Total d'Étude",
+    "courses_completed": "Cours Terminés",
+    "learning_paths": "Parcours d'Apprentissage",
+    "achievement_rate": "Taux de Réussite",
+    "study_time_chart": "Temps d'Étude par Jour",
+    "course_progress_chart": "Progrès des Cours",
+    "learning_paths_progress": "Progrès des Parcours d'Apprentissage",
+    "path_description": "Progrès dans les compétences de base",
+    "ai_analysis": "Analyse Intelligente avec Gemini AI",
+    "refresh_analysis": "Actualiser l'Analyse",
+    "analyzing_data": "Analyse des données d'apprentissage...",
+    "learning_progress": "Progrès d'apprentissage",
+    "learning_progress_desc": "Suivez votre évolution éducative",
+    "courses_completed_desc": "Historique des cours et classes terminés",
+    "study_time": "Temps d'étude",
+    "study_time_desc": "Statistiques du temps consacré à l'apprentissage"
   },
   "content": {
     "title": "Contenu Éducatif",
@@ -227,11 +249,11 @@
     "guaranteed_value_desc": "Utilisateurs engagés qui tirent le meilleur parti de leur adhésion",
     "maximum_impact": "Impact maximum",
     "maximum_impact_desc": "Votre don atteindra ceux qui en ont le plus besoin",
-    "select_bulk_amount": "Sélectionnez le nombre d'adhésions (11-50)",
+            "select_bulk_amount": "Sélectionnez le nombre d'adhésions (1-50)",
     "bulk_pricing": "Prix avec remise en gros:",
     "bulk_price_note": "Prix: $9.99 par adhésion",
     "distribution": "Distribution:",
-    "auto_distributed": "Automatique parmi les utilisateurs en vedette",
+            "auto_distributed": "Automatique parmi les étudiants vulnérables",
     "confirm_bulk_donation": "Confirmer le don en masse",
     "bulk_donation_success": "Don en masse réussi! {amount} adhésions ont été distribuées parmi les utilisateurs en vedette.",
     "donation_success": "Don réussi! {user} a reçu {amount} adhésions.",
@@ -245,10 +267,24 @@
     "title": "Contenu Éducatif",
     "subtitle": "Découvrez des cours de qualité conçus pour votre niveau de lycée",
     "search_placeholder": "Rechercher des cours...",
+    "view_learning_paths": "Voir les parcours d'apprentissage",
     "all": "Tous",
     "basic": "Basique",
     "intermediate": "Intermédiaire",
     "advanced": "Avancé",
+    "learning_paths_title": "Parcours d'Apprentissage Recommandés",
+    "learning_paths_subtitle": "Suivez ces parcours structurés pour maximiser votre apprentissage",
+    "paths": {
+      "math_fundamentals": "Fondamentaux des Mathématiques",
+      "math_fundamentals_desc": "Construisez une base solide en mathématiques",
+      "natural_sciences": "Sciences Naturelles",
+      "natural_sciences_desc": "Explorez le monde de la science",
+      "programming_tech": "Programmation et Technologie",
+      "programming_tech_desc": "Développez des compétences technologiques",
+      "recommended_courses": "Cours Recommandés:",
+      "view_courses": "Voir les cours",
+      "start_path": "Commencer le parcours"
+    },
     "categories": {
       "physics_math": "Physique et Mathématiques",
       "social_sciences": "Sciences Sociales",
